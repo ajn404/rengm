@@ -1,5 +1,4 @@
 import {DefaultThemeOptions, defaultTheme} from "vuepress";
-import {components} from "./config/components";
 import {navbarConfig} from "./config/navbar";
 
 
@@ -34,7 +33,7 @@ export default defineUserConfig({
     ],
     plugins:[
         registerComponentsPlugin({
-            components:components
+            components:[]
           }),
     ],
     theme: defaultTheme({

@@ -3,7 +3,7 @@ const home:any = {
     link:'/'
 }
 
-const element : any = {
+const element:any = {
     text:'element-plus使用',
     children:[
         {
