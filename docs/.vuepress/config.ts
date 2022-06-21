@@ -1,13 +1,27 @@
-import {defineUserConfig} from "vuepress";
-import type {DefaultThemeOptions} from "vuepress";
+import {DefaultThemeOptions, defaultTheme} from "vuepress";
 import {components} from "./config/components";
 import {navbarConfig} from "./config/navbar";
 
 
-export default defineUserConfig<DefaultThemeOptions>({
+import { viteBundler } from '@vuepress/bundler-vite'
+import { defineUserConfig } from '@vuepress/cli'
+
+
+const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
+
+
+export default defineUserConfig({
     title: "",
     description: "",
     base: "/",
+    open:true,
+    bundler: viteBundler({
+        viteOptions: {},
+        vuePluginOptions: {
+
+        },
+      }),
+
     head: [
         [
             "link",
@@ -18,24 +32,14 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
   
     ],
-    themeConfig: {
-        logo: "/images/logo.png",
-        logoDark:"",
-        navbar: navbarConfig,
-        sidebar: "auto",
-    },
-    plugins: [
-        "@vuepress/plugin-toc",
-        "@vuepress/plugin-back-to-top",
-        "@vuepress/plugin-nprogress",
-        [
-            '@vuepress/register-components',
-            {
-                components: components,
-            },
-        ],
-    
+    plugins:[
+        registerComponentsPlugin({
+            components:components
+          }),
     ],
+    theme: defaultTheme({
+        navbar: navbarConfig
+      }),
     host:'0.0.0.0',
     port:8088,
     
