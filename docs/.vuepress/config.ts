@@ -24,7 +24,7 @@ componentKeys.forEach(name => {
 export default defineUserConfig({
     title: "",
     description: "",
-    base: "/",
+    base: "/rengm",
     open: true,
     bundler: viteBundler({
         viteOptions: {},
