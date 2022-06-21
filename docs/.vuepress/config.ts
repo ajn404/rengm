@@ -5,8 +5,8 @@ import {navbarConfig} from "./config/navbar";
 
 
 export default defineUserConfig<DefaultThemeOptions>({
-    title: "君子慎独",
-    description: "某只前端开发的自我修养手册",
+    title: "",
+    description: "",
     base: "/",
     head: [
         [
@@ -38,25 +38,5 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
     host:'0.0.0.0',
     port:8088,
-    bundlerConfig:{
-        evergreen:true,
-        configWebpack:{
-            devServer:{
-                headers: {
-                    'Content-Type':'audio/mpeg; charset=UTF-8'
-                  },
-                proxy:{
-                    // 
-                    '/music': {
-                        target: 'https://api.uomg.com',
-                        changeOrigin: true,
-                        pathRewrite: {
-                          '^/music': ''
-                        }
-                      },
-                }
-            }
-        }
-    },
     
 });
