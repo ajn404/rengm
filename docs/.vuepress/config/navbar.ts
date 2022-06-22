@@ -31,5 +31,5 @@ const p5 :any ={
 export const navbarConfig = [
     home,
     element,
-    // p5
+    p5
 ];
