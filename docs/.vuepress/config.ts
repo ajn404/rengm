@@ -15,7 +15,12 @@ const resolve = (dir) => {
     return path.resolve(__dirname, dir)
 }
 //todo添加公共组件
-const componentKeys = ['demo','home','eleButton']
+const p5_components_keys = [
+    'p5Start'
+];
+let componentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];
+componentKeys=[...componentKeys,...p5_components_keys]
+
 const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`components/${name}.vue`)
@@ -26,7 +31,7 @@ export default defineUserConfig({
     description: "",
     base: "/rengm/",
     open: true,
-    public:`/.vuepress/public`,
+    public: `/.vuepress/public`,
     bundler: viteBundler({
         viteOptions: {},
         vuePluginOptions: {
@@ -43,7 +48,7 @@ export default defineUserConfig({
         }),
         nprogressPlugin()
     ],
-    clientConfigFile:resolve('./clientAppEnhance.ts'),
+    clientConfigFile: resolve('./clientAppEnhance.ts'),
     theme: defaultTheme({
         navbar: navbarConfig
     }),

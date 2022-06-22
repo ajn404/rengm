@@ -17,8 +17,19 @@ const element:any = {
     ]
 }
 
+const p5 :any ={
+    text:'思维拓展',
+    children:[
+        {
+            text:'p5 start',
+            link:'/p5/p5-start.md'
+        }
+    ]
+}
+
 
 export const navbarConfig = [
     home,
-    element
+    element,
+    // p5
 ];
