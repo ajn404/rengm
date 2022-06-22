@@ -11,7 +11,7 @@ const element:any = {
             link:'/elementPlus/README.md'
         },
         {
-            text:'button',
+            text:'element button',
             link:'/elementPlus/eleButton.md'
         },
     ]
