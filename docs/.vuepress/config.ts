@@ -15,7 +15,7 @@ const resolve = (dir) => {
     return path.resolve(__dirname, dir)
 }
 //todo添加公共组件
-const componentKeys = ['demo']
+const componentKeys = ['demo','home','eleButton']
 const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`components/${name}.vue`)
@@ -26,22 +26,13 @@ export default defineUserConfig({
     description: "",
     base: "/rengm/",
     open: true,
+    public:`/.vuepress/public`,
     bundler: viteBundler({
         viteOptions: {},
         vuePluginOptions: {
 
         },
     }),
-    head: [
-        [
-            "link",
-            {
-                rel: "icon",
-                href: "images/favicon.ico",
-            },
-        ],
-
-    ],
     plugins: [
         registerComponentsPlugin({
             components: components
