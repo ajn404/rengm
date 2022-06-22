@@ -9,7 +9,11 @@ const element:any = {
         {
             text:'关于本栏目',
             link:'/elementPlus/README.md'
-        }
+        },
+        {
+            text:'button',
+            link:'/elementPlus/eleButton.md'
+        },
     ]
 }
 
