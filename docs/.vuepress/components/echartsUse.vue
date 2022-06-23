@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import * as echarts from 'echarts';
 
-import {nextTick} from 'vue'
+import {nextTick,onMounted } from 'vue'
 
 nextTick(()=>{
   // 基于准备好的dom，初始化echarts实例
@@ -31,9 +31,10 @@ nextTick(()=>{
     ]
   });
 
-  window.onresize = ()=>{
-    myChart.resize()
-  }
+  // if(  window&&typeof window !== "undefined")
+  // window.onresize = ()=>{
+  //   myChart.resize()
+  // }
 })
 
 

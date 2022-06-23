@@ -25,6 +25,9 @@ const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`components/${name}.vue`)
 })
+// vite.config.ts
+
+
 
 export default defineUserConfig({
     title: "",
@@ -35,11 +38,27 @@ export default defineUserConfig({
     bundler: viteBundler({
         viteOptions: {
             css: {
-                preprocessorOptions: {
-                    scss: {
-                        charset: false
-                    }
+                postcss: {
+                    plugins: [
+                        // 自定义 postcss 插件
+                        {
+                            // 插件名称
+                            postcssPlugin: 'charset-removal',
+                            // 获取 @ 规则
+                            AtRule: {
+                                // 处理全部 @charset 规则
+                                charset: (atRule) => {
+                                    // 移除规则
+                                    atRule.remove()
+                                }
+                            }
+                        }
+                    ]
                 }
+
+            },
+            build:{
+                ssr:false
             }
         },
         vuePluginOptions: {
