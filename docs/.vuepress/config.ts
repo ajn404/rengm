@@ -18,7 +18,7 @@ const resolve = (dir) => {
 const p5_components_keys = [
     'p5Start'
 ];
-let componentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];
+let componentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading','echartsUse'];
 componentKeys=[...componentKeys,...p5_components_keys]
 
 const components = {};

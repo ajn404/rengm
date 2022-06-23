@@ -27,9 +27,20 @@ const p5 :any ={
     ]
 }
 
+const dataV : any = {
+    text:'数据可视化',
+    children:[
+        {
+            text:'echarts 使用',
+            link:'/dataVisualization/README.md'
+        }
+    ]
+}
+
 
 export const navbarConfig = [
     home,
     element,
-    p5
+    p5,
+    dataV
 ];
