@@ -33,7 +33,15 @@ export default defineUserConfig({
     open: true,
     public: `/.vuepress/public`,
     bundler: viteBundler({
-        viteOptions: {},
+        viteOptions: {
+            css: {
+                preprocessorOptions: {
+                    scss: {
+                        charset: false
+                    }
+                }
+            }
+        },
         vuePluginOptions: {
 
         },
