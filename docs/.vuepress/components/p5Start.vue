@@ -1,22 +1,25 @@
 <template>
   <div class="p5-start">
-    <div id="box"></div>
+    <div id="p5-start"></div>
   </div>
 </template>
 <script lang="ts" setup>
 import "element-plus/dist/index.css";
+import { ref } from "vue";
+import { ElMessage } from "element-plus";
+
 //vue中使用P5的方式
-import("../resource/p5.js").then(
-    ()=>{
-      console.log(typeof window.p5);
-      new window.p5(main,'box')
+import("../resource/p5.js").then(() => {
+  try {
+    if (p5 && typeof p5 === "function") {
+      new p5(main, "p5-start");
     }
-)
+  } catch (e) {
+    ElMessage.warning(e);
+  }
+});
 
-import  {ref} from 'vue';
-import { ElMessage } from 'element-plus'
-
-const num = ref(0)
+const num = ref(0);
 
 const main = (_p5) => {
   let p5 = _p5;
@@ -24,16 +27,19 @@ const main = (_p5) => {
   let axiom = "F";
   let sentence = axiom;
   let len = 100;
-
   let rules = [];
-
   rules[0] = {
     a: "F",
     b: "FF+[+F-F-F]-[-F+F+F]",
   };
+  //"F" p5.line(0, 0, 0, -len); p5.translate(0, -len);
+  //"+" p5.rotate(angle);
+  //"-" p5.rotate(-angle);
+  //"[" p5.push();
+  //"]" p5.pop();
 
-  function generate() {
-    if(num.value<4){
+  function generate(canGene) {
+    if (num.value < 4 || canGene) {
       num.value++;
       len *= 0.5;
       let nextSentence = "";
@@ -53,11 +59,18 @@ const main = (_p5) => {
       }
       sentence = nextSentence;
       turtle();
-    }else{
-      console.log('打灭打灭')
-      ElMessage('最多生成'+(num.value+1)+'次哦😯,我怕生多了💻会炸')
+    } else {
+      console.log("哒咩哒咩");
+      ElMessage(
+        "最多生成" +
+          (num.value + 1) +
+          "次哦😯,我怕生多了💻会炸，你阔以尝试点击下方按钮继续生成，💻炸了概不负责"
+      );
+      if (num.value === 4) {
+        let button = addButton("click me 继续生成");
+        button.mousePressed(generate(true));
+      }
     }
-
   }
 
   function turtle() {
@@ -66,7 +79,11 @@ const main = (_p5) => {
     p5.translate(200, 400);
     for (let i = 0; i < sentence.length; i++) {
       let current = sentence.charAt(i);
-      p5.stroke(parseInt(255 * Math.random()), 100+parseInt(255*Math.random()),100+parseInt(255*Math.random()));
+      p5.stroke(
+        parseInt(255 * Math.random()),
+        parseInt(255 * Math.random()),
+        parseInt(255 * Math.random())
+      );
       if (current == "F") {
         p5.line(0, 0, 0, -len);
         p5.translate(0, -len);
@@ -82,44 +99,40 @@ const main = (_p5) => {
     }
   }
 
+  function addButton(label) {
+    let button = p5.createButton(label);
+    let buttonStyle = button.elt.style;
+
+    buttonStyle.border = "none";
+    buttonStyle.marginTop = "20px";
+    buttonStyle.padding = "10px";
+    buttonStyle.width = "100%";
+    buttonStyle.boxShadow = "1px 1px 0 0 #e0e0e0";
+    buttonStyle.background = "var(--el-color-primary)";
+    buttonStyle.color = "#fff";
+
+    button.elt.addEventListener("mouseenter", function () {
+      buttonStyle.opacity = "0.6";
+    });
+    button.elt.addEventListener("mouseleave", function () {
+      buttonStyle.opacity = "1";
+    });
+
+    return button;
+  }
+
   p5.setup = () => {
-    p5.createCanvas(400,400);
-    angle = p5.radians(25);
-    p5.background(51);
+    p5.createCanvas(400, 400);
+    angle = p5.radians(20);
+    p5.background('white');
     turtle();
-    let button = p5.createButton("click me 持续生成");
-    let buttonStyle =button.elt.style;
-
-    buttonStyle.border = 'none'
-    buttonStyle.marginTop = '20px'
-    buttonStyle.padding = '10px'
-    buttonStyle.width = '100%'
-    buttonStyle.boxShadow = '1px 1px 0 0 #e0e0e0'
-    buttonStyle.background = 'var(--el-color-primary)'
-    buttonStyle.color = '#fff'
-
-    button.elt.addEventListener(
-        'mouseenter',function (){
-          buttonStyle.opacity = '0.6'
-        }
-    )
-    button.elt.addEventListener(
-        'mouseleave',function (){
-          buttonStyle.opacity = '1'
-        }
-    )
-
-
+    let button = addButton("click me 持续生成");
     button.mousePressed(generate);
-
-
-
   };
-}
-
+};
 </script>
 <style scoped lang="scss">
-#box {
+#p5-start {
   max-width: 100%;
   max-height: 80%;
   overflow: hidden;

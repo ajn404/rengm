@@ -1,5 +1,6 @@
 ---
-head:p5使用
+head:p5使用 L-system
+
 ---
 ## 基本使用
 
