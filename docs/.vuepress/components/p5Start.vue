@@ -56,24 +56,23 @@ const methods = [
 const clearFunc = (p5) => {
   document.querySelector("#p5-start").innerHTML = "";
 };
-
-// import * as p5 from "p5";
-
 const handleChange = (arr) => {
-  if (isClient){
-    try{
-      import('../resource/p5.js').then(res=>{
-        let p5 = window.p5
+  if (isClient&&window){
+    import('p5/lib/p5').then(res=>{
+      let P5 =res;
+      let p5 = res.default;
+      try{
         if (p5 && typeof p5 === "function") {
           //清除之前的
           clearFunc(p5);
           //新建计算和canvas
           new p5(funcs[arr[arr.length - 1]], "p5-start");
         }
-      })
-    }catch (e){
-      console.log(e)
-    }
+      }catch (e){
+        console.log(e)
+      }
+    })
+
   }
    
 };

@@ -27,7 +27,6 @@ const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`components/${name}.vue`)
 })
-// vite.config.ts
 
 export default defineUserConfig({
     title: "",
@@ -57,8 +56,10 @@ export default defineUserConfig({
                 }
 
             },
+            server:{
+
+            },
             build:{
-                ssr:false,
                 rollupOptions:{
                     external:[
                     ]
@@ -68,6 +69,7 @@ export default defineUserConfig({
         vuePluginOptions: {
 
         },
+
     }),
     plugins: [
         registerComponentsPlugin({
