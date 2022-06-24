@@ -57,21 +57,16 @@ const clearFunc = (p5) => {
   document.querySelector("#p5-start").innerHTML = "";
 };
 
+import * as p5 from "p5";
+
 const handleChange = (arr) => {
   if (isClient)
-    import("p5/lib/p5.js").then((res) => {
-      try {
-        const p5 = res.default;
-        if (p5 && typeof p5 === "function") {
-          //清除之前的
-          clearFunc(p5);
-          //新建计算和canvas
-          new p5(funcs[arr[arr.length - 1]], "p5-start");
-        }
-      } catch (e) {
-        ElMessage.error(e);
-      }
-    });
+    if (p5 && typeof p5 === "function") {
+      //清除之前的
+      clearFunc(p5);
+      //新建计算和canvas
+      new p5(funcs[arr[arr.length - 1]], "p5-start");
+    }
 };
 </script>
 <style scoped lang="scss">

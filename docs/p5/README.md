@@ -16,4 +16,15 @@
 
   </CodeGroupItem>
 
+  <CodeGroupItem title="p5Main.ts">
+
+@[code js{1-409}:no-line-numbers](../.vuepress/common/p5Main.ts))
+
+  </CodeGroupItem>
+
 </CodeGroup>
+
+
+## p5-start切换canvas，但之前的drawing任务好像一直再执行
+
+
