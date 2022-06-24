@@ -9,15 +9,18 @@ import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
 //vue中使用P5的方式
-// import("../resource/p5.js").then(() => {
-//   try {
-//     if (p5 && typeof p5 === "function") {
-//       new p5(main, "p5-start");
-//     }
-//   } catch (e) {
-//     ElMessage.warning(e);
-//   }
-// });
+import { isClient } from '@vueuse/core'
+if(isClient)
+import("p5/lib/p5.js").then((res) => {
+  try {
+    const p5 = res.default;
+    if (p5 && typeof p5 === "function") {
+      new p5(main, "p5-start");
+    }
+  } catch (e) {
+    ElMessage.warning(e);
+  }
+});
 
 const num = ref(0);
 
