@@ -18,7 +18,7 @@ import("p5/lib/p5.js").then((res) => {
       new p5(main, "p5-start");
     }
   } catch (e) {
-    ElMessage.warning(e);
+    ElMessage.error(e);
   }
 });
 
