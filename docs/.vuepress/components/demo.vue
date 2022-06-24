@@ -17,7 +17,6 @@
 
     <el-input-number v-model="stage"></el-input-number>
 
-    <div>sCounter{{ sCounter }}</div>
   </div>
 </template>
 <script lang="ts" setup>

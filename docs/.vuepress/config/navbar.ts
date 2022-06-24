@@ -8,11 +8,11 @@ const element:any = {
     children:[
         {
             text:'关于本栏目',
-            link:'/elementPlus/README'
+            link:'/elementPlus/README.md'
         },
         {
             text:'element button',
-            link:'/elementPlus/eleButton'
+            link:'/elementPlus/eleButton.md'
         },
     ]
 }
@@ -22,11 +22,11 @@ const p5 :any ={
     children:[
         {
             text:'关于本栏目',
-            link:'/p5/README'
+            link:'/p5/README.md'
         },
         {
             text:'p5 start',
-            link:'/p5/p5-start'
+            link:'/p5/p5-start.md'
         }
     ]
 }
@@ -36,7 +36,7 @@ const dataV : any = {
     children:[
         {
             text:'echarts 使用',
-            link:'/dataVisualization/README'
+            link:'/dataVisualization/README.md'
         }
     ]
 }

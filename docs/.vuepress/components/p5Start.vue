@@ -58,9 +58,8 @@ const clearFunc = (p5) => {
 };
 const handleChange = (arr) => {
   if (isClient&&window){
-    import('p5').then(res=>{
-      let P5 =res;
-      let p5 = res.default;
+    import('https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js').then(()=>{
+      let p5 = window.p5;
       try{
         if (p5 && typeof p5 === "function") {
           //清除之前的
