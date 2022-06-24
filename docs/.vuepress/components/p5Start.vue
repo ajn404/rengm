@@ -58,7 +58,7 @@ const clearFunc = (p5) => {
 };
 const handleChange = (arr) => {
   if (isClient&&window){
-    import('p5/lib/p5').then(res=>{
+    import('p5').then(res=>{
       let P5 =res;
       let p5 = res.default;
       try{

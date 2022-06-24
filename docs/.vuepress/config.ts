@@ -61,7 +61,7 @@ export default defineUserConfig({
             },
             build:{
                 rollupOptions:{
-                    external:['p5/lib/p5']
+                    external:['p5']
                 }
             }
         },
