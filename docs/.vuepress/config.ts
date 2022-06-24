@@ -20,13 +20,16 @@ const resolve = (dir) => {
 const p5_components_keys = [
     'p5Start'
 ];
-let componentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];
+let componentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading','echartsUse'];
 componentKeys=[...componentKeys,...p5_components_keys]
 
 const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`components/${name}.vue`)
 })
+// vite.config.ts
+
+
 
 export default defineUserConfig({
     title: "",
@@ -36,7 +39,31 @@ export default defineUserConfig({
     public: `/.vuepress/public`,
    
     bundler: viteBundler({
-        viteOptions: {},
+        viteOptions: {
+            css: {
+                postcss: {
+                    plugins: [
+                        // 自定义 postcss 插件
+                        {
+                            // 插件名称
+                            postcssPlugin: 'charset-removal',
+                            // 获取 @ 规则
+                            AtRule: {
+                                // 处理全部 @charset 规则
+                                charset: (atRule) => {
+                                    // 移除规则
+                                    atRule.remove()
+                                }
+                            }
+                        }
+                    ]
+                }
+
+            },
+            build:{
+                ssr:false
+            }
+        },
         vuePluginOptions: {
 
         },
