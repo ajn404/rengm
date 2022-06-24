@@ -31,10 +31,10 @@ nextTick(()=>{
     ]
   });
 
-  // if(  window&&typeof window !== "undefined")
-  // window.onresize = ()=>{
-  //   myChart.resize()
-  // }
+  if(window&&typeof window !== "undefined")
+  window.onresize = ()=>{
+    myChart.resize()
+  }
 })
 
 

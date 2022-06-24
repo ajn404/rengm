@@ -16,12 +16,12 @@ if (isClient)
       const p5 = res.default;
       if (p5 && typeof p5 === "function") {
         new p5(main, "pageTop");
-        window.onresize = ()=>{
-        new p5(main, "pageTop");
-        }
+        window.onresize = () => {
+          new p5(main, "pageTop");
+        };
       }
     } catch (e) {
-      console.log(e,typeof e)
+      console.log(e, typeof e);
       ElMessage.warning(e);
     }
   });
@@ -29,8 +29,6 @@ if (isClient)
 const main = (_p5) => {
   let p5 = _p5;
   let snowflakes = [];
-
-
 
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, 20);
@@ -87,6 +85,7 @@ const main = (_p5) => {
     };
   }
 };
+
 </script>
 <style scoped lang="scss">
 #pageTop {

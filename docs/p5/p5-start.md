@@ -1,6 +1,8 @@
 ---
-head:p5使用 L-system
-
+head : p5使用 L-system
+navbar : false
+sidebar : false
+sidebarDepth : 0
 ---
 ## 基本使用
 
