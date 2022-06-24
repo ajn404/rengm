@@ -28,7 +28,6 @@ import { ref, computed } from "vue";
 const value = ref(20);
 const color1 = ref("#409EFF");
 const color2 = ref();
-console.log("this", this);
 const date = ref(new Date());
 
 const format = (percentage) => (percentage === 100 ? "Full" : `${percentage}%`);

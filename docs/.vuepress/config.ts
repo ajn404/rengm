@@ -2,12 +2,14 @@ import { defaultTheme } from "vuepress";
 import { navbarConfig } from "./config/navbar";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from '@vuepress/cli'
+import { localTheme } from './theme'
 
 //插件
 const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
 const { containerPlugin } = require('@vuepress/plugin-container')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
+// const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 
 const { path } = require('@vuepress/utils')
 
@@ -32,6 +34,7 @@ export default defineUserConfig({
     base: "/rengm/",
     open: true,
     public: `/.vuepress/public`,
+   
     bundler: viteBundler({
         viteOptions: {},
         vuePluginOptions: {
@@ -46,12 +49,14 @@ export default defineUserConfig({
         containerPlugin({
             // options
         }),
-        nprogressPlugin()
+        nprogressPlugin(),
+        // docsearchPlugin()
     ],
     clientConfigFile: resolve('./clientAppEnhance.ts'),
-    theme: defaultTheme({
-        navbar: navbarConfig
-    }),
+    theme: localTheme({
+        // default theme options
+        navbar:navbarConfig
+      }),
     host: '0.0.0.0',
     port: 8088,
 

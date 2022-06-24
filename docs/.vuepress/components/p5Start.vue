@@ -9,21 +9,21 @@ import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
 //vue中使用P5的方式
-import("../resource/p5.js").then(() => {
-  try {
-    if (p5 && typeof p5 === "function") {
-      new p5(main, "p5-start");
-    }
-  } catch (e) {
-    ElMessage.warning(e);
-  }
-});
+// import("../resource/p5.js").then(() => {
+//   try {
+//     if (p5 && typeof p5 === "function") {
+//       new p5(main, "p5-start");
+//     }
+//   } catch (e) {
+//     ElMessage.warning(e);
+//   }
+// });
 
 const num = ref(0);
 
 const main = (_p5) => {
   let p5 = _p5;
-  let angle;
+  let angle = p5.radians(20);
   let axiom = "F";
   let sentence = axiom;
   let len = 100;
@@ -64,17 +64,17 @@ const main = (_p5) => {
       ElMessage(
         "最多生成" +
           (num.value + 1) +
-          "次哦😯,我怕生多了💻会炸，你阔以尝试点击下方按钮继续生成，💻炸了概不负责"
+          "次哦😯,循环太多💻会炸，阔以尝试点击下方按钮继续生成，💻炸了概不负责"
       );
       if (num.value === 4) {
-        let button = addButton("click me 继续生成");
+        let button = addButton("继续生成");
         button.mousePressed(generate(true));
       }
     }
   }
 
   function turtle() {
-    p5.background(0);
+    p5.background(255);
     p5.resetMatrix();
     p5.translate(200, 400);
     for (let i = 0; i < sentence.length; i++) {
@@ -123,8 +123,7 @@ const main = (_p5) => {
 
   p5.setup = () => {
     p5.createCanvas(400, 400);
-    angle = p5.radians(20);
-    p5.background('white');
+    p5.background('#fff');
     turtle();
     let button = addButton("click me 持续生成");
     button.mousePressed(generate);
@@ -135,6 +134,7 @@ const main = (_p5) => {
 #p5-start {
   max-width: 100%;
   max-height: 80%;
+
   overflow: hidden;
   display: flex;
   place-items: center;
