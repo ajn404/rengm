@@ -11,17 +11,18 @@
 </template>
 <script lang="ts" setup>
 import "element-plus/dist/index.css";
-import { ref , getCurrentInstance} from "vue";
+import { ref , getCurrentInstance ,onUnmounted} from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
 //vue中使用P5的方式
-import { LSystem, main, angularMotion, slidePuzzle } from "../common/p5Main";
+import {LSystem, main, angularMotion, slidePuzzle, polarCoordinates} from "../common/p5Main";
 const funcs = {
   main: main,
   LSystem: LSystem,
   angularMotion: angularMotion,
   slidePuzzle: slidePuzzle,
+  polarCoordinates:polarCoordinates
 };
 const selectMethhod = ref([]);
 const methods = [
@@ -40,6 +41,10 @@ const methods = [
         value: "angularMotion",
         label: "angularMotion"
       },
+      {
+        value: 'polarCoordinates',
+        label: 'polarCoordinates'
+      }
     ],
   },
   {
@@ -65,6 +70,10 @@ let p5;
 if(isClient)
 import('https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js').then(()=>{
   p5 = window.p5;
+})
+
+onUnmounted(()=>{
+  window.p5DrawLoop = ""
 })
 
 const handleChange = (arr) => {

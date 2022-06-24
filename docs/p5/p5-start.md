@@ -1,6 +1,5 @@
 ---
 head : p5使用 L-system
-navbar : false
 sidebar : false
 sidebarDepth : 0
 ---
