@@ -9,22 +9,22 @@ import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
 //vue中使用P5的方式
-import { isClient } from "@vueuse/core";
-if (isClient)
-  import("p5/lib/p5.js").then((res) => {
-    try {
-      const p5 = res.default;
-      if (p5 && typeof p5 === "function") {
-        new p5(main, "pageTop");
-        window.onresize = () => {
-          new p5(main, "pageTop");
-        };
-      }
-    } catch (e) {
-      console.log(e, typeof e);
-      ElMessage.warning(e);
-    }
-  });
+// import { isClient } from "@vueuse/core";
+// if (isClient)
+//   import("p5/lib/p5.js").then((res) => {
+//     try {
+//       const p5 = res.default;
+//       if (p5 && typeof p5 === "function") {
+//         new p5(main, "pageTop");
+//         window.onresize = () => {
+//           new p5(main, "pageTop");
+//         };
+//       }
+//     } catch (e) {
+//       console.log(e, typeof e);
+//       ElMessage.warning(e);
+//     }
+//   });
 
 const main = (_p5) => {
   let p5 = _p5;

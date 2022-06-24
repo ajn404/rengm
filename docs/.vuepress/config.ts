@@ -35,10 +35,6 @@ export default defineUserConfig({
     base: "/rengm/",
     open: true,
     public: `/.vuepress/public`,
-
-    head: [['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
-    integrity: 'sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==' }]],
-   
     bundler: viteBundler({
         viteOptions: {
             css: {
