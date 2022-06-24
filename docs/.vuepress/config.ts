@@ -59,7 +59,12 @@ export default defineUserConfig({
 
             },
             build:{
-                ssr:false
+                ssr:false,
+                rollupOptions:{
+                    external:[
+                        'p5/lib/p5.js'
+                    ]
+                }
             }
         },
         vuePluginOptions: {
