@@ -16,7 +16,9 @@ export const main = (_p5) => {
     }
 
     p5.draw = () => {
-        console.log("drawing main")
+        if(window.p5DrawLoop!=='main'){
+            p5.noLoop()
+        }
         p5.background(0);
 
         const width = p5.width
@@ -183,7 +185,9 @@ export const angularMotion = (_p5) => {
 
     }
     p5.draw = () => {
-        console.log("drawing angularMotion")
+        if(window.p5DrawLoop!=='angularMotion'){
+            p5.noLoop()
+        }
         let cWidth = p5.width ;
         let cHeight = p5.height ;
         angleA = p5.map(p5.mouseX, 0, p5.width, -0.01, 0.01)
@@ -250,8 +254,11 @@ export const slidePuzzle = (_p5) => {
     };
 
     p5.draw = () => {
-        console.log("drawing slidePuzzle")
-      p5.background(0);
+        if(window.p5DrawLoop!=='slidePuzzle'){
+            p5.noLoop()
+        }
+
+        p5.background(0);
       drawViz();
 
       updateTiles();

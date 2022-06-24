@@ -11,7 +11,7 @@
 </template>
 <script lang="ts" setup>
 import "element-plus/dist/index.css";
-import { ref } from "vue";
+import { ref , getCurrentInstance} from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
@@ -38,7 +38,7 @@ const methods = [
       },
       {
         value: "angularMotion",
-        label: "angularMotion",
+        label: "angularMotion"
       },
     ],
   },
@@ -53,27 +53,34 @@ const methods = [
   },
 ];
 
+let {ctx:that} = getCurrentInstance()
+// that.$forceUpdate()
+
 const clearFunc = (p5) => {
   document.querySelector("#p5-start").innerHTML = "";
 };
+
+
+let p5;
+if(isClient)
+import('https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js').then(()=>{
+  p5 = window.p5;
+})
+
 const handleChange = (arr) => {
-  if (isClient&&window){
-    import('https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js').then(()=>{
-      let p5 = window.p5;
       try{
         if (p5 && typeof p5 === "function") {
+          window.p5DrawLoop = arr[arr.length - 1]
           //清除之前的
           clearFunc(p5);
           //新建计算和canvas
-          new p5(funcs[arr[arr.length - 1]], "p5-start");
+           new p5(funcs[arr[arr.length - 1]], "p5-start");
         }
       }catch (e){
         console.log(e)
+        ElMessage.warning('可能cdn的p5还没有加载好')
       }
-    })
 
-  }
-   
 };
 </script>
 <style scoped lang="scss">
