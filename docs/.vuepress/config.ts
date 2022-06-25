@@ -1,4 +1,4 @@
-import { defaultTheme } from "vuepress";
+import { defaultTheme ,HeadConfig} from "vuepress";
 import { navbarConfig } from "./config/navbar";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from '@vuepress/cli'
@@ -29,11 +29,10 @@ componentKeys.forEach(name => {
 })
 
 export default defineUserConfig({
-    title: "",
-    description: "",
+    title: "探索",
+    description: "vuepress的使用边界",
     base: "/rengm/",
     open: true,
-    public: `/.vuepress/public`,
     bundler: viteBundler({
         viteOptions: {
             css: {
@@ -70,6 +69,7 @@ export default defineUserConfig({
         },
 
     }),
+    head: [['link', { rel: 'icon', href: 'images/favicon.ico' }]],
     plugins: [
         registerComponentsPlugin({
             components: components
