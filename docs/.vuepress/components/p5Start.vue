@@ -11,23 +11,36 @@
 </template>
 <script lang="ts" setup>
 import "element-plus/dist/index.css";
-import { ref , getCurrentInstance ,onUnmounted} from "vue";
+import {ref, getCurrentInstance, onUnmounted, nextTick} from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
 //vue中使用P5的方式
-import {LSystem, main, angularMotion, slidePuzzle, polarCoordinates} from "../common/p5Main";
+import {
+  LSystem,
+  main,
+  angularMotion,
+  slidePuzzle,
+  polarCoordinates,
+  geometries,
+  defaultFunc,
+  sinCos3D
+} from "../common/p5Main";
 const funcs = {
+  defaultFunc:defaultFunc,
   main: main,
   LSystem: LSystem,
   angularMotion: angularMotion,
   slidePuzzle: slidePuzzle,
-  polarCoordinates:polarCoordinates
+  polarCoordinates:polarCoordinates,
+  geometries:geometries,
+  sinCos3D: sinCos3D
 };
 const selectMethhod = ref([]);
 const methods = [
+  {label:"default",value:"defaultFunc"},
   {
-    label: "场景1",
+    label: "场景1（偏交互2D和生成艺术）",
     children: [
       {
         value: "main",
@@ -48,7 +61,7 @@ const methods = [
     ],
   },
   {
-    label: "场景2",
+    label: "场景2（偏游戏）",
     children: [
       {
         label: "移动拼图",
@@ -56,6 +69,19 @@ const methods = [
       },
     ],
   },
+  {
+    label:"场景3（webgl）",
+    children: [
+      {
+        label: "geometries",
+        value: "geometries"
+      },
+      {
+        label:"sinCos3D",
+        value:"sinCos3D"
+      }
+    ]
+  }
 ];
 
 let {ctx:that} = getCurrentInstance()
@@ -70,11 +96,17 @@ let p5;
 if(isClient)
 import('https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js').then(()=>{
   p5 = window.p5;
+  //本地开发，或者就这样？
+  nextTick(()=>{
+    new p5(defaultFunc, "p5-start");
+    window.p5DrawLoop = "defaultFunc"
+  })
 })
 
 onUnmounted(()=>{
   window.p5DrawLoop = ""
 })
+
 
 const handleChange = (arr) => {
       try{
@@ -83,7 +115,7 @@ const handleChange = (arr) => {
           //清除之前的
           clearFunc(p5);
           //新建计算和canvas
-           new p5(funcs[arr[arr.length - 1]], "p5-start");
+           new p5(funcs[arr[arr.length - 1]]||main, "p5-start");
         }
       }catch (e){
         console.log(e)
@@ -91,6 +123,7 @@ const handleChange = (arr) => {
       }
 
 };
+
 </script>
 <style scoped lang="scss">
 #p5-start {

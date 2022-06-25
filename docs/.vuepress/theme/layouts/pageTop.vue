@@ -22,7 +22,7 @@ if (isClient&&window)
       }
     } catch (e) {
       console.log(e, typeof e);
-      ElMessage.warning(e);
+      ElMessage.warning("出错了，哥，看你写的垃圾代码");
     }
   });
 

@@ -16,7 +16,7 @@ export const main = (_p5) => {
     }
 
     p5.draw = () => {
-        if(window.p5DrawLoop!=='main'){
+        if(window&&window.p5DrawLoop!=='main'){
             p5.noLoop()
         }
         p5.background(0);
@@ -166,7 +166,6 @@ export const LSystem = (_p5) => {
     };
 }
 
-
 export const angularMotion = (_p5) => {
 
     let p5 = _p5;
@@ -184,7 +183,7 @@ export const angularMotion = (_p5) => {
 
     }
     p5.draw = () => {
-        if(window.p5DrawLoop!=='angularMotion'){
+        if(window&&window.p5DrawLoop!=='angularMotion'){
             p5.noLoop()
         }
         let cWidth = p5.width ;
@@ -203,7 +202,6 @@ export const angularMotion = (_p5) => {
 
     }
 }
-
 
 export const slidePuzzle = (_p5) => {
     let p5 = _p5;
@@ -253,7 +251,7 @@ export const slidePuzzle = (_p5) => {
     };
 
     p5.draw = () => {
-        if(window.p5DrawLoop!=='slidePuzzle'){
+        if(window&&window.p5DrawLoop!=='slidePuzzle'){
             p5.noLoop()
         }
 
@@ -427,7 +425,7 @@ export const  polarCoordinates = (_p5) => {
 
     p5.draw = () => {
 
-        if(window.p5DrawLoop!=='polarCoordinates'){
+        if(window&&window.p5DrawLoop!=='polarCoordinates'){
             p5.noLoop()
         }
 
@@ -455,4 +453,132 @@ export const  polarCoordinates = (_p5) => {
 
 
     };
+}
+
+export const geometries = (_p5) =>{
+    let _ = _p5;
+    _.setup = ()=>{
+        _.createCanvas(710,400,_.WEBGL)
+    }
+
+    _.draw = ()=>{
+        if(window&&window.p5DrawLoop!=="geometries"){
+            _.noLoop()
+        }
+        _.background(255);
+        _.translate(-200,-100,0);
+        _.normalMaterial()
+
+        _.push()
+
+        _.rotateZ(_.frameCount*0.01)
+        _.rotateX(_.frameCount*0.01)
+        _.rotateY(_.frameCount*0.01)
+
+        _.plane(70)
+        _.pop()
+
+        _.translate(200,0,0)
+        _.push()
+        _.rotateZ(_.frameCount*0.01)
+        _.rotateX(_.frameCount*0.01)
+        _.rotateY(_.frameCount*0.01)
+
+        _.box(70,70,70)
+        _.pop()
+
+        _.translate(200, 0, 0);
+        _.push();
+        _.rotateZ(_.frameCount * 0.01);
+        _.rotateX(_.frameCount * 0.01);
+        _.rotateY(_.frameCount * 0.01);
+        _.cylinder(30, 10);
+        _.pop();
+
+        _.translate(-400, 200, 0);
+        _.push();
+        _.rotateZ(_.frameCount * 0.01);
+        _.rotateX(_.frameCount * 0.01);
+        _.rotateY(_.frameCount * 0.01);
+        //底r和高
+        _.cone(30, 100);
+        _.pop();
+
+        _.translate(200, 0, 0);
+        _.push();
+        _.rotateZ(_.frameCount * 0.02);
+        _.rotateX(_.frameCount * 0.01);
+        _.rotateY(_.frameCount * 0.01);
+        //圆环 半径和高
+        _.torus(60, 30);
+        _.pop();
+
+        _.translate(200, 0, 0);
+        _.push();
+        _.rotateZ(_.frameCount * 0.01);
+        _.rotateX(_.frameCount * 0.01);
+        _.rotateY(_.frameCount * 0.01);
+        _.sphere(70);
+        _.pop();
+    }
+}
+
+
+export const sinCos3D = (_p5) =>{
+    let _ = _p5;
+    _.setup = ()=>{
+        _.createCanvas(710,400,_.WEBGL)
+    }
+
+    // let teapot ;
+    // _.preload=()=>{
+    //         teapot = _.loadModel('/model/teapot.obj', true);
+    // }
+
+    _.draw = ()=>{
+        if(window&&window.p5DrawLoop!=="sinCos3D"){
+            _.noLoop()
+        }
+
+        _.background(250);
+        _.rotateY(_.frameCount*0.01)
+
+        for(let j=0;j<5;j++){
+            _.push();
+            for(let i=0;i<100;i++){
+                _.translate(
+                    _.sin(_.frameCount*0.001+j)*100,
+                    _.sin(_.frameCount*0.001+j)*100,
+                    i*0.1
+
+                )
+                _.rotateZ(_.frameCount*0.002)
+
+
+                _.push()
+                _.sphere(8,6,4)
+                // _.model(teapot)
+                _.pop()
+            }
+
+            _.pop()
+
+        }
+
+
+
+    }
+}
+
+export const defaultFunc = (_p5)=>{
+    let _ = _p5;
+    _.setup = ()=>{
+        _.createCanvas(710,400,_.WEBGL)
+    }
+
+    _.draw = ()=> {
+        if (window && window.p5DrawLoop !== "defaultFunc") {
+            _.noLoop()
+        }
+    }
 }
