@@ -1,4 +1,4 @@
-import { defaultTheme } from "vuepress";
+import { defaultTheme ,HeadConfig} from "vuepress";
 import { navbarConfig } from "./config/navbar";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from '@vuepress/cli'
@@ -27,18 +27,12 @@ const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`components/${name}.vue`)
 })
-// vite.config.ts
 
 export default defineUserConfig({
-    title: "",
-    description: "",
+    title: "探索",
+    description: "vuepress的使用边界",
     base: "/rengm/",
     open: true,
-    public: `/.vuepress/public`,
-
-    head: [['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
-    integrity: 'sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==' }]],
-   
     bundler: viteBundler({
         viteOptions: {
             css: {
@@ -61,18 +55,21 @@ export default defineUserConfig({
                 }
 
             },
+            server:{
+
+            },
             build:{
-                ssr:false,
                 rollupOptions:{
-                    external:[
-                    ]
+                    external:['p5']
                 }
             }
         },
         vuePluginOptions: {
 
         },
+
     }),
+    head: [['link', { rel: 'icon', href: 'images/favicon.ico' }]],
     plugins: [
         registerComponentsPlugin({
             components: components

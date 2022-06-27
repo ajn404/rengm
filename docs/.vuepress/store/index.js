@@ -7,7 +7,8 @@ const store = createStore(
         state(){
             return{
                 count:0,
-                theme:'light'
+                theme:'light',
+                loop:'main'
             }
         },
         getters:{

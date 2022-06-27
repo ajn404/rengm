@@ -10,10 +10,10 @@ import { ElMessage } from "element-plus";
 
 //vue中使用P5的方式
 import { isClient } from "@vueuse/core";
-if (isClient)
-  import("p5/lib/p5.js").then((res) => {
+if (isClient&&window)
+  import("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js").then(() => {
+    let p5 = window.p5;
     try {
-      const p5 = res.default;
       if (p5 && typeof p5 === "function") {
         new p5(main, "pageTop");
         window.onresize = () => {
@@ -22,7 +22,7 @@ if (isClient)
       }
     } catch (e) {
       console.log(e, typeof e);
-      ElMessage.warning(e);
+      ElMessage.warning("出错了，哥，看你写的垃圾代码");
     }
   });
 

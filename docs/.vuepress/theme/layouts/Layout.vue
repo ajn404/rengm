@@ -1,11 +1,13 @@
 <script setup>
 import ParentLayout from "@vuepress/theme-default/lib/client/layouts/Layout.vue";
 import pageTop from './pageTop.vue'
+import pageBottom from "./pageBottom.vue";
 </script>
 <template>
   <ParentLayout>
     <template #page-bottom>
-      <div class="my-footer"> ⚡🐵🐒🦮🐕‍🦺🦝😄😂😉😇😍🤑🤭💐🌼 </div>
+     <page-bottom></page-bottom>
+
     </template>
     <template #page-top>
       <page-top></page-top>
