@@ -291,16 +291,16 @@ export const dynamicBarChart = {
     },
     yAxis: {
         type: 'category',
-        data: ['A', 'B', 'C', 'D', 'E'],
+        data: ['我是第一', '我才是', '我想躺平', '哈哈哈哈哈', '看不见我'],
         inverse: true,
         animationDuration: 300,
         animationDurationUpdate: 300,
-        max: 5 // only the largest 3 bars will be displayed
+        max: 5
     },
     series: [
         {
             realtimeSort: true,
-            name: 'X',
+            name: '某公司职场',
             type: 'bar',
             label: {
                 show: true,

@@ -6,7 +6,16 @@
                 @change="handelSelectOptionChange"
                 class="cascader"
         />
+        <el-select v-model="selectType" class="m-2" placeholder="Select" size="large">
+            <el-option
+                    v-for="item in selectTypeOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+            />
+        </el-select>
         <div id="dynamic-echarts"></div>
+
         <el-button @click="stop">停止</el-button>
         <el-button @click="start">重新开始</el-button>
     </div>
@@ -55,7 +64,7 @@
             myChart.setOption({
                 series: [
                     {
-                        type: 'bar',
+                        type: selectType.value,
                         data:dynamicBarChartData
                     }
                 ]
@@ -85,6 +94,13 @@
        stop()
     })
 
+    const selectType = ref('bar')
+    const selectTypeOptions =[
+        {value:'line',label:'折线'},
+        {value:'bar',label:'柱状'},
+        {value:'pie',label:'饼图'},
+        {value:'scatter',label:'点图'},
+    ]
 
 
     const handelSelectOptionChange = (val) => {
@@ -125,7 +141,7 @@
     }
     #dynamic-echarts {
         width: 100%;
-        height: 500px;
+        height: 50vh;
         display: flex;
         align-content: center;
         justify-content: center;
