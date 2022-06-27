@@ -16,7 +16,9 @@ export const main = (_p5) => {
     }
 
     p5.draw = () => {
-        if(window&&window.p5DrawLoop!=='main'){
+
+        // @ts-ignore
+        if (window && window.p5DrawLoop !== 'main') {
             p5.noLoop()
         }
         p5.background(0);
@@ -79,7 +81,7 @@ export const LSystem = (_p5) => {
     //"[" p5.push();
     //"]" p5.pop();
 
-    function generate(canGene) {
+    function generate(canGene): void {
         if (num < 4 || canGene) {
             num++;
             len *= 0.5;
@@ -88,8 +90,10 @@ export const LSystem = (_p5) => {
                 let current = sentence.charAt(i);
                 let found = false;
                 for (let j = 0; j < rules.length; j++) {
+                    // @ts-ignore
                     if (current == rules[j].a) {
                         found = true;
+                        // @ts-ignore
                         nextSentence += rules[j].b;
                         break;
                     }
@@ -175,7 +179,6 @@ export const angularMotion = (_p5) => {
     let angleA = 0.00001;
 
 
-
     p5.setup = () => {
 
         p5.createCanvas(400, 400);
@@ -183,11 +186,12 @@ export const angularMotion = (_p5) => {
 
     }
     p5.draw = () => {
-        if(window&&window.p5DrawLoop!=='angularMotion'){
+        // @ts-ignore
+        if (window && window.p5DrawLoop !== 'angularMotion') {
             p5.noLoop()
         }
-        let cWidth = p5.width ;
-        let cHeight = p5.height ;
+        let cWidth = p5.width;
+        let cHeight = p5.height;
         angleA = p5.map(p5.mouseX, 0, p5.width, -0.01, 0.01)
         angleV = p5.constrain(angleV, -0.2, 0.2)
         p5.background(146, 83, 161);
@@ -220,199 +224,202 @@ export const slidePuzzle = (_p5) => {
     let bubbles = [];
 
     p5.setup = () => {
-      p5.createCanvas(width, height);
-      source = p5.createGraphics(width, height);
-      w = width / cols;
-      h = height / rows;
+        p5.createCanvas(width, height);
+        source = p5.createGraphics(width, height);
+        w = width / cols;
+        h = height / rows;
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          let img = p5.createImage(w, h);
-          let index = i + j * cols;
-          board.push(index);
-          let tile = new Tile(index, img);
-          tiles[index] = tile;
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                let img = p5.createImage(w, h);
+                let index = i + j * cols;
+                board.push(index);
+                let tile = new Tile(index, img);
+                tiles[index] = tile;
+            }
         }
-      }
 
-      tiles.pop();
-      board.pop();
-      board.push(-1);
+        tiles.pop();
+        board.pop();
+        board.push(-1);
 
-      startViz();
+        startViz();
 
-      simpleShuffle(board);
+        simpleShuffle(board);
     };
 
     p5.mousePressed = () => {
-      let i = p5.floor(p5.mouseX / w);
-      let j = p5.floor(p5.mouseY / h);
-      move(i, j, board);
+        let i = p5.floor(p5.mouseX / w);
+        let j = p5.floor(p5.mouseY / h);
+        move(i, j, board);
     };
 
     p5.draw = () => {
-        if(window&&window.p5DrawLoop!=='slidePuzzle'){
+        // @ts-ignore
+        if (window && window.p5DrawLoop !== 'slidePuzzle') {
             p5.noLoop()
         }
 
         p5.background(0);
-      drawViz();
+        drawViz();
 
-      updateTiles();
+        updateTiles();
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          let index = i + j * cols;
-          let x = i * w;
-          let y = j * h;
-          let tileIndex = board[index];
-          if (tileIndex > -1) {
-            let img = tiles[tileIndex].img;
-            p5.image(img, x, y, w, h);
-          }
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                let index = i + j * cols;
+                let x = i * w;
+                let y = j * h;
+                let tileIndex = board[index];
+                if (tileIndex > -1) {
+                    let img = tiles[tileIndex].img;
+                    p5.image(img, x, y, w, h);
+                }
+            }
         }
-      }
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          let x = i * w;
-          let y = j * h;
-          p5.strokeWeight(1);
-          p5.noFill();
-          p5.rect(x, y, w, h);
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                let x = i * w;
+                let y = j * h;
+                p5.strokeWeight(1);
+                p5.noFill();
+                p5.rect(x, y, w, h);
+            }
         }
-      }
 
-      if (isSolved()) {
-        console.log("SOLVED");
-      }
+        if (isSolved()) {
+            console.log("SOLVED");
+        }
     };
 
     function simpleShuffle(arr) {
-      for (let i = 0; i < 1000; i++) {
-        randomMove(arr);
-      }
+        for (let i = 0; i < 1000; i++) {
+            randomMove(arr);
+        }
     }
 
     function updateTiles() {
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          let x = j * w;
-          let y = i * h;
-          let index = i + j * cols;
-          if (tiles[index])
-            tiles[index].img.copy(source, x, y, w, h, 0, 0, w, h);
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                let x = j * w;
+                let y = i * h;
+                let index = i + j * cols;
+                if (tiles[index])
+                    tiles[index].img.copy(source, x, y, w, h, 0, 0, w, h);
+            }
         }
-      }
     }
 
     function randomMove(arr) {
-      let r1 = p5.floor(p5.random(cols));
-      let r2 = p5.floor(p5.random(rows));
-      move(r1, r2, arr);
+        let r1 = p5.floor(p5.random(cols));
+        let r2 = p5.floor(p5.random(rows));
+        move(r1, r2, arr);
     }
 
     function swap(i, j, arr) {
-      let temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     function isSolved() {
-      for (let i = 0; i < board.length - 1; i++) {
-        if (board[i] !== tiles[i].index) {
-          return false;
+        for (let i = 0; i < board.length - 1; i++) {
+            if (board[i] !== tiles[i].index) {
+                return false;
+            }
         }
-      }
-      return true;
+        return true;
     }
 
     function move(i, j, arr) {
-      let blank = findBlank();
-      let blankCol = blank % cols;
-      let blankRow = p5.floor(blank / rows);
+        let blank = findBlank();
+        let blankCol = blank % cols;
+        let blankRow = p5.floor(blank / rows);
 
-      if (isNeighbor(i, j, blankCol, blankRow)) {
-        swap(blank, i + j * cols, arr);
-      }
+        if (isNeighbor(i, j, blankCol, blankRow)) {
+            swap(blank, i + j * cols, arr);
+        }
     }
 
     function isNeighbor(i, j, x, y) {
-      if (i !== x && j !== y) {
-        return false;
-      }
+        if (i !== x && j !== y) {
+            return false;
+        }
 
-      if (p5.abs(i - x) == 1 || p5.abs(j - y) == 1) {
-        return true;
-      }
-      return false;
+        if (p5.abs(i - x) == 1 || p5.abs(j - y) == 1) {
+            return true;
+        }
+        return false;
     }
 
     function findBlank() {
-      for (let i = 0; i < board.length; i++) {
-        if (board[i] == -1) return i;
-      }
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] == -1) return i;
+        }
     }
 
     function startViz() {
-      for (let i = 0; i < 3; i++) {
-        bubbles.push(new Bubble());
-      }
+        for (let i = 0; i < 3; i++) {
+            bubbles.push(new Bubble());
+        }
     }
 
     function drawViz() {
-      source.background(50);
+        source.background(50);
 
-      for (let b of bubbles) {
-        b.update();
-        b.show();
-      }
+        for (let b of bubbles) {
+            b.update();
+            b.show();
+        }
     }
 
     class Bubble {
-      constructor() {
-        this.r = p5.random(60, 80);
-        this.x = p5.random(this.r, width - this.r);
-        this.y = p5.random(this.r, height - this.r);
-        this.vx = p5.random(-2, 2);
-        this.vy = p5.random(-2, 2);
-        this.color = p5.color(
-          p5.random(255),
-          p5.random(255),
-          p5.random(255),
-          100
-        );
-      }
-
-      show() {
-        source.noFill();
-        source.stroke(255);
-        source.fill(this.color);
-        source.strokeWeight(2);
-        source.circle(this.x, this.y, this.r * 2);
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x > width - this.r || this.x < this.r) {
-          this.vx *= -1;
+        constructor() {
+            this.r = p5.random(60, 80);
+            this.x = p5.random(this.r, width - this.r);
+            this.y = p5.random(this.r, height - this.r);
+            this.vx = p5.random(-2, 2);
+            this.vy = p5.random(-2, 2);
+            this.color = p5.color(
+                p5.random(255),
+                p5.random(255),
+                p5.random(255),
+                100
+            );
         }
-        if (this.y > height - this.r || this.y < this.r) {
-          this.vy *= -1;
+
+        show() {
+            source.noFill();
+            source.stroke(255);
+            source.fill(this.color);
+            source.strokeWeight(2);
+            source.circle(this.x, this.y, this.r * 2);
         }
-      }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x > width - this.r || this.x < this.r) {
+                this.vx *= -1;
+            }
+            if (this.y > height - this.r || this.y < this.r) {
+                this.vy *= -1;
+            }
+        }
     }
 
     class Tile {
-      constructor(i, img) {
-        this.index = i;
-        this.img = img;
-      }
+        constructor(i, img) {
+            // @ts-ignore
+            this.index = i;
+            // @ts-ignore
+            this.img = img;
+        }
     }
-  }
+}
 
-export const  polarCoordinates = (_p5) => {
+export const polarCoordinates = (_p5) => {
     let p5 = _p5;
     let r = 150;
 
@@ -425,66 +432,67 @@ export const  polarCoordinates = (_p5) => {
 
     p5.draw = () => {
 
-        if(window&&window.p5DrawLoop!=='polarCoordinates'){
+        // @ts-ignore
+        if (window && window.p5DrawLoop !== 'polarCoordinates') {
             p5.noLoop()
         }
 
-        let increment = p5.map(p5.mouseX,0,400,p5.PI,0.01)
+        let increment = p5.map(p5.mouseX, 0, 400, p5.PI, 0.01)
         p5.translate(200, 200);
 
-        p5.background(0,10);
+        p5.background(0, 10);
         p5.stroke(255);
         p5.strokeWeight(4);
         p5.noFill();
         p5.beginShape();
 
-        if(increment<0){
-            increment=-increment
+        if (increment < 0) {
+            increment = -increment
         }
 
-        for(let i=0;i<TWO_PI;i+=increment){
-            let x=r*p5.cos(i);
-            let y=r*p5.sin(i);
-            p5.vertex(x,y)
+        for (let i = 0; i < TWO_PI; i += increment) {
+            let x = r * p5.cos(i);
+            let y = r * p5.sin(i);
+            p5.vertex(x, y)
         }
 
         p5.endShape(p5.CLOSE);
 
 
-
     };
 }
 
-export const geometries = (_p5) =>{
+export const geometries = (_p5) => {
     let _ = _p5;
-    _.setup = ()=>{
-        _.createCanvas(710,400,_.WEBGL)
+    _.setup = () => {
+        _.createCanvas(710, 400, _.WEBGL)
     }
 
-    _.draw = ()=>{
-        if(window&&window.p5DrawLoop!=="geometries"){
+    _.draw = () => {
+        // @ts-ignore
+        if (window && window.p5DrawLoop !== "geometries") {
             _.noLoop()
         }
         _.background(255);
-        _.translate(-200,-100,0);
+        _.translate(-200, -100, 0);
         _.normalMaterial()
 
         _.push()
 
-        _.rotateZ(_.frameCount*0.01)
-        _.rotateX(_.frameCount*0.01)
-        _.rotateY(_.frameCount*0.01)
+        _.rotateZ(_.frameCount * 0.01)
+        _.rotateX(_.frameCount * 0.01)
+        _.rotateY(_.frameCount * 0.01)
 
         _.plane(70)
         _.pop()
 
-        _.translate(200,0,0)
+        _.translate(200, 0, 0)
         _.push()
-        _.rotateZ(_.frameCount*0.01)
-        _.rotateX(_.frameCount*0.01)
-        _.rotateY(_.frameCount*0.01)
+        _.rotateZ(_.frameCount * 0.01)
+        _.rotateX(_.frameCount * 0.01)
+        _.rotateY(_.frameCount * 0.01)
 
-        _.box(70,70,70)
+        _.box(70, 70, 70)
         _.pop()
 
         _.translate(200, 0, 0);
@@ -523,11 +531,10 @@ export const geometries = (_p5) =>{
     }
 }
 
-
-export const sinCos3D = (_p5) =>{
+export const sinCos3D = (_p5) => {
     let _ = _p5;
-    _.setup = ()=>{
-        _.createCanvas(710,400,_.WEBGL)
+    _.setup = () => {
+        _.createCanvas(710, 400, _.WEBGL)
     }
 
     // let teapot ;
@@ -535,28 +542,28 @@ export const sinCos3D = (_p5) =>{
     //         teapot = _.loadModel('/model/teapot.obj', true);
     // }
 
-    _.draw = ()=>{
-        if(window&&window.p5DrawLoop!=="sinCos3D"){
+    _.draw = () => {
+        // @ts-ignore
+        if (window && window.p5DrawLoop !== "sinCos3D") {
             _.noLoop()
         }
 
         _.background(250);
-        _.rotateY(_.frameCount*0.01)
+        _.rotateY(_.frameCount * 0.01)
 
-        for(let j=0;j<5;j++){
+        for (let j = 0; j < 5; j++) {
             _.push();
-            for(let i=0;i<100;i++){
+            for (let i = 0; i < 100; i++) {
                 _.translate(
-                    _.sin(_.frameCount*0.001+j)*100,
-                    _.sin(_.frameCount*0.001+j)*100,
-                    i*0.1
-
+                    _.sin(_.frameCount * 0.001 + j) * 100,
+                    _.sin(_.frameCount * 0.001 + j) * 100,
+                    i * 0.1
                 )
-                _.rotateZ(_.frameCount*0.002)
+                _.rotateZ(_.frameCount * 0.002)
 
 
                 _.push()
-                _.sphere(8,6,4)
+                _.sphere(8, 6, 4)
                 // _.model(teapot)
                 _.pop()
             }
@@ -566,17 +573,17 @@ export const sinCos3D = (_p5) =>{
         }
 
 
-
     }
 }
 
-export const defaultFunc = (_p5)=>{
+export const defaultFunc = (_p5) => {
     let _ = _p5;
-    _.setup = ()=>{
-        _.createCanvas(710,400,_.WEBGL)
+    _.setup = () => {
+        _.createCanvas(710, 400, _.WEBGL)
     }
 
-    _.draw = ()=> {
+    _.draw = () => {
+        // @ts-ignore
         if (window && window.p5DrawLoop !== "defaultFunc") {
             _.noLoop()
         }

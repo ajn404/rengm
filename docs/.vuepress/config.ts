@@ -20,8 +20,13 @@ const resolve = (dir) => {
 const p5_components_keys = [
     'p5Start'
 ];
+
+const dataVisualization_keys = [
+    'd3Start'
+]
+
 let componentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading','echartsUse'];
-componentKeys=[...componentKeys,...p5_components_keys]
+componentKeys=[...componentKeys,...p5_components_keys,...dataVisualization_keys]
 
 const components = {};
 componentKeys.forEach(name => {

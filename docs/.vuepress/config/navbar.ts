@@ -35,7 +35,7 @@ const dataV : any = {
     text:'数据可视化',
     children:[
         {
-            text:'echarts 使用',
+            text:'关于本栏目',
             link:'/dataVisualization/README.md'
         }
     ]
