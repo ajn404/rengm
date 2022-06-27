@@ -6,7 +6,12 @@
                 @change="handelSelectOptionChange"
                 class="cascader"
         />
-        <el-select v-model="selectType" class="m-2" placeholder="Select" size="large">
+        <el-select
+                v-model="selectType"
+                placeholder="选择图表类型"
+                size="large"
+                @change="start"
+        >
             <el-option
                     v-for="item in selectTypeOptions"
                     :key="item.value"
@@ -32,7 +37,7 @@
     const cascaderOptions = [
         {
             value: "dynamicBarChart",
-            label: "动态柱状图",
+            label: "动态echarts图表",
         }
     ];
     let myChart = null;
@@ -64,8 +69,59 @@
             myChart.setOption({
                 series: [
                     {
+                        realtimeSort: true,
+                        name: '某公司职场',
                         type: selectType.value,
-                        data:dynamicBarChartData
+                        data:dynamicBarChartData,
+                        step:true,
+                        colorBy:'data',
+                        color: [
+                            {
+                                type: 'linear',
+                                colorStops: [{
+                                    offset: 0, color: '#4b5a31' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#505860' // 100% 处的颜色
+                                }]
+                            },
+                            {
+                                type: 'linear',
+                                colorStops: [{
+                                    offset: 0, color: '#505860' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#556d69' // 100% 处的颜色
+                                }]
+                            },
+                            {
+                                type: 'linear',
+                                colorStops: [{
+                                    offset: 0, color: '#556d69' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#59c0bc' // 100% 处的颜色
+                                }]
+                            },
+                            {
+                                type: 'linear',
+                                colorStops: [{
+                                    offset: 0, color: '#59c0bc' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#e0e0d8' // 100% 处的颜色
+                                }]
+                            },
+                            {
+                                type: 'linear',
+                                colorStops: [{
+                                    offset: 0, color: '#e0e0d8' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#4b5a31' // 100% 处的颜色
+                                }]
+                            },
+                        ],
+                        label: {
+                            show: true,
+                            position: 'right',
+                            valueAnimation: true
+                        }
                     }
                 ]
             });
