@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import * as echarts from 'echarts';
 
-import {nextTick,onMounted } from 'vue'
+import {nextTick } from 'vue'
 
 nextTick(()=>{
   // 基于准备好的dom，初始化echarts实例

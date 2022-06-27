@@ -26,16 +26,12 @@ import {
   defaultFunc,
   sinCos3D
 } from "../common/p5Main";
-const funcs = {
-  defaultFunc:defaultFunc,
-  main: main,
-  LSystem: LSystem,
-  angularMotion: angularMotion,
-  slidePuzzle: slidePuzzle,
-  polarCoordinates:polarCoordinates,
-  geometries:geometries,
-  sinCos3D: sinCos3D
-};
+
+import * as p5MainFunc from "../common/p5Main"
+const funcs ={}
+for(let p5MainFuncItem in p5MainFunc){
+  funcs[`${p5MainFuncItem}`] = p5MainFunc[`${p5MainFuncItem}`]
+}
 const selectMethhod = ref([]);
 const methods = [
   {label:"default",value:"defaultFunc"},
@@ -84,7 +80,7 @@ const methods = [
   }
 ];
 
-let {ctx:that} = getCurrentInstance()
+// let {ctx:that} = getCurrentInstance()
 // that.$forceUpdate()
 
 const clearFunc = (p5) => {

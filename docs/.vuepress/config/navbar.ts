@@ -37,6 +37,9 @@ const dataV : any = {
         {
             text:'echarts 使用',
             link:'/dataVisualization/README.md'
+        },{
+            text:'高级使用echarts',
+            link:'/dataVisualization/echartsAdvanceUse.md'
         }
     ]
 }

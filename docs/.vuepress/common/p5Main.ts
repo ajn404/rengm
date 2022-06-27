@@ -540,7 +540,7 @@ export const sinCos3D = (_p5) =>{
             _.noLoop()
         }
 
-        _.background(250);
+        _.background(255);
         _.rotateY(_.frameCount*0.01)
 
         for(let j=0;j<5;j++){
