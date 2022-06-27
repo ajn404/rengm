@@ -16,8 +16,6 @@ export const main = (_p5) => {
     }
 
     p5.draw = () => {
-
-        // @ts-ignore
         if (window && window.p5DrawLoop !== 'main') {
             p5.noLoop()
         }
@@ -81,7 +79,7 @@ export const LSystem = (_p5) => {
     //"[" p5.push();
     //"]" p5.pop();
 
-    function generate(canGene): void {
+    function generate(canGene) {
         if (num < 4 || canGene) {
             num++;
             len *= 0.5;
@@ -90,10 +88,8 @@ export const LSystem = (_p5) => {
                 let current = sentence.charAt(i);
                 let found = false;
                 for (let j = 0; j < rules.length; j++) {
-                    // @ts-ignore
                     if (current == rules[j].a) {
                         found = true;
-                        // @ts-ignore
                         nextSentence += rules[j].b;
                         break;
                     }
@@ -186,7 +182,6 @@ export const angularMotion = (_p5) => {
 
     }
     p5.draw = () => {
-        // @ts-ignore
         if (window && window.p5DrawLoop !== 'angularMotion') {
             p5.noLoop()
         }
@@ -255,7 +250,6 @@ export const slidePuzzle = (_p5) => {
     };
 
     p5.draw = () => {
-        // @ts-ignore
         if (window && window.p5DrawLoop !== 'slidePuzzle') {
             p5.noLoop()
         }
@@ -411,9 +405,7 @@ export const slidePuzzle = (_p5) => {
 
     class Tile {
         constructor(i, img) {
-            // @ts-ignore
             this.index = i;
-            // @ts-ignore
             this.img = img;
         }
     }
@@ -432,7 +424,6 @@ export const polarCoordinates = (_p5) => {
 
     p5.draw = () => {
 
-        // @ts-ignore
         if (window && window.p5DrawLoop !== 'polarCoordinates') {
             p5.noLoop()
         }
@@ -469,7 +460,6 @@ export const geometries = (_p5) => {
     }
 
     _.draw = () => {
-        // @ts-ignore
         if (window && window.p5DrawLoop !== "geometries") {
             _.noLoop()
         }
@@ -543,12 +533,11 @@ export const sinCos3D = (_p5) => {
     // }
 
     _.draw = () => {
-        // @ts-ignore
         if (window && window.p5DrawLoop !== "sinCos3D") {
             _.noLoop()
         }
 
-        _.background(250);
+        _.background(255);
         _.rotateY(_.frameCount * 0.01)
 
         for (let j = 0; j < 5; j++) {
@@ -576,16 +565,88 @@ export const sinCos3D = (_p5) => {
     }
 }
 
-export const defaultFunc = (_p5) => {
+export const boxRef = (_p5) => {
+
     let _ = _p5;
     _.setup = () => {
-        _.createCanvas(710, 400, _.WEBGL)
+        _.createCanvas(500, 200, _.WEBGL)
+        _.normalMaterial()
     }
 
+    let rotateNumber = 0;
+
     _.draw = () => {
-        // @ts-ignore
+        if (window && window.p5DrawLoop !== "boxRef") {
+            _.noLoop()
+        }
+        _.background(200);
+        _.orbitControl();
+
+        _.push()
+        _.translate(-20, -20)
+        rotateNumber += 0.1
+        _.rotateY(rotateNumber)
+        _.box(30, 50);
+        _.pop()
+        _.translate(30, 60)
+        _.push()
+        _.rotateX(rotateNumber)
+        _.box(30, 50)
+        _.pop()
+    }
+}
+
+export const boxRef1 = (_p5) => {
+    let _ = _p5;
+    _.setup = () => {
+        _.createCanvas(500, 200, _.WEBGL)
+    }
+    _.draw = () => {
+        if (window && window.p5DrawLoop !== "boxRef1") {
+            _.noLoop()
+        }
+        _.push()
+        _.background(250, 0, 22);
+        // _.rotateY(_.frameCount*0.0002)
+        _.rotateZ(_.frameCount * 0.01)
+        _.rotateY(_.frameCount * 0.01)
+        _.rotateX(_.frameCount * 0.01)
+        _.box(100)
+
+
+        _.pop()
+
+
+        // _.translate(120,0,0)
+        // _.box(100)
+
+
+    }
+}
+
+export const defaultFunc = (_p5) => {
+    let _ = _p5;
+    let slider;
+    _.setup = () => {
+        _.createCanvas(500, 500, _.WEBGL)
+        _.fill("red")
+        _.normalMaterial()
+
+        slider = _.createSlider(0, 255, 200)
+        // slider.position(10,10);
+        slider.style("width", "500px")
+    }
+    _.draw = () => {
         if (window && window.p5DrawLoop !== "defaultFunc") {
             _.noLoop()
         }
+        _.orbitControl();
+
+        _.background(255)
+        let val = slider.value();
+        _.rotateZ(_.frameCount * 0.002)
+        _.rotateX(_.frameCount * 0.002)
+        _.rotateY(_.frameCount * 0.002)
+        _.box(val)
     }
 }
