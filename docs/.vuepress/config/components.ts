@@ -9,7 +9,7 @@ const p5_components_keys = [
 ];
 
 const echarts_components_keys = [
-    'echartsUse','echartsAdvanceUse'
+    'echartsUse','echartsAdvanceUse','dynamicEchartsDemo'
 ]
 
 const defaultComponentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];

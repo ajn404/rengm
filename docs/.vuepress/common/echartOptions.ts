@@ -1,7 +1,6 @@
 import * as echarts from 'echarts';
 //抄抄代码
 
-
 // Gradient Stacked Area Chart
 export const areaChart = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
@@ -186,7 +185,6 @@ export const areaChart = {
     ]
 };
 
-
 export const simpleLineOption = {
     title: {
         text: '简单折线'
@@ -205,7 +203,6 @@ export const simpleLineOption = {
         }
     ]
 };
-
 
 //区域高亮图
 export const areaHighLightOption = {
@@ -283,3 +280,40 @@ export const defaultOption = {
       }
     ]
   };
+
+//柱状图
+//动态排序柱状图
+
+
+export const dynamicBarChart = {
+    xAxis: {
+        max: 'dataMax'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['A', 'B', 'C', 'D', 'E'],
+        inverse: true,
+        animationDuration: 300,
+        animationDurationUpdate: 300,
+        max: 5 // only the largest 3 bars will be displayed
+    },
+    series: [
+        {
+            realtimeSort: true,
+            name: 'X',
+            type: 'bar',
+            label: {
+                show: true,
+                position: 'right',
+                valueAnimation: true
+            }
+        }
+    ],
+    legend: {
+        show: true
+    },
+    animationDuration: 0,
+    animationDurationUpdate: 1000,
+    animationEasing: 'linear',
+    animationEasingUpdate: 'linear'
+};

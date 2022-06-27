@@ -44,6 +44,10 @@ const dataV : any = {
         },{
             text:'高级使用echarts',
             link:'/dataVisualization/echartsAdvanceUse.md'
+        },
+        {
+            text:"动态echarts",
+            link: '/dataVisualization/dynamicEcharts.md'
         }
     ]
 }
