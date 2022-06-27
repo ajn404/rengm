@@ -1,6 +1,9 @@
 import * as echarts from 'echarts';
 //抄抄代码
-export const defaultoption = {
+
+
+// Gradient Stacked Area Chart
+export const areaChart = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
     title: {
         text: '渐变堆积面积图'
@@ -202,3 +205,81 @@ export const simpleLineOption = {
         }
     ]
 };
+
+
+//区域高亮图
+export const areaHighLightOption = {
+    xAxis: {
+      type: 'category',
+      boundaryGap: false
+    },
+    yAxis: {
+      type: 'value',
+      boundaryGap: [0, '30%']
+    },
+    visualMap: {
+      type: 'piecewise',
+      show: false,
+      dimension: 0,
+      seriesIndex: 0,
+      pieces: [
+        {
+          gt: 1,
+          lt: 3,
+          color: 'rgba(0, 0, 180, 0.4)'
+        },
+        {
+          gt: 5,
+          lt: 7,
+          color: 'rgba(0, 0, 180, 0.4)'
+        }
+      ]
+    },
+    series: [
+      {
+        type: 'line',
+        smooth: 0.6,
+        symbol: 'none',
+        lineStyle: {
+          color: '#5470C6',
+          width: 5
+        },
+        markLine: {
+          symbol: ['none', 'none'],
+          label: { show: false },
+          data: [{ xAxis: 1 }, { xAxis: 3 }, { xAxis: 5 }, { xAxis: 7 }]
+        },
+        areaStyle: {},
+        data: [
+          ['2019-10-10', 200],
+          ['2019-10-11', 560],
+          ['2019-10-12', 750],
+          ['2019-10-13', 580],
+          ['2019-10-14', 250],
+          ['2019-10-15', 300],
+          ['2019-10-16', 450],
+          ['2019-10-17', 300],
+          ['2019-10-18', 100]
+        ]
+      }
+    ]
+  };
+
+// 默认,用于开发
+export const defaultOption = {
+    xAxis: {
+      data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27']
+    },
+    yAxis: {},
+    series: [
+      {
+        type: 'candlestick',
+        data: [
+          [20, 34, 10, 38],
+          [40, 35, 30, 50],
+          [31, 38, 33, 44],
+          [38, 15, 5, 42]
+        ]
+      }
+    ]
+  };

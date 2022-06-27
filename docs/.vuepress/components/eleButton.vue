@@ -27,6 +27,7 @@
       <el-button type="warning" round>Warning</el-button>
       <el-button type="danger" round>Danger</el-button>
     </el-row>
+
     <el-row class="mb-4">
       <el-button>
         <el-icon> <Delete /> </el-icon
@@ -50,6 +51,8 @@
         <el-icon> <Star /> </el-icon
       ></el-button>
     </el-row>
+
+    
   </div>
 </template>
 

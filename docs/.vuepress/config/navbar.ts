@@ -27,6 +27,10 @@ const p5 :any ={
         {
             text:'p5 start',
             link:'/p5/p5-start.md'
+        },
+        {
+            text:'p5接口参数',
+            link:'/p5/reference.md'
         }
     ]
 }

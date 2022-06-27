@@ -7,11 +7,11 @@
 import "element-plus/dist/index.css";
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
-
+import * as cdn from "../../common/cdnUrl"
 //vue中使用P5的方式
 import { isClient } from "@vueuse/core";
 if (isClient&&window)
-  import("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js").then(() => {
+  import(cdn.p5Cdn).then(() => {
     let p5 = window.p5;
     try {
       if (p5 && typeof p5 === "function") {

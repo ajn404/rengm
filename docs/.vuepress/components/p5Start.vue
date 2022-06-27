@@ -14,19 +14,9 @@ import "element-plus/dist/index.css";
 import {ref, getCurrentInstance, onUnmounted, nextTick} from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
+import * as cdn from "../common/cdnUrl"
 
 //vue中使用P5的方式
-import {
-  LSystem,
-  main,
-  angularMotion,
-  slidePuzzle,
-  polarCoordinates,
-  geometries,
-  defaultFunc,
-  sinCos3D
-} from "../common/p5Main";
-
 import * as p5MainFunc from "../common/p5Main"
 const funcs ={}
 for(let p5MainFuncItem in p5MainFunc){
@@ -77,33 +67,37 @@ const methods = [
         value:"sinCos3D"
       }
     ]
+  },
+  {
+    label:"非演示场景(熟悉api)",
+    children: [
+      {
+        label:"3d box",
+        value:"boxRef"
+      },
+      {
+        label:"3d box 旋转",
+        value:"boxRef1"
+      }
+    ]
   }
 ];
-
-// let {ctx:that} = getCurrentInstance()
-// that.$forceUpdate()
-
 const clearFunc = (p5) => {
   document.querySelector("#p5-start").innerHTML = "";
 };
-
-
 let p5;
 if(isClient)
-import('https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js').then(()=>{
+import(cdn.p5Cdn).then(()=>{
   p5 = window.p5;
   //本地开发，或者就这样？
   nextTick(()=>{
-    new p5(defaultFunc, "p5-start");
+    new p5(p5MainFunc.defaultFunc, "p5-start");
     window.p5DrawLoop = "defaultFunc"
   })
 })
-
 onUnmounted(()=>{
   window.p5DrawLoop = ""
 })
-
-
 const handleChange = (arr) => {
       try{
         if (p5 && typeof p5 === "function") {
@@ -111,13 +105,12 @@ const handleChange = (arr) => {
           //清除之前的
           clearFunc(p5);
           //新建计算和canvas
-           new p5(funcs[arr[arr.length - 1]]||main, "p5-start");
+           new p5(funcs[arr[arr.length - 1]]||p5MainFunc.defaultFunc, "p5-start");
         }
       }catch (e){
         console.log(e)
         ElMessage.warning('可能cdn的p5还没有加载好')
       }
-
 };
 
 </script>
