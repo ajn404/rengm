@@ -23,6 +23,8 @@ for(let p5MainFuncItem in p5MainFunc){
   funcs[`${p5MainFuncItem}`] = p5MainFunc[`${p5MainFuncItem}`]
 }
 const selectMethhod = ref([]);
+
+let defaultMethod = "defaultFunc"
 const methods = [
   {label:"default",value:"defaultFunc"},
   {
@@ -80,19 +82,30 @@ const methods = [
         value:"boxRef1"
       }
     ]
+  },
+  {
+    label:"场景4(应用)",
+    children:[
+      {
+        label:'有丝分裂',
+        value:'mitosis'
+      }
+    ]
   }
 ];
 const clearFunc = (p5) => {
   document.querySelector("#p5-start").innerHTML = "";
 };
 let p5;
+
+
 if(isClient)
 import(cdn.p5Cdn).then(()=>{
   p5 = window.p5;
   //本地开发，或者就这样？
   nextTick(()=>{
-    new p5(p5MainFunc.defaultFunc, "p5-start");
-    window.p5DrawLoop = "defaultFunc"
+    new p5(p5MainFunc[defaultMethod], "p5-start");
+    window.p5DrawLoop = defaultMethod
   })
 })
 onUnmounted(()=>{
@@ -106,10 +119,17 @@ const handleChange = (arr) => {
           clearFunc(p5);
           //新建计算和canvas
            new p5(funcs[arr[arr.length - 1]]||p5MainFunc.defaultFunc, "p5-start");
+
+      
         }
       }catch (e){
         console.log(e)
-        ElMessage.warning('可能cdn的p5还没有加载好')
+        ElMessage.warning('可能cdn的p5还没有加载好').then(
+          ()=>{
+            ElMessage.warning('可能没写这个函数')
+          }
+        )
+
       }
 };
 

@@ -650,3 +650,77 @@ export const defaultFunc = (_p5) => {
         _.box(val)
     }
 }
+
+
+//https://www.youtube.com/watch?v=jxGS3fKPKJA
+//有丝分裂
+const Cell = function (_, pos, r, c) {
+
+    this.r = r || 20;
+
+    if (pos) {
+        this.pos = pos.copy()
+    } else
+        this.pos = _.createVector(_.random(this.r, _.width), _.random(this.r, _.height))
+    this.c = c || _.color(_.random(100, 255), _.random(100, 255), _.random(100, 255), 255)
+    this.mitosis = () => new Cell(_, this.pos, this.r * 0.8, this.c)
+    this.click = (x, y) => {
+        let d = _.dist(this.pos.x, this.pos.y, x, y);
+        return d < this.r
+    }
+    this.move = () => {
+        let vel = p5.Vector.random2D();
+        this.pos.add(vel)
+    }
+    this.show = () => {
+        _.ellipse(this.pos.x, this.pos.y, this.r, this.r)
+        _.noStroke()
+        _.fill(this.c)
+    }
+}
+
+
+import { ElMessage } from "element-plus";
+export const mitosis = (_) => {
+
+    const cells: any = [];
+    // let timer;
+    _.setup = () => {
+        _.createCanvas(500, 200)
+        for (let i = 0; i < 20; i++) {
+            cells.push(new Cell(_))
+        }
+
+        
+    }
+    _.draw = () => {
+        if (window && window.p5DrawLoop !== "mitosis") {
+            _.noLoop()
+            // clearTimeout(timer)
+            // timer = null
+        }
+        _.background(5)
+        _.textSize(16)
+        _.text('双击细胞', 200, 100);
+        _.fill(0, 102, 153);
+        cells.forEach(cell => {
+            cell.show();
+            cell.move();
+        })
+
+    }
+    _.doubleClicked = () => {
+        if(cells.length<1000)
+        for (let i = 0; i < cells.length; i++) {
+            if (cells[i].click(_.mouseX, _.mouseY)) {
+                cells.push(cells[i].mitosis())
+                cells.push(cells[i].mitosis())
+                cells.splice(i, 1)
+            }
+        }else{
+            ElMessage.warning("细胞数量超出上限1000")
+        }
+    }
+
+
+}
