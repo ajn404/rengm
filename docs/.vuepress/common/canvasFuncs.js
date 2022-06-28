@@ -42,7 +42,7 @@ export const particles = () => {
     ctx.fillRect(bug.x - 2, bug.y - 2, 5, 5);
   }
 
-  //canvas 里面总得有这么一个loop
+  //canvas
   function loop(t = 0) {
     if (window.p5DrawLoop === "particles") {
       ctx.fillStyle = "rgba(0,0,0,.05)";
