@@ -5,13 +5,18 @@
     </div>
 </template>
 <script lang='ts' setup>
-import { ref, nextTick } from "vue";
+import { ref, nextTick ,onUnmounted, } from "vue";
 import * as canvasFunc from "../common/canvasFuncs.js"
 const draw = () => {
+     window.p5DrawLoop = "particles"
     canvasFunc.particles()
 }
 nextTick(() => {
     draw()
+})
+
+onUnmounted(()=>{
+    window.p5DrawLoop = ""
 })
 
 

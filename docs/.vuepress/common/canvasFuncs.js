@@ -42,24 +42,27 @@ export const particles = () => {
     ctx.fillRect(bug.x - 2, bug.y - 2, 5, 5);
   }
 
+  //canvas 里面总得有这么一个loop
+  function loop(t = 0) {
+    if (window.p5DrawLoop === "particles") {
+      ctx.fillStyle = "rgba(0,0,0,.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      for (const bug of bugs) {
+        move(bug);
+        render(bug);
+      }
+      requestAnimationFrame(loop);
+    }
+  }
+
+  setSize();
+  loop();
+
   function setSize() {
     Object.assign(canvas, {
       width: innerWidth,
       height: innerHeight,
     });
   }
-
-  function loop(t = 0) {
-    ctx.fillStyle = "rgba(0,0,0,.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    for (const bug of bugs) {
-      move(bug);
-      render(bug);
-    }
-    requestAnimationFrame(loop);
-  }
-
-  setSize();
-  loop();
   window.addEventListener("resize", setSize, false);
 };
