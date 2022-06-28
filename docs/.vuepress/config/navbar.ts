@@ -17,21 +17,27 @@ const element:any = {
     ]
 }
 
-const p5 :any ={
+const mindExpand :any ={
     text:'思维拓展',
     children:[
         {
             text:'关于本栏目',
-            link:'/p5/README.md'
+            link:'/mindExpand/README.md'
         },
         {
             text:'p5 start',
-            link:'/p5/p5-start.md'
+            link:'/mindExpand/p5-start.md'
         },
         {
             text:'p5接口参数',
-            link:'/p5/reference.md'
+            link:'/mindExpand/reference.md'
+        },
+        {
+            text:'canvas原生',
+            link:'/mindExpand/canvas.md'
+
         }
+        
     ]
 }
 
@@ -52,10 +58,21 @@ const dataV : any = {
     ]
 }
 
+const other : any = {
+    text:'基础',
+    children:[
+        {
+            text:'关于本栏目',
+            link:'/basic/README.md'
+        }
+    ]
+}
+
 
 export const navbarConfig = [
     home,
     element,
-    p5,
-    dataV
+    mindExpand,
+    dataV,
+    other
 ];

@@ -5,11 +5,11 @@ const resolve = (dir) => {
 }
 
 const p5_components_keys = [
-    'p5Start'
+    'p5Start','particles'
 ];
 
 const echarts_components_keys = [
-    'echartsUse','echartsAdvanceUse','dynamicEchartsDemo'
+    'echartsUse','echartsAdvanceUse','dynamicEchartsDemo','eleButtonText'
 ]
 
 

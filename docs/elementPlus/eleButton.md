@@ -12,3 +12,9 @@ head : 按钮基本使用
 <ClientOnly>
 <ele-button-loading></ele-button-loading>
 </ClientOnly>
+
+
+## text 
+<ClientOnly>
+<eleButtonText></eleButtonText>
+</ClientOnly>
