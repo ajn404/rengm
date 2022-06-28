@@ -327,7 +327,7 @@ export const slidePuzzle = (_p5) => {
     }
 
     function move(i, j, arr) {
-        let blank = findBlank();
+        let blank  = findBlank()||0;
         let blankCol = blank % cols;
         let blankRow = p5.floor(blank / rows);
 

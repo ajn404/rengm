@@ -5,12 +5,12 @@
 </template>
 <script lang="ts" setup>
 import "element-plus/dist/index.css";
-import { ref } from "vue";
+import { ref,onActivated } from "vue";
 import { ElMessage } from "element-plus";
 import * as cdn from "../../common/cdnUrl"
 //vue中使用P5的方式
 import { isClient } from "@vueuse/core";
-if (isClient&&window)
+const func = ()=>{
   import(cdn.p5Cdn).then(() => {
     let p5 = window.p5;
     try {
@@ -25,6 +25,15 @@ if (isClient&&window)
       ElMessage.warning("出错了，哥，看你写的垃圾代码");
     }
   });
+  }
+if (isClient&&window)
+func()
+
+onActivated(()=>{
+  func()
+})
+
+  
 
 const main = (_p5) => {
   let p5 = _p5;
