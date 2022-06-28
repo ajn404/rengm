@@ -9,4 +9,3 @@ sidebarDepth : 0
 <echarts-advance-use></echarts-advance-use>
 </ClientOnly>
 
-@[code js](../.vuepress/common/echartOptions.ts)

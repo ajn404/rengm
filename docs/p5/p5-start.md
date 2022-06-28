@@ -8,5 +8,3 @@ sidebarDepth : 0
 <ClientOnly>
 <p5-start></p5-start>
 </ClientOnly>
-
-@[code js](../.vuepress/common/p5Main.ts))
