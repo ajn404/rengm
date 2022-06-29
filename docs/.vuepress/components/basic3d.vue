@@ -27,15 +27,14 @@ const box = ref(null)
 
 
 
-let defaultMethod = propsValue.renderFunc.value||"defaultFunc"
-
+let defaultMethod ="defaultFunc"
+if(p5MainFunc[propsValue.renderFunc.value])
+defaultMethod = propsValue.renderFunc.value
 
 const clearFunc = (p5) => {
   document.querySelector("#basic-3d").innerHTML = "";
 };
 let p5;
-
-
 
 if(isClient)
 import(cdn.p5Cdn).then(()=>{
@@ -44,8 +43,8 @@ import(cdn.p5Cdn).then(()=>{
   nextTick(()=>{
     let target = box._value 
     target.id= propsValue.renderFunc.value
-    new p5(p5MainFunc[defaultMethod], target.id);
     window.p5DrawLoop = defaultMethod
+    new p5(p5MainFunc[defaultMethod], target.id);
   })
 })
 onUnmounted(()=>{
