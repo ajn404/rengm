@@ -56,7 +56,7 @@ export const renderSteps = (_)=>{
 
     let teaBox 
     _.preload = ()=>{
-        teaBox = _.loadModel('/model/teapot.obj',true)
+        teaBox = _.loadModel('/rengm/model/teapot.obj',true)
     }
 
     _.draw = () => {

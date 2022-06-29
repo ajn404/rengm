@@ -60,7 +60,7 @@ export default defineUserConfig({
         },
 
     }),
-    head: [['link', { rel: 'icon', href: 'images/favicon.ico' }]],
+    head: [['link', { rel: 'icon', href: '/images/favicon.ico' }]],
     plugins: [
         registerComponentsPlugin({
             components: components

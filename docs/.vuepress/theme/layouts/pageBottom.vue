@@ -53,7 +53,6 @@ svg(style="position: fixed; top: 100vh")
 </template>
 
 <script setup>
-import { View as IconView } from '@element-plus/icons-vue'
 
 </script>
 
