@@ -28,6 +28,12 @@ const mindExpand :any ={
             text:'p5 start',
             link:'/mindExpand/p5-start.md'
         },
+
+        {
+            text:'p5 sound',
+            link:'/mindExpand/p5-sound.md'
+        },
+
         {
             text:'p5接口参数',
             link:'/mindExpand/reference.md'
@@ -35,9 +41,12 @@ const mindExpand :any ={
         {
             text:'canvas原生',
             link:'/mindExpand/canvas.md'
+        },
+        {
+            text:'3D基本原理',
+            link:'/mindExpand/3d-basic.md'
 
         }
-        
     ]
 }
 

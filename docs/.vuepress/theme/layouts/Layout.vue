@@ -5,14 +5,10 @@ import pageBottom from "./pageBottom.vue";
 </script>
 <template>
   <ParentLayout>
-    <template #sidebar-top>
-      <el-image
-        style="width: 50%; height: 100px;display:block; margin: 20px auto"
-        src="https://images3.alphacoders.com/116/thumb-1920-1163888.jpg"
-        fit="cover"
-      />
-    </template>
-
+    <template #sidebar-top></template>
+    <template #sidebar-bottom></template>
+    <template #navbar-before></template>
+    <template #navbar-after></template>
     <template #page-bottom>
       <page-bottom></page-bottom>
     </template>

@@ -679,7 +679,6 @@ const Cell = function (_, pos, r, c) {
     }
 }
 
-
 import { ElMessage } from "element-plus";
 export const mitosis = (_) => {
 
@@ -724,3 +723,5 @@ export const mitosis = (_) => {
 
 
 }
+
+

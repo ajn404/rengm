@@ -1,5 +1,5 @@
 ---
-head : p5使用 L-system
+head : p5 奇淫技巧
 sidebar : false
 sidebarDepth : 0
 ---

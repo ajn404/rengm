@@ -12,9 +12,16 @@ const echarts_components_keys = [
     'echartsUse','echartsAdvanceUse','dynamicEchartsDemo','eleButtonText'
 ]
 
+const basic_3d_components = [
+    'basic3d'
+]
 
 const defaultComponentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];
-const componentKeys=[...defaultComponentKeys,...p5_components_keys,...echarts_components_keys]
+const componentKeys=[
+    ...defaultComponentKeys,
+    ...p5_components_keys,
+    ...echarts_components_keys,
+    ...basic_3d_components]
 const components = {};
 componentKeys.forEach(name => {
     components[name] = resolve(`../components/${name}.vue`)
