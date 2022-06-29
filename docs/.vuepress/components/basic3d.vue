@@ -27,6 +27,7 @@ const box = ref(null)
 
 
 
+
 let defaultMethod ="defaultFunc"
 if(p5MainFunc[propsValue.renderFunc.value])
 defaultMethod = propsValue.renderFunc.value
@@ -36,6 +37,7 @@ const clearFunc = (p5) => {
 };
 let p5;
 
+import {isElementNotInViewport} from '../common/utils.ts'
 if(isClient)
 import(cdn.p5Cdn).then(()=>{
   p5 = window.p5;
@@ -45,6 +47,18 @@ import(cdn.p5Cdn).then(()=>{
     target.id= propsValue.renderFunc.value
     window.p5DrawLoop = defaultMethod
     new p5(p5MainFunc[defaultMethod], target.id);
+
+    window.addEventListener("scroll",()=>{
+      
+      if(isElementNotInViewport(target)){
+        window.p5DrawLoop = defaultMethod
+      }else{
+        window.p5DrawLoop = ""
+      }
+      console.log(window.p5DrawLoop)
+      
+    })
+
   })
 })
 onUnmounted(()=>{

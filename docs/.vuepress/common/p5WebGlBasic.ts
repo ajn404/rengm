@@ -10,6 +10,11 @@ export const coordinate = (_p5) => {
         _.background(250)
         if (window && window.p5DrawLoop !== p5DrawLoop) {
             _.noLoop()
+            window.addEventListener("scroll",()=>{
+                if(!(_.isLooping())&&window.p5DrawLoop === p5DrawLoop){
+                    _.loop()
+                }
+            })
         }   
         _.orbitControl()
         _.rotateY(0.5);
@@ -34,6 +39,12 @@ export const defaultFunc = (_p5) => {
     _.draw = () => {
         if (window && window.p5DrawLoop !== p5DrawLoop) {
             _.noLoop()
+            window.addEventListener("scroll",()=>{
+                console.log(window.p5DrawLoop)
+                if(!(_.isLooping())&&window.p5DrawLoop === p5DrawLoop){
+                    _.loop()
+                }
+            })
         }
         _.orbitControl();
 
@@ -69,5 +80,28 @@ export const renderSteps = (_)=>{
 
         _.rotateX(_.frameCount*_.PI*0.01)
         _.model(teaBox)
+    }
+}
+
+export const pointHandle = (_)=>{
+    let p5DrawLoop = window.p5DrawLoop;
+    _.setup = () => {
+        _.createCanvas(500, 200, _.WEBGL)
+    }
+
+    _.draw = () => {
+        _.background(250)
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+            window.addEventListener("scroll",()=>{
+                if(!(_.isLooping())&&window.p5DrawLoop === p5DrawLoop){
+                    _.loop()
+                }
+            })
+        }   
+
+        _.camera(0,0,160+_.sin(_.frameCount*0.01)*100,0,0,0,0,1,0)
+        _.rotateX(_.PI/3)
+        _.torus(30,10)
     }
 }

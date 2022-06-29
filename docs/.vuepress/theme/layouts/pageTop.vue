@@ -31,7 +31,6 @@ if (isClient && window)
 
 onActivated(() => {
   func()
-  window.addEventListener("resize", func, false);
 })
 
 
