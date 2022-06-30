@@ -1,4 +1,3 @@
-import { defaultTheme ,HeadConfig} from "vuepress";
 import { navbarConfig } from "./config/navbar";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from '@vuepress/cli'
@@ -51,6 +50,8 @@ export default defineUserConfig({
             build:{
                 rollupOptions:{
                     external:['p5']
+                },
+                dynamicImportVarsOptions:{
                 }
             }
         },

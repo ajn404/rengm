@@ -97,11 +97,12 @@ const clearFunc = () => {
   document.querySelector("#p5-start").innerHTML = "";
 };
 let p5;
+import "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"
 
 
 if(isClient)
-import(cdn.p5Cdn).then(()=>{
-  p5 = window.p5;
+nextTick(()=>{
+   p5 = window.p5;
   //本地开发，或者就这样？
   nextTick(()=>{
     new p5(p5MainFunc[defaultMethod], "p5-start");
