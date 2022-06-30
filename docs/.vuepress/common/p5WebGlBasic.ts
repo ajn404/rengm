@@ -1,3 +1,11 @@
+import { ElMessage } from "element-plus";
+
+const isClickCanvas = (_) => {
+    let mx = _.mouseX, my = _.mouseY;
+    let mw = _.width, mh = _.height;
+    return mx > 0 && mx < mw && my > 0 && my < mh
+}
+
 export const coordinate = (_p5) => {
     let _ = _p5;
     let p5DrawLoop = window.p5DrawLoop;
@@ -8,17 +16,23 @@ export const coordinate = (_p5) => {
     }
     _.draw = () => {
         _.background(250)
+
+        _.orbitControl()
+        _.rotateY(0.003 * _.PI * _.frameCount);
+        _.box(100)
+
         if (window && window.p5DrawLoop !== p5DrawLoop) {
             _.noLoop()
-            window.addEventListener("scroll",()=>{
-                if(!(_.isLooping())&&window.p5DrawLoop === p5DrawLoop){
-                    _.loop()
-                }
-            })
-        }   
-        _.orbitControl()
-        _.rotateY(0.5);
-        _.box(100)
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
     }
 }
 
@@ -37,15 +51,7 @@ export const defaultFunc = (_p5) => {
         slider.style("width", "500px")
     }
     _.draw = () => {
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
-            _.noLoop()
-            window.addEventListener("scroll",()=>{
-                console.log(window.p5DrawLoop)
-                if(!(_.isLooping())&&window.p5DrawLoop === p5DrawLoop){
-                    _.loop()
-                }
-            })
-        }
+
         _.orbitControl();
 
         _.background(255)
@@ -54,10 +60,22 @@ export const defaultFunc = (_p5) => {
         _.rotateX(_.frameCount * 0.002)
         _.rotateY(_.frameCount * 0.002)
         _.box(val)
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.loop()
+            }
+        }
     }
 }
 
-export const renderSteps = (_)=>{
+export const renderSteps = (_) => {
     let p5DrawLoop = window.p5DrawLoop;
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
@@ -65,43 +83,173 @@ export const renderSteps = (_)=>{
 
     }
 
-    let teaBox 
-    _.preload = ()=>{
-        teaBox = _.loadModel('/rengm/model/teapot.obj',true)
+    let teaBox
+    _.preload = () => {
+        teaBox = _.loadModel('/rengm/model/teapot.obj', true)
     }
 
     _.draw = () => {
         _.background(250)
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
-            _.noLoop()
-        }   
+
+
         _.orbitControl()
         _.rotateZ(_.PI)
 
-        _.rotateX(_.frameCount*_.PI*0.01)
+        _.rotateX(_.frameCount * _.PI * 0.01)
         _.model(teaBox)
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.redraw()
+            _.noLoop()
+        }
+    }
+
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.loop()
+            }
+        }
     }
 }
 
-export const pointHandle = (_)=>{
+export const pointHandle = (_) => {
     let p5DrawLoop = window.p5DrawLoop;
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
     }
 
     _.draw = () => {
-        _.background(250)
+        _.background(255)
+
+
+        _.camera(0, 0, 160 + _.sin(_.frameCount * 0.01) * 100, 0, 0, 0, 0, 1, 0)
+        _.rotateX(_.PI / 3)
+        _.torus(30, 10)
         if (window && window.p5DrawLoop !== p5DrawLoop) {
             _.noLoop()
-            window.addEventListener("scroll",()=>{
-                if(!(_.isLooping())&&window.p5DrawLoop === p5DrawLoop){
-                    _.loop()
-                }
-            })
-        }   
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
+    }
+}
 
-        _.camera(0,0,160+_.sin(_.frameCount*0.01)*100,0,0,0,0,1,0)
-        _.rotateX(_.PI/3)
-        _.torus(30,10)
+export const textureDemo = (_) =>{
+    let p5DrawLoop = window.p5DrawLoop;
+    _.setup = () => {
+        _.createCanvas(500, 200, _.WEBGL)
+    }
+
+    let img,angle;
+    _.preload = ()=>{
+        img = _.loadImage('/rengm/images/logo.png')
+    }
+
+    _.draw = () => {
+        _.background(255)
+        angle = _.PI*_.frameCount*0.001
+        _.rotateX(angle)
+        _.rotateY(angle)
+        _.rotateZ(angle)
+
+        _.texture(img)
+        _.box(100)
+
+
+
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
+    }
+}
+
+export const ambientLight = (_) =>{
+    let p5DrawLoop = window.p5DrawLoop;
+    let angle;
+    let lightColor,materialColor;
+    _.setup = () => {
+        _.createCanvas(500, 200, _.WEBGL)
+        lightColor = _.createColorPicker('#ffffff')
+        materialColor = _.createColorPicker('#ff00ff')
+        lightColor.style('margin-top','1em')
+        materialColor.style('margin-top','1em')
+    }
+
+
+    _.draw = () => {
+        _.background(255)
+        angle = _.PI*_.frameCount*0.001
+        _.rotateX(angle)
+        _.rotateY(angle)
+        _.rotateZ(angle)
+        _.ambientLight(lightColor.color())
+        _.ambientMaterial(materialColor.color());
+        _.cone(30,70)
+        _.translate(0,0,-100)
+        _.box(50)
+
+
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
+    }
+}
+
+export const directionalLight = (_) =>{
+    let p5DrawLoop = window.p5DrawLoop;
+    _.setup = () => {
+        _.createCanvas(200, 200, _.WEBGL)
+    }
+
+    let dirX,dirY;
+    _.draw = () => {
+        _.background(255)
+        
+        dirX = (_.mouseX /_.width-0.5)*2;
+        dirY = (_.mouseY /_.height-0.5)*2
+
+        _.directionalLight(255,255,255,-dirX,-dirY,-1)
+        _.noStroke()
+        _.sphere(80)
+        
+
+
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
     }
 }

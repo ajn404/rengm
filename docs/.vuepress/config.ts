@@ -11,7 +11,6 @@ const { containerPlugin } = require('@vuepress/plugin-container')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 // const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 
-
 import components from "./config/components";
 const { path } = require('@vuepress/utils')
 
@@ -20,7 +19,7 @@ const resolve = (dir) => {
 }
 
 export default defineUserConfig({
-    title: "探索",
+    title: "摸🐟",
     description: "vuepress的使用边界",
     base: "/rengm/",
     open: true,
@@ -75,7 +74,8 @@ export default defineUserConfig({
     clientConfigFile: resolve('./clientAppEnhance.ts'),
     theme: localTheme({
         // default theme options
-        navbar:navbarConfig
+        navbar:navbarConfig,
+        logo:'/images/logo.png'
       }),
     host: '0.0.0.0',
     port: 8088,
