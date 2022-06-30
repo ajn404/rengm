@@ -141,20 +141,20 @@ export const pointHandle = (_) => {
     }
 }
 
-export const textureDemo = (_) =>{
+export const textureDemo = (_) => {
     let p5DrawLoop = window.p5DrawLoop;
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
     }
 
-    let img,angle;
-    _.preload = ()=>{
+    let img, angle;
+    _.preload = () => {
         img = _.loadImage('/rengm/images/logo.png')
     }
 
     _.draw = () => {
         _.background(255)
-        angle = _.PI*_.frameCount*0.001
+        angle = _.PI * _.frameCount * 0.001
         _.rotateX(angle)
         _.rotateY(angle)
         _.rotateZ(angle)
@@ -179,29 +179,29 @@ export const textureDemo = (_) =>{
     }
 }
 
-export const ambientLight = (_) =>{
+export const ambientLight = (_) => {
     let p5DrawLoop = window.p5DrawLoop;
     let angle;
-    let lightColor,materialColor;
+    let lightColor, materialColor;
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
         lightColor = _.createColorPicker('#ffffff')
         materialColor = _.createColorPicker('#ff00ff')
-        lightColor.style('margin-top','1em')
-        materialColor.style('margin-top','1em')
+        lightColor.style('margin-top', '1em')
+        materialColor.style('margin-top', '1em')
     }
 
 
     _.draw = () => {
         _.background(255)
-        angle = _.PI*_.frameCount*0.001
+        angle = _.PI * _.frameCount * 0.001
         _.rotateX(angle)
         _.rotateY(angle)
         _.rotateZ(angle)
         _.ambientLight(lightColor.color())
         _.ambientMaterial(materialColor.color());
-        _.cone(30,70)
-        _.translate(0,0,-100)
+        _.cone(30, 70)
+        _.translate(0, 0, -100)
         _.box(50)
 
 
@@ -220,24 +220,77 @@ export const ambientLight = (_) =>{
     }
 }
 
-export const directionalLight = (_) =>{
+export const directionalLight = (_) => {
     let p5DrawLoop = window.p5DrawLoop;
     _.setup = () => {
         _.createCanvas(200, 200, _.WEBGL)
     }
 
-    let dirX,dirY;
+    let dirX, dirY;
     _.draw = () => {
         _.background(255)
-        
-        dirX = (_.mouseX /_.width-0.5)*2;
-        dirY = (_.mouseY /_.height-0.5)*2
 
-        _.directionalLight(255,255,255,-dirX,-dirY,-1)
+        dirX = (_.mouseX / _.width - 0.5) * 2;
+        dirY = (_.mouseY / _.height - 0.5) * 2
+
+        _.directionalLight(255, 255, 255, -dirX, -dirY, -1)
         _.noStroke()
         _.sphere(80)
-        
 
+
+
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
+    }
+}
+
+export const pointLight = (_) => {
+    let p5DrawLoop = window.p5DrawLoop;
+    _.setup = () => {
+        _.createCanvas(200, 200, _.WEBGL)
+    }
+
+
+    _.draw = () => {
+        _.background(255)
+        let locX = _.mouseX - _.width / 2;
+        let locY = _.mouseY - _.height / 2;
+        _.pointLight(250, 250, 250, locX, locY, 100);
+        _.noStroke();
+        _.sphere(80);
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
+    }
+}
+
+export const demo = (_) => {
+    let p5DrawLoop = window.p5DrawLoop;
+    _.setup = () => {
+        _.createCanvas(200, 200, _.WEBGL)
+    }
+
+    _.draw = () => {
+        _.background(255)
 
         if (window && window.p5DrawLoop !== p5DrawLoop) {
             _.noLoop()

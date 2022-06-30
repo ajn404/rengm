@@ -92,6 +92,11 @@ webGl实现的标准phong光照模型有四种关照参数
 <basic3d renderType="p5" renderFunc="directionalLight"></basic3d>
 </ClientOnly>
 
+#### point light
+<ClientOnly>
+<basic3d renderType="p5" renderFunc="pointLight"></basic3d>
+</ClientOnly>
+
 
 
 
