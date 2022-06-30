@@ -93,7 +93,7 @@ const methods = [
     ]
   }
 ];
-const clearFunc = (p5) => {
+const clearFunc = () => {
   document.querySelector("#p5-start").innerHTML = "";
 };
 let p5;
@@ -110,13 +110,14 @@ import(cdn.p5Cdn).then(()=>{
 })
 onUnmounted(()=>{
   window.p5DrawLoop = ""
+  clearFunc()
 })
 const handleChange = (arr) => {
       try{
         if (p5 && typeof p5 === "function") {
           window.p5DrawLoop = arr[arr.length - 1]
           //清除之前的
-          clearFunc(p5);
+          clearFunc();
           //新建计算和canvas
            new p5(funcs[arr[arr.length - 1]]||p5MainFunc.defaultFunc, "p5-start");
 
