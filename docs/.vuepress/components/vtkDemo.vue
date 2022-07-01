@@ -4,9 +4,9 @@
         <table class="controls">
             <tbody>
                 <tr>
-                    <td>
+                    <td style="padding:0;">
                         <select
-                            style="width: 100%"
+                            style="width: 100%;height:100%;display:flex;"
                             :value="representation"
                             @change="setRepresentation($event.target.value)"
                         >
@@ -62,7 +62,6 @@ watchEffect(() => {
 
 onMounted(() => {
     if (isClient&&window.vtk) {
-        console.log(vtk);
         vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
             vtkActor = vtk.Rendering.Core.vtkActor;
             vtkMapper = vtk.Rendering.Core.vtkMapper;
