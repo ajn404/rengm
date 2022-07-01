@@ -68,9 +68,7 @@ export default defineUserConfig({
                 noExternal: ['vtk.js'],
             },
         },
-        vuePluginOptions: {
-
-        },
+        vuePluginOptions: {},
 
     }),
     head: [
