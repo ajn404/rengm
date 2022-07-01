@@ -60,7 +60,8 @@ export default defineUserConfig({
                     external:['p5']
                 },
                 dynamicImportVarsOptions:{
-                }
+                },
+                chunkSizeWarningLimit:10000
             }
         },
         vuePluginOptions: {
