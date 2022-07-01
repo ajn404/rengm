@@ -6,7 +6,7 @@ sidebarDepth: 4
 [[toc]]
 
 ::: tip 前置
-- 页面动画需要点击触发
+- 页面loop需要点击触发
 :::
 
 # 3d基础
@@ -112,3 +112,11 @@ webGl实现的标准phong光照模型有四种关照参数
 
 
 
+
+
+### 输出合成
+
+输出操作阶段所有来自3D空间的原始数据的片段会被转成2D像素网络，然后打印到屏幕上
+<ClientOnly>
+<vtkDemo></vtkDemo>
+</ClientOnly>

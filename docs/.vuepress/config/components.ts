@@ -13,7 +13,7 @@ const echarts_components_keys = [
 ]
 
 const basic_3d_components = [
-    'basic3d'
+    'basic3d','vtkDemo'
 ]
 
 const defaultComponentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];
