@@ -5,32 +5,33 @@
 </template>
 <script lang="ts" setup>
 import "element-plus/dist/index.css";
-import { ref, onActivated } from "vue";
+import { ref, onActivated, nextTick } from "vue";
 import { ElMessage } from "element-plus";
-import * as cdn from "../../common/cdnUrl"
 //vue中使用P5的方式
 import { isClient } from "@vueuse/core";
 const func = () => {
-  import(cdn.p5Cdn).then(() => {
-    let p5 = window.p5;
-    try {
-      if (p5 && typeof p5 === "function") {
+  let p5 = window.p5;
+  try {
+    if (p5 && typeof p5 === "function") {
+      new p5(main, "pageTop");
+      window.onresize = () => {
         new p5(main, "pageTop");
-        window.onresize = () => {
-          new p5(main, "pageTop");
-        };
-      }
-    } catch (e) {
-      console.log(e, typeof e);
-      ElMessage.warning("出错了，哥，看你写的垃圾代码");
+      };
     }
-  });
+  } catch (e) {
+    console.log(e, typeof e);
+    ElMessage.warning("出错了，哥，看你写的垃圾代码");
+  }
 }
 if (isClient && window)
-  func()
+  nextTick(() => {
+    func()
+  })
 
 onActivated(() => {
-  func()
+  nextTick(() => {
+    func()
+  })
 })
 
 
@@ -96,8 +97,8 @@ const main = (_p5) => {
 
 </script>
 <style scoped lang="scss">
-.pageTop{
-  max-width:100vw;
+.pageTop {
+  max-width: 100vw;
 }
 #pageTop {
   max-width: 100%;

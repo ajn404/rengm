@@ -228,7 +228,7 @@ export const directionalLight = (_) => {
 
     let dirX, dirY;
     _.draw = () => {
-        _.background(255)
+        _.background(0)
 
         dirX = (_.mouseX / _.width - 0.5) * 2;
         dirY = (_.mouseY / _.height - 0.5) * 2
@@ -262,12 +262,47 @@ export const pointLight = (_) => {
 
 
     _.draw = () => {
-        _.background(255)
+        _.background(0)
         let locX = _.mouseX - _.width / 2;
         let locY = _.mouseY - _.height / 2;
         _.pointLight(250, 250, 250, locX, locY, 100);
         _.noStroke();
         _.sphere(80);
+        if (window && window.p5DrawLoop !== p5DrawLoop) {
+            _.noLoop()
+        }
+    }
+    _.mousePressed = () => {
+        if (isClickCanvas(_)) {
+            window.p5DrawLoop = p5DrawLoop
+            if (!(_.isLooping())) {
+                _.redraw()
+                _.loop()
+            }
+        }
+    }
+}
+
+export const spotLight = (_) => {
+    let p5DrawLoop = window.p5DrawLoop;
+    let colorPicker;
+    _.setup = () => {
+        _.createCanvas(200, 200, _.WEBGL)
+        _.noStroke()
+        colorPicker = _.createColorPicker('#00ff00')
+    }
+
+    let locX,locY;
+    _.draw = () => {
+        _.background(0)
+
+        locX = _.mouseX - _.width/2;
+        locY = _.mouseY - _.height/2
+
+        _.ambientLight(50)
+        _.spotLight(colorPicker.color(), locX, locY, 200, 0, 0, -1, Math.PI / 16);
+        _.sphere(80)
+
         if (window && window.p5DrawLoop !== p5DrawLoop) {
             _.noLoop()
         }

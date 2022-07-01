@@ -15,7 +15,6 @@ import {
 } from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
-import * as cdn from "../common/cdnUrl"
 
 //vue中使用P5的方式
 import * as p5MainFunc from "../common/p5WebGlBasic"
@@ -33,9 +32,8 @@ if (p5MainFunc[propsValue.renderFunc.value])
 let p5;
 
 import { isElementNotInViewport } from '../common/utils.ts'
-if (isClient)
-  import(cdn.p5Cdn).then(() => {
-    p5 = window.p5;
+if (isClient){
+  p5 = window.p5;
     //本地开发，或者就这样？
     nextTick(() => {
       let target = box._value
@@ -43,9 +41,8 @@ if (isClient)
       window.p5DrawLoop = defaultMethod
       new p5(p5MainFunc[defaultMethod], target.id);
       window.p5DrawLoop = ""
-
     })
-  })
+ }
 onUnmounted(() => {
   window.p5DrawLoop = ""
 })
@@ -58,8 +55,7 @@ onUnmounted(() => {
   & > div {
     max-width: 100%;
     max-height: 80%;
-
-    overflow: hidden;
+    // overflow: hidden;
     display: flex;
     place-items: center;
     flex-direction: column;

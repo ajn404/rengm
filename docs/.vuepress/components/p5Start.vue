@@ -14,7 +14,6 @@ import "element-plus/dist/index.css";
 import {ref, getCurrentInstance, onUnmounted, nextTick} from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
-import * as cdn from "../common/cdnUrl"
 
 //vue中使用P5的方式
 import * as p5MainFunc from "../common/p5Main"
@@ -97,9 +96,6 @@ const clearFunc = () => {
   document.querySelector("#p5-start").innerHTML = "";
 };
 let p5;
-import "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"
-
-
 if(isClient)
 nextTick(()=>{
    p5 = window.p5;
@@ -111,7 +107,6 @@ nextTick(()=>{
 })
 onUnmounted(()=>{
   window.p5DrawLoop = ""
-  clearFunc()
 })
 const handleChange = (arr) => {
       try{

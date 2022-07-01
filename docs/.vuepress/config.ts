@@ -17,6 +17,14 @@ const resolve = (dir) => {
     return path.resolve(__dirname, dir)
 }
 
+import * as cdn from "./common/cdnUrl"
+const cdnScripts:any = []
+for(let item in cdn){
+    cdnScripts.push(
+        ['script',{src:cdn[item]}]
+    )
+}
+
 export default defineUserConfig({
     title: "摸🐟",
     description: "vuepress的使用边界",
@@ -60,7 +68,10 @@ export default defineUserConfig({
         },
 
     }),
-    head: [['link', { rel: 'icon', href: '/images/favicon.ico' }]],
+    head: [
+        ['link', { rel: 'icon', href: '/rengm/images/favicon.ico' }],
+        ...cdnScripts
+    ],
     plugins: [
         registerComponentsPlugin({
             components: components
@@ -76,7 +87,7 @@ export default defineUserConfig({
     theme: localTheme({
         // default theme options
         navbar:navbarConfig,
-        logo:'/images/logo.png'
+        logo:'images/logo.png'
       }),
     host: '0.0.0.0',
     port: 8088,
