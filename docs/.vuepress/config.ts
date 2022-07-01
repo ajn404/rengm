@@ -18,10 +18,10 @@ const resolve = (dir) => {
 }
 
 import * as cdn from "./common/cdnUrl"
-const cdnScripts:any = []
-for(let item in cdn){
+const cdnScripts: any = []
+for (let item in cdn) {
     cdnScripts.push(
-        ['script',{src:cdn[item]}]
+        ['script', { src: cdn[item] }]
     )
 }
 
@@ -52,17 +52,21 @@ export default defineUserConfig({
                 }
 
             },
-            server:{
+            server: {
 
             },
-            build:{
-                rollupOptions:{
-                    external:['p5']
+            build: {
+                rollupOptions: {
+                    external: []
                 },
-                dynamicImportVarsOptions:{
+                dynamicImportVarsOptions: {
                 },
-                chunkSizeWarningLimit:10000
-            }
+                chunkSizeWarningLimit: 10000
+            },
+            // @ts-expect-error: vite 还没有给 ssr 配置项提供类型
+            ssr: {
+                noExternal: ['vtk.js'],
+            },
         },
         vuePluginOptions: {
 
@@ -87,9 +91,9 @@ export default defineUserConfig({
     clientConfigFile: resolve('./clientAppEnhance.ts'),
     theme: localTheme({
         // default theme options
-        navbar:navbarConfig,
-        logo:'images/logo.png'
-      }),
+        navbar: navbarConfig,
+        logo: 'images/logo.png'
+    }),
     host: '0.0.0.0',
     port: 8088,
 

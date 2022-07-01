@@ -33,8 +33,9 @@ let p5;
 
 import { isElementNotInViewport } from '../common/utils.ts'
 if (isClient){
-  p5 = window.p5;
+    p5 = window.p5;
     //本地开发，或者就这样？
+    if(p5)
     nextTick(() => {
       let target = box._value
       target.id = propsValue.renderFunc.value
