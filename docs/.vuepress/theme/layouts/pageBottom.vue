@@ -9,11 +9,8 @@
     .content
         div
             div
-                b 逃之夭夭
-            div
-                b slement-plus使用
-                RouterLink(to="/elementPlus/") 关于
-                RouterLink(to="/elementPlus/eleButton") element buttons
+                b 底部索引
+            
             div
                 b 思维拓展
                 RouterLink(to="/mindExpand/README") 关于
@@ -27,6 +24,14 @@
                 RouterLink(to="/dataVisualization/README") 关于
                 RouterLink(to="/dataVisualization/echartsAdvanceUse") 高级使用
                 RouterLink(to="/dataVisualization/dynamicEcharts") 动态echarts
+            div
+                b element-plus使用
+                RouterLink(to="/elementPlus/") 关于
+                RouterLink(to="/elementPlus/eleButton") element buttons    
+            div 
+                el-button.bottomButton(
+                    @click.once="bottomButtonClick"
+                            ) 底部按钮    
         div
             a.image(
                 href="https://codepen.io/z-",
@@ -34,6 +39,7 @@
                 style="background-image: url(\"/rengm/images/logo.png\")"
             )
             p ©2022 Ajn404
+        
 svg(style="position: fixed; top: 100vh")
     defs
         filter#blob
@@ -48,11 +54,14 @@ svg(style="position: fixed; top: 100vh")
                 values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9",
                 result="blob"
             )
-            //feComposite(in="SourceGraphic" in2="blob" operator="atop") //After reviewing this after years I can't remember why I added this but it isn't necessary for the blob effect
-
+            feComposite(in="SourceGraphic" in2="blob" operator="atop") 
 </template>
 
 <script setup>
+import {ElMessage} from 'element-plus'
+const bottomButtonClick = ()=>{
+    ElMessage.warning("啥都没写")
+}
 
 </script>
 
@@ -84,6 +93,7 @@ svg(style="position: fixed; top: 100vh")
                 animation:bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
                     bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
                 transform:translate(-50%, 100%);
+
             }
             .bubble:nth-child(n+64) {
                 background:#782030;
@@ -96,9 +106,21 @@ svg(style="position: fixed; top: 100vh")
             grid-gap: 4rem;
             padding:2rem;
             background:#782030;
+            .bottomButton{
+                width: 7em;
+                background: #782030;
+                border: none;
+                color:#F5F7FA;
+                font-size:1rem;
+                padding: 0;
+                text-align: left;
+                justify-content: left;
+            }
+
             a, p {
                 color:#F5F7FA;
                 text-decoration:none;
+                white-space: pre;
             }
             b {
                 color:white;

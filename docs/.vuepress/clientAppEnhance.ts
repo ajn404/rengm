@@ -7,8 +7,8 @@ export default defineClientConfig({
         app.use(ElementPlus);
         app.use(store)
         router.beforeEach(item=>{
-            console.log(item)
-            console.log(siteData)
+            // console.log(item)
+            // console.log(siteData)
         })
         
     },

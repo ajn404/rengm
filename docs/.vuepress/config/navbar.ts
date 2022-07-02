@@ -49,6 +49,10 @@ const mindExpand :any ={
         {
             text:'vtk',
             link:'/mindExpand/vtk.md'
+        },
+        {
+            text:'three',
+            link:'/mindExpand/three.md'
         }
     ]
 }
@@ -82,9 +86,10 @@ const other : any = {
 
 
 export const navbarConfig = [
-    home,
-    element,
+    
     mindExpand,
     dataV,
-    other
+    other,
+    element,
+    home,
 ];

@@ -66,7 +66,8 @@ const main = (_p5) => {
     // initialize coordinates
     this.posX = 0;
     this.posY = p5.random(-50, 0);
-    this.initialangle = p5.random(0, 2 * p5.PI);
+    // this.initialangle = p5.random(0, 2 * p5.PI);
+    this.initialangle = 0
     this.size = p5.random(2, 5);
 
     // radius of snowflake spiral

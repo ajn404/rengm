@@ -1,5 +1,4 @@
 ---
-home: true
 ---
 ## [hello p5](./mindExpand/README.md)
 ## [hello element-plus](./elementPlus/README.md)
