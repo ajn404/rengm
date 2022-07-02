@@ -45,7 +45,10 @@ const mindExpand :any ={
         {
             text:'3D基本原理',
             link:'/mindExpand/3d-basic.md'
-
+        },
+        {
+            text:'vtk',
+            link:'/mindExpand/vtk.md'
         }
     ]
 }
@@ -57,7 +60,7 @@ const dataV : any = {
             text:'关于本栏目',
             link:'/dataVisualization/README.md'
         },{
-            text:'高级使用echarts',
+            text:'快用echarts',
             link:'/dataVisualization/echartsAdvanceUse.md'
         },
         {

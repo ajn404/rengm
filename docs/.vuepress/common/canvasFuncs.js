@@ -1,5 +1,5 @@
 export const particles = () => {
-  const canvas = document.querySelector("#particles");
+  const canvas = document.querySelector("#basic-canvas");
   const ctx = canvas.getContext("2d");
   const { floor, random, PI } = Math;
 
@@ -51,8 +51,8 @@ export const particles = () => {
         move(bug);
         render(bug);
       }
-      requestAnimationFrame(loop);
     }
+    requestAnimationFrame(loop);
   }
 
   setSize();

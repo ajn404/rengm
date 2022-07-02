@@ -5,7 +5,7 @@ const resolve = (dir) => {
 }
 
 const p5_components_keys = [
-    'p5Start','particles'
+    'p5Start','basicCanvas'
 ];
 
 const echarts_components_keys = [
