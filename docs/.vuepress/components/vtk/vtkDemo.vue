@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
         const { fullScreenRenderer, coneSource, actor, mapper } = context.value;
         actor.delete();
         mapper.delete();
-        coneSource.delete();
+        coneSource.delete();    
         fullScreenRenderer.delete();
         context.value = null;
     }
@@ -112,7 +112,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style  lang="scss" scoped>
-@import url('/style/vtkLayout.scss');
 .controls {
   position: absolute;
   top: 25px;

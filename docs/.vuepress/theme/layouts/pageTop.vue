@@ -1,6 +1,6 @@
 <template>
   <div class="pageTop">
-    <div id="pageTop"></div>
+    <div id="pageTop" ref="pageTop"></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -9,12 +9,17 @@ import { ref, onActivated, nextTick } from "vue";
 import { ElMessage } from "element-plus";
 //vue中使用P5的方式
 import { isClient } from "@vueuse/core";
+
+const pageTop = ref(null)
 const func = () => {
   let p5 = window.p5;
   try {
-    if (p5 && typeof p5 === "function") {
+    if (p5 && typeof p5 === "function") { 
+      pageTop.value = ""
+
       new p5(main, "pageTop");
       window.onresize = () => {
+      pageTop.value = ""
         new p5(main, "pageTop");
       };
     }

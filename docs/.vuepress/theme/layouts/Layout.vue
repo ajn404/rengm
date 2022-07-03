@@ -3,9 +3,11 @@ import ParentLayout from "@vuepress/theme-default/lib/client/layouts/Layout.vue"
 import pageTop from './pageTop.vue'
 import pageBottom from "./pageBottom.vue";
 import {ref} from 'vue'
+import {ElMessage} from 'element-plus'
 const style = ref(true)
 const click = ()=>{
   style.value = !style.value
+  // ElMessage.warning("没有做持久化，刷新还是会重置")
 }
 </script>
 <template>

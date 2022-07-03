@@ -27,6 +27,10 @@ const vtk_components = [
     {
         name:'vtkDemo',
         path:'vtk/vtkDemo'
+    },
+    {
+        name:'pdrReader',
+        path:'vtk/pdrReader'
     }
 ]
 

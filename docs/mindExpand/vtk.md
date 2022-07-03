@@ -7,3 +7,5 @@
 ### 本域名下的示例
 
 #### [vtk vue 最简单的demo](./vtk/vtkVue.md)
+
+#### [pdrReader](./vtk/pdrReader.md)
