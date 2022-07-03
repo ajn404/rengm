@@ -4,9 +4,9 @@
         <table class="controls">
             <tbody>
                 <tr>
-                    <td style="padding:0;">
+                    <td>
                         <select
-                            style="width: 100%;height:100%;display:flex;"
+                            style="width: 100%;"
                             :value="representation"
                             @change="setRepresentation($event.target.value)"
                         >
@@ -62,7 +62,7 @@ watchEffect(() => {
 
 onMounted(() => {
     if (isClient&&window.vtk) {
-        vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
+            vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
             vtkActor = vtk.Rendering.Core.vtkActor;
             vtkMapper = vtk.Rendering.Core.vtkMapper;
             vtkConeSource = vtk.Filters.Sources.vtkConeSource
@@ -97,10 +97,6 @@ onMounted(() => {
                 }
             })
     }
-
-
-
-
 });
 
 onBeforeUnmount(() => {
@@ -116,24 +112,12 @@ onBeforeUnmount(() => {
 </script>
 
 <style  lang="scss" scoped>
+@import url('/style/vtkLayout.scss');
 .controls {
-    position: absolute;
-    top: 0px;
-    left: 0;
-    background: white;
-    margin: 0;
-}
-
-.vtk-demo {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    height: 50vh;
-    & > div.vtk-container {
-        height: 100%;
-        & > div {
-            position: relative !important;
-        }
-    }
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: white;
+  padding: 12px;
 }
 </style>

@@ -27,4 +27,4 @@
 
 ## p5-start切换canvas，但之前的drawing任务好像一直再执行
 
-
+## window挂载能解决上面的问题，但是解决的不是很好，同样可以用local Storage

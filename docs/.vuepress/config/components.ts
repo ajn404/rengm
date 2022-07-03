@@ -5,26 +5,47 @@ const resolve = (dir) => {
 }
 
 const p5_components_keys = [
-    'p5Start','basicCanvas'
+    {name:'p5Start',path:'p5Start'},
+    {name:'basicCanvas',path:'basicCanvas'}
+    
 ];
 
 const echarts_components_keys = [
-    'echartsUse','echartsAdvanceUse','dynamicEchartsDemo','eleButtonText'
+    {name:'echartsUse',path:'echartsUse'},
+    {name:'echartsAdvanceUse',path:'echartsAdvanceUse'},
+    {name:'dynamicEchartsDemo',path:'dynamicEchartsDemo'},
+    {name:'eleButtonText',path:'eleButtonText'}
 ]
 
 const basic_3d_components = [
-    'basic3d','vtkDemo'
+    {name:'basic3d',path:'basic3d'},
+    {name:'vtkDemo',path:'vtkDemo'}
+    
 ]
 
-const defaultComponentKeys = ['demo', 'home', 'eleButton', 'eleButtonLoading'];
+const vtk_components = [
+    {
+        name:'vtkDemo',
+        path:'vtk/vtkDemo'
+    }
+]
+
+const defaultComponentKeys = [
+    {name:'demo',path:'demo'},
+    {name:'home',path:'home'},
+    {name:'eleButton',path:'eleButton'},
+    {name:'eleButtonLoading',path:'eleButtonLoading'},
+    ];
 const componentKeys=[
     ...defaultComponentKeys,
     ...p5_components_keys,
     ...echarts_components_keys,
-    ...basic_3d_components]
+    ...basic_3d_components,
+    ...vtk_components
+]
 const components = {};
-componentKeys.forEach(name => {
-    components[name] = resolve(`../components/${name}.vue`)
+componentKeys.forEach(component => {
+    components[component.name] = resolve(`../components/${component.path}.vue`)
 })
 
 export default components
