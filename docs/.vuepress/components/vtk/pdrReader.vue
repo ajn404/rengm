@@ -115,7 +115,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-@import url("/style/vtkLayout.scss");
 .controls {
   position: absolute;
   top: 25px;
