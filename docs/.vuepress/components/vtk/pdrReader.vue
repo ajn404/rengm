@@ -58,7 +58,7 @@ onMounted(() => {
         stickMapper.setOrientationArray("orientation");
         stickActor.setMapper(stickMapper);
 
-        reader.setUrl(`/data/2LYZ.pdb`).then(() => {
+        reader.setUrl(`/rengm/data/2LYZ.pdb`).then(() => {
           renderer.resetCamera();
           renderWindow.render();
         });
