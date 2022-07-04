@@ -1,7 +1,8 @@
 <template>
-  <clientonly>
+    <ClientOnly>
     <pdr-reader-inner></pdr-reader-inner>
-  </clientonly>
+  </ClientOnly>
+
 </template>
 
 <script setup>
