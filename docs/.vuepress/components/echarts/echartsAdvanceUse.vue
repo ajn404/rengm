@@ -14,7 +14,7 @@
 import { ref } from "vue";
 import * as echarts from "echarts";
 import { nextTick } from "vue";
-import * as echartsAllOptions from "../common/echartOptions";
+import * as echartsAllOptions from "../../common/echartOptions";
 
 const selectOptions = {};
 const selectOption = ref("");

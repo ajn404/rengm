@@ -26,7 +26,7 @@ for (let item in cdn) {
 }
 
 export default defineUserConfig({
-    title: "摸🐟",
+    title: "⚫🐟",
     description: "vuepress的使用边界",
     base: "/rengm/",
     open: true,
@@ -87,9 +87,9 @@ export default defineUserConfig({
     ],
     clientConfigFile: resolve('./clientAppEnhance.ts'),
     theme: localTheme({
-        // default theme options
         navbar: navbarConfig,
-        logo: 'images/logo.png'
+        logo: '',
+        logoDark:'images/logo.png'
     }),
     host: '0.0.0.0',
     port: 8088,

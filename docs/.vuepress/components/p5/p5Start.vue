@@ -16,7 +16,7 @@ import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
 //vue中使用P5的方式
-import * as p5MainFunc from "../common/p5Main"
+import * as p5MainFunc from "../../common/p5Main"
 const funcs ={}
 for(let p5MainFuncItem in p5MainFunc){
   funcs[`${p5MainFuncItem}`] = p5MainFunc[`${p5MainFuncItem}`]
@@ -66,7 +66,8 @@ const methods = [
       {
         label:"sinCos3D",
         value:"sinCos3D"
-      }
+      },
+      {label:"震级",value:'earthQuake'}
     ]
   },
   {

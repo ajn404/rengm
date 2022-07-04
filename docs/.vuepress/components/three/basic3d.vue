@@ -17,7 +17,7 @@ import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
 //vue中使用P5的方式
-import * as p5MainFunc from "../common/p5WebGlBasic"
+import * as p5MainFunc from "../../common/p5WebGlBasic"
 const props = defineProps({
   renderType: String,
   renderFunc: String
@@ -31,7 +31,7 @@ if (p5MainFunc[propsValue.renderFunc.value])
 
 let p5;
 
-import { isElementNotInViewport } from '../common/utils.ts'
+import { isElementNotInViewport } from '../../common/utils.ts'
 if (isClient){
     p5 = window.p5;
     //本地开发，或者就这样？

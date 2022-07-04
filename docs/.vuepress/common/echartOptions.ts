@@ -16,14 +16,6 @@ export const areaChart = {
             }
         }
     },
-    // legend: {
-    //     data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']
-    // },
-    // toolbox: {
-    //     feature: {
-    //         saveAsImage: {}
-    //     }
-    // },
     grid: {
         left: '3%',
         right: '4%',

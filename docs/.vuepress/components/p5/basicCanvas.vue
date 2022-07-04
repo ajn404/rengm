@@ -7,7 +7,7 @@
 </template>
 <script lang='ts' setup>
 import { ref, nextTick ,onUnmounted,toRef } from "vue";
-import * as canvasFunc from "../common/canvasFuncs.js"
+import * as canvasFunc from "../../common/canvasFuncs.js"
 
 
 const draw = () => {

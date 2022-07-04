@@ -69,7 +69,7 @@ import {
 </script>
 
 <style scoped lang='scss'>
-@import url("./style.scss");
+@import url("../style.scss");
 .mb-4 {
   margin-bottom: 4rem;
   display: flex;
