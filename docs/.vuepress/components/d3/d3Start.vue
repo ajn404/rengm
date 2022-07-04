@@ -16,6 +16,7 @@ import * as d3 from "d3";
 import {nextTick} from "vue";
 
 const data = [45,67,96,84,41];
+console.log(d3)
 
 const draw = () => {
   const svg =  d3.select('#d3-start');

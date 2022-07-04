@@ -16,7 +16,7 @@ import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
 //vue中使用P5的方式
-import * as p5MainFunc from "../../common/p5Main"
+import * as p5MainFunc from "./ts/p5Main"
 const funcs ={}
 for(let p5MainFuncItem in p5MainFunc){
   funcs[`${p5MainFuncItem}`] = p5MainFunc[`${p5MainFuncItem}`]
@@ -24,75 +24,7 @@ for(let p5MainFuncItem in p5MainFunc){
 const selectMethhod = ref([]);
 
 let defaultMethod = "defaultFunc"
-const methods = [
-  {label:"default",value:"defaultFunc"},
-  {
-    label: "场景1（偏交互2D和生成艺术）",
-    children: [
-      {
-        value: "main",
-        label: "main",
-      },
-      {
-        value: "LSystem",
-        label: "LSystem",
-      },
-      {
-        value: "angularMotion",
-        label: "angularMotion"
-      },
-      {
-        value: 'polarCoordinates',
-        label: 'polarCoordinates'
-      }
-    ],
-  },
-  {
-    label: "场景2（偏游戏）",
-    children: [
-      {
-        label: "移动拼图",
-        value: "slidePuzzle",
-      },
-    ],
-  },
-  {
-    label:"场景3（webgl）",
-    children: [
-      {
-        label: "geometries",
-        value: "geometries"
-      },
-      {
-        label:"sinCos3D",
-        value:"sinCos3D"
-      },
-      {label:"震级",value:'earthQuake'}
-    ]
-  },
-  {
-    label:"非演示场景(熟悉api)",
-    children: [
-      {
-        label:"3d box",
-        value:"boxRef"
-      },
-      {
-        label:"3d box 旋转",
-        value:"boxRef1"
-      }
-    ]
-  },
-  {
-    label:"场景4(应用)",
-    children:[
-      {
-        label:'有丝分裂',
-        value:'mitosis'
-      }
-    ]
-  }
-];
+import {methods} from './ts/p5Start'
 const clearFunc = () => {
   document.querySelector("#p5-start").innerHTML = "";
 };

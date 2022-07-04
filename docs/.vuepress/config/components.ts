@@ -31,10 +31,14 @@ const ele_components = [
     { name: 'eleButtonText', path: 'element/eleButtonText' }
 ]
 
+const d3_component = [
+    { name: 'd3Start', path: 'd3/d3Start' },
+
+]
+
 const defaultComponentKeys = [
     { name: 'demo', path: 'demo' },
-    { name: 'home', path: 'home' },
-    { name: 'd3Start', path: 'd3Start' },
+    { name: 'home', path: 'home' }
 
 ];
 const componentKeys = [
@@ -43,7 +47,8 @@ const componentKeys = [
     ...echarts_components_keys,
     ...basic_3d_components,
     ...vtk_components,
-    ...ele_components
+    ...ele_components,
+    ...d3_component
 ]
 const components = {};
 componentKeys.forEach(component => {
