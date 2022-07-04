@@ -38,7 +38,6 @@ import { isClient } from "@vueuse/core";
 import "https://unpkg.com/vtk.js@25.1.0/vtk.js"
 let vtkFullScreenRenderWindow, vtkActor, vtkMapper, vtkConeSource;
 
-
 const vtkContainer = ref(null);
 const context = ref(null);
 const coneResolution = ref(6);
