@@ -1,9 +1,10 @@
 <template>
-  <clientonly>
+  <ClientOnly>
     <vtkDemoInner></vtkDemoInner>
-  </clientonly>
+  </ClientOnly>
 </template>
 
 <script setup>
 import vtkDemoInner from './components/vtkDemoInner.vue'
+import {ClientOnly} from '@vuepress/client'
 </script>

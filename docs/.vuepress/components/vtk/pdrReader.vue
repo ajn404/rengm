@@ -6,4 +6,6 @@
 
 <script setup>
 import pdrReaderInner from './components/pdrReaderInner.vue'
+import {ClientOnly} from '@vuepress/client'
+
 </script>
