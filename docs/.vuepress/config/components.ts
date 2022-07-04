@@ -39,6 +39,7 @@ const defaultComponentKeys = [
     {name:'home',path:'home'},
     {name:'eleButton',path:'eleButton'},
     {name:'eleButtonLoading',path:'eleButtonLoading'},
+    {name:'d3Start',path:'d3Start'}
     ];
 const componentKeys=[
     ...defaultComponentKeys,

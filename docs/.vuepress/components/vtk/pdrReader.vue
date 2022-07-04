@@ -12,6 +12,9 @@ import {
   nextTick,
 } from "vue";
 import { isClient } from "@vueuse/core";
+import "https://unpkg.com/vtk.js@25.1.0/vtk.js"
+
+// import Navbar from '@vuepress/theme-default/lib/client/components/Navbar.vue'
 let vtkFullScreenRenderWindow,
   vtkActor,
   vtkPDBReader,
@@ -32,7 +35,7 @@ onMounted(() => {
     nextTick(() => {
       if (!context.value) {
         const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
-                        rootContainer: vtkContainer.value,
+          rootContainer: vtkContainer.value,
         });
         const renderer = fullScreenRenderer.getRenderer();
         const renderWindow = fullScreenRenderer.getRenderWindow();
@@ -105,21 +108,28 @@ onBeforeUnmount(() => {
     sphereActor.delete()
     stickActor.delete();
     reader.delete();
+
+    // window.removeEventListener('resize',renderWindow.resize)
+    // renderWindow.unbindEvents()
     renderWindow.delete();
+    window.removeEventListener('resize', fullScreenRenderer.resize)
     fullScreenRenderer.delete();
 
 
     context.value = null;
+
   }
 });
 </script>
 
 <style lang="scss" scoped>
-.controls {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  background: white;
-  padding: 12px;
+.pdr-reader {
+  :deep(.vtk-container) {
+    position: relative;
+    & > div {
+      position: fixed !important;
+      z-index: 1000;
+    }
+  }
 }
 </style>

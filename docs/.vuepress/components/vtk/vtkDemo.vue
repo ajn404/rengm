@@ -35,6 +35,7 @@
 <script setup>
 import { ref, unref, onMounted, onBeforeUnmount, watchEffect, nextTick } from 'vue';
 import { isClient } from "@vueuse/core";
+import "https://unpkg.com/vtk.js@25.1.0/vtk.js"
 let vtkFullScreenRenderWindow, vtkActor, vtkMapper, vtkConeSource;
 
 
@@ -61,41 +62,43 @@ watchEffect(() => {
 
 
 onMounted(() => {
-    if (isClient&&window.vtk) {
-            vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
-            vtkActor = vtk.Rendering.Core.vtkActor;
-            vtkMapper = vtk.Rendering.Core.vtkMapper;
-            vtkConeSource = vtk.Filters.Sources.vtkConeSource
-            nextTick(() => {
-                if (!context.value) {
-                    const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
-                        rootContainer: vtkContainer.value,
-                    });
-                    const coneSource = vtkConeSource.newInstance({ height: 1.0 });
+    if (isClient && window.vtk) {
+        vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
+        vtkActor = vtk.Rendering.Core.vtkActor;
+        vtkMapper = vtk.Rendering.Core.vtkMapper;
+        vtkConeSource = vtk.Filters.Sources.vtkConeSource
+        nextTick(() => {
+            if (!context.value) {
+                const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
+                    rootContainer: vtkContainer.value,
 
-                    const mapper = vtkMapper.newInstance();
-                    mapper.setInputConnection(coneSource.getOutputPort());
+                });
 
-                    const actor = vtkActor.newInstance();
-                    actor.setMapper(mapper);
+                const coneSource = vtkConeSource.newInstance({ height: 1 });
 
-                    const renderer = fullScreenRenderer.getRenderer();
-                    const renderWindow = fullScreenRenderer.getRenderWindow();
+                const mapper = vtkMapper.newInstance();
+                mapper.setInputConnection(coneSource.getOutputPort());
 
-                    renderer.addActor(actor);
-                    renderer.resetCamera();
-                    renderWindow.render();
+                const actor = vtkActor.newInstance();
+                actor.setMapper(mapper);
 
-                    context.value = {
-                        fullScreenRenderer,
-                        renderWindow,
-                        renderer,
-                        coneSource,
-                        actor,
-                        mapper,
-                    };
-                }
-            })
+                const renderer = fullScreenRenderer.getRenderer();
+                const renderWindow = fullScreenRenderer.getRenderWindow();
+
+                renderer.addActor(actor);
+                renderer.resetCamera();
+                renderWindow.render();
+
+                context.value = {
+                    fullScreenRenderer,
+                    renderWindow,
+                    renderer,
+                    coneSource,
+                    actor,
+                    mapper,
+                };
+            }
+        })
     }
 });
 
@@ -104,19 +107,33 @@ onBeforeUnmount(() => {
         const { fullScreenRenderer, coneSource, actor, mapper } = context.value;
         actor.delete();
         mapper.delete();
-        coneSource.delete();    
+        coneSource.delete();
+        //清除resize绑定时间
+        window.removeEventListener('resize', fullScreenRenderer.resize)
         fullScreenRenderer.delete();
         context.value = null;
+
     }
 });
 </script>
 
 <style  lang="scss" scoped>
+.vtk-demo {
+    :deep(.vtk-container) {
+        position: relative;
+        & > div {
+            position: fixed !important;
+            z-index: 1000;
+        }
+    }
+}
+
 .controls {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  background: white;
-  padding: 12px;
+    position: fixed;
+    z-index: 1000;
+    top: 25px;
+    left: 25px;
+    background: white;
+    padding: 12px;
 }
 </style>
