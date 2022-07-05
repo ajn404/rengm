@@ -13,8 +13,6 @@ export const isElementNotInViewport = (el) => {
 const doc = document;
 const html = doc.documentElement;
 export const enterFullScreen = () => {
-
-
   const enter =
     html.requestFullscreen ||
     html.webkitRequestFullScreen ||

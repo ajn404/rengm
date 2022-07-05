@@ -15,3 +15,8 @@ vtk.js会绑定一堆事件，还是新页面打开，不污染全局环境嘞
 <ClientOnly>
  <Router-link to="./vtk/pdrReader" target="_blank">pdrReader</Router-link>
 </ClientOnly>
+
+####
+<ClientOnly>
+ <Router-link to="./vtk/cubeAxes" target="_blank">cubeAxes</Router-link>
+</ClientOnly>

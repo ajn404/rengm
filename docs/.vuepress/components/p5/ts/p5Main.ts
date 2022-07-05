@@ -806,14 +806,13 @@ export const earthQuake = (_) => {
 export const bubbleSort = (_) => {
     let i = 0, j = 0, values: any = [];
 
-    let rate =60;
+    let rate = 60;
     _.setup = () => {
-        _.createCanvas(500, 200)
-
+        _.createCanvas(_.windowWidth, _.windowHeight)
         _.frameRate(rate)
         values = new Array(_.width)
-        for (let n=0; n < values.length; n++) {
-            values[n] = random(_.height)
+        for (let n = 0; n < values.length; n++) {
+            values[n] = random(_.windowHeight)
         }
     }
     _.draw = () => {
@@ -821,28 +820,190 @@ export const bubbleSort = (_) => {
             _.noLoop()
         }
         _.background(0)
-
-        
         if (i < values.length) {
             for (let j = 0; j < values.length - i - 1; j++) {
-              let a = values[j];
-              let b = values[j + 1];
-              if (a > b) {
-                [values[j],values[j+1]]=[values[j+1],values[j]]
-              }
+                let a = values[j];
+                let b = values[j + 1];
+                if (a > b) {
+                    [values[j], values[j + 1]] = [values[j + 1], values[j]]
+                }
             }
-          } else {
+        } else {
             _.noLoop();
             ElMessage.success("冒泡结束")
-          }
+        }
         i++;
-        for ( let m = 0; m < values.length; m++) {
+        for (let m = 0; m < values.length; m++) {
             _.stroke(255);
-            _.line(m, _.height, m, _.height - values[m]);
+            _.line(m, _.windowHeight, m, _.height - values[m]);
         }
 
 
 
+    }
+
+    _.mousePressed = () => {
+
+    }
+}
+
+export const quickSort = (_) => {
+
+    let values: any[] = [];
+    let w = 10;
+
+    let states: number[] = [];
+    _.setup = () => {
+        _.createCanvas(_.windowWidth, _.windowHeight);
+        values = new Array(_.floor(_.width / w));
+        for (let i = 0; i < values.length; i++) {
+            values[i] = _.random(_.height);
+            states[i] = -1;
+        }
+        quickSort(values, 0, values.length - 1);
+    }
+
+    _.draw = () => {
+        _.background(0);
+
+        for (let i = 0; i < values.length; i++) {
+            _.noStroke();
+            if (states[i] == 0) {
+                _.fill('#E0777D');
+            } else if (states[i] == 1) {
+                _.fill('#D6FFB7');
+            } else {
+                _.fill(255);
+            }
+            _.rect(i * w, _.height - values[i], w, values[i]);
+        }
+    }
+
+    async function quickSort(arr, start, end) {
+        if (start >= end) {
+            return;
+        }
+        let index = await partition(arr, start, end);
+        states[index] = -1;
+
+        await Promise.all([
+            quickSort(arr, start, index - 1),
+            quickSort(arr, index + 1, end)
+        ]);
+    }
+
+    async function partition(arr, start, end) {
+        for (let i = start; i < end; i++) {
+            states[i] = 1;
+        }
+
+        let pivotValue = arr[end];
+        let pivotIndex = start;
+        states[pivotIndex] = 0;
+        for (let i = start; i < end; i++) {
+            if (arr[i] < pivotValue) {
+                await swap(arr, i, pivotIndex);
+                states[pivotIndex] = -1;
+                pivotIndex++;
+                states[pivotIndex] = 0;
+            }
+        }
+        await swap(arr, pivotIndex, end);
+
+        for (let i = start; i < end; i++) {
+            if (i != pivotIndex) {
+                states[i] = -1;
+            }
+        }
+
+        return pivotIndex;
+    }
+
+    async function swap(arr, a, b) {
+        await sleep(50);
+        let temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+}
+
+//视错觉
+
+export const stepFeetIIIusion = (_) => {
+
+
+    class Brick {
+        brickColor: any;
+        yPos: any;
+        xPos: number;
+        xSpeed: number;
+        constructor(bc, y) {
+            this.brickColor = bc;
+            this.yPos = y;
+            this.xPos = 0;
+        }
+
+        // this function creates the brick
+        createBrick() {
+            _.fill(this.brickColor);
+            _.rect(this.xPos, this.yPos, 100, 50);
+        }
+
+        // this function sets the speed
+        // of movement of the brick to 1
+        setSpeed() {
+            this.xSpeed = 1;
+        }
+
+        // this function sets the bricks in motion
+        moveBrick() {
+            this.xPos += this.xSpeed;
+            if (this.xPos + 100 >= _.width || this.xPos <= 0) {
+                this.xSpeed *= -1;
+            }
+        }
+    }
+
+    let brick1 = new Brick("white", 100);
+    let brick2 = new Brick("black", 250);
+
+    _.setup = () => {
+        _.createCanvas(720, 400);
+
+    }
+
+    brick1.setSpeed();
+    brick2.setSpeed();
+    _.draw = () => {
+        if (window && window.p5DrawLoop !== "stepFeetIIIusion") {
+            _.noLoop()
+        }
+
+        _.background(0);
+        if (_.mouseIsPressed) {
+            _.background(50);
+        }
+        brick1.createBrick();
+        brick1.moveBrick();
+        if (!_.mouseIsPressed) {
+            createBars();
+        }
+        brick2.createBrick();
+        brick2.moveBrick();
+    }
+
+
+    function createBars() {
+        let len = 12;
+        for (let i = 0; i < _.width / len; i++) {
+            _.fill("white");
+            if (i % 2 === 0)
+                _.rect(i * len, _.height, len, -_.height);
+        }
     }
 }
 

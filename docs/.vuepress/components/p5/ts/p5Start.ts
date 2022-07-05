@@ -1,11 +1,11 @@
 export const allMethods = [
-    {label:"default",value:"defaultFunc"},
+    {label:"默认",value:"defaultFunc"},
     {
       label: "场景1（偏交互2D和生成艺术）",
       children: [
         {
           value: "main",
-          label: "main",
+          label: "两根分裂的线段",
         },
         {
           value: "LSystem",
@@ -18,6 +18,10 @@ export const allMethods = [
         {
           value: 'polarCoordinates',
           label: 'polarCoordinates'
+        },
+        {
+          value:'stepFeetIIIusion',
+          label:'视错觉'
         }
       ],
     },
@@ -72,6 +76,10 @@ export const allMethods = [
         {
           label:'冒泡排序',
           value:'bubbleSort'
+        },
+        {
+          label:'快速排序',
+          value:'quickSort'
         }
       ]
     }

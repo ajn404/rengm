@@ -22,7 +22,8 @@ const basic_3d_components = [
 
 const vtk_components = [
     { name: 'vtkDemo', path: 'vtk/vtkDemo' },
-    { name: 'pdrReader', path: 'vtk/pdrReader' }
+    { name: 'pdrReader', path: 'vtk/pdrReader' },
+    { name: 'cubeAxes', path: 'vtk/cubeAxes' }
 ]
 
 const ele_components = [
