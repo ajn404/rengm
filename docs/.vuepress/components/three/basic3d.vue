@@ -17,7 +17,7 @@ import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
 
 //vue中使用P5的方式
-import * as p5MainFunc from "../../common/p5WebGlBasic"
+import * as p5MainFunc from "./ts/p5WebGlBasic"
 const props = defineProps({
   renderType: String,
   renderFunc: String

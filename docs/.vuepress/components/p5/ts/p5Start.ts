@@ -1,4 +1,4 @@
-export const methods = [
+export const allMethods = [
     {label:"default",value:"defaultFunc"},
     {
       label: "场景1（偏交互2D和生成艺术）",
@@ -63,6 +63,15 @@ export const methods = [
         {
           label:'有丝分裂',
           value:'mitosis'
+        }
+      ]
+    },
+    {
+      label:'场景5(算法可视)',
+      children:[
+        {
+          label:'冒泡排序',
+          value:'bubbleSort'
         }
       ]
     }

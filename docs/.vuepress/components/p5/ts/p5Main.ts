@@ -679,6 +679,7 @@ const Cell = function (_, pos, r, c) {
 }
 
 import { ElMessage } from "element-plus";
+import { random } from "lodash";
 export const mitosis = (_) => {
 
     const cells: any = [];
@@ -752,8 +753,8 @@ export const earthQuake = (_) => {
         _.orbitControl();
 
         _.background(0);
-        
-        
+
+
         //Sets the default ambient and directional light. 
         //The defaults are ambientLight(128, 128, 128) and 
         //directionalLight(128, 128, 128, 0, 0, -1)
@@ -790,16 +791,58 @@ export const earthQuake = (_) => {
             let raxis = xaxis.cross(pos);
 
             _.push();
-            
+
             _.translate(x, y, z);
             // In p5.js, the rotation axis is a vector object instead of x,y,z
             _.rotate(angleb, raxis);
-            _.fill(_.map(h,0,maxh,0,255),255,255);
-            _.box( _.frameCount % (h*10), 5, 5);
+            _.fill(_.map(h, 0, maxh, 0, 255), 255, 255);
+            _.box(_.frameCount % (h * 10), 5, 5);
             _.pop();
         }
     }
 
 }
 
+export const bubbleSort = (_) => {
+    let i = 0, j = 0, values: any = [];
+
+    let rate =60;
+    _.setup = () => {
+        _.createCanvas(500, 200)
+
+        _.frameRate(rate)
+        values = new Array(_.width)
+        for (let n=0; n < values.length; n++) {
+            values[n] = random(_.height)
+        }
+    }
+    _.draw = () => {
+        if (window && window.p5DrawLoop !== "bubbleSort") {
+            _.noLoop()
+        }
+        _.background(0)
+
+        
+        if (i < values.length) {
+            for (let j = 0; j < values.length - i - 1; j++) {
+              let a = values[j];
+              let b = values[j + 1];
+              if (a > b) {
+                [values[j],values[j+1]]=[values[j+1],values[j]]
+              }
+            }
+          } else {
+            _.noLoop();
+            ElMessage.success("冒泡结束")
+          }
+        i++;
+        for ( let m = 0; m < values.length; m++) {
+            _.stroke(255);
+            _.line(m, _.height, m, _.height - values[m]);
+        }
+
+
+
+    }
+}
 

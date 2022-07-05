@@ -28,15 +28,12 @@ const vtk_components = [
 const ele_components = [
     { name: 'eleButton', path: 'element/eleButton' },
     { name: 'eleButtonLoading', path: 'element/eleButtonLoading' },
-    { name: 'eleButtonText', path: 'element/eleButtonText' }
+    { name: 'eleButtonText', path: 'element/eleButtonText' },
+    { name: 'demo', path: 'element/demo' },
 ]
 
-
-
 const defaultComponentKeys = [
-    { name: 'demo', path: 'demo' },
     { name: 'home', path: 'home' }
-
 ];
 const componentKeys = [
     ...defaultComponentKeys,

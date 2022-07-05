@@ -3,9 +3,16 @@
     <el-cascader
       v-model="selectMethhod"
       :options="methods"
+      :show-all-levels="false"
+      filterable
       @change="handleChange"
       class="cascader"
-    />
+    >
+    <template #default="{ node, data }">
+      <span>{{ data.label }}</span>
+      <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+    </template>
+    </el-cascader>
     <div id="p5-start"></div>
   </div>
 </template>
@@ -24,7 +31,9 @@ for(let p5MainFuncItem in p5MainFunc){
 const selectMethhod = ref([]);
 
 let defaultMethod = "defaultFunc"
-import {methods} from './ts/p5Start'
+import {allMethods} from './ts/p5Start'
+
+const methods = ref(allMethods)
 const clearFunc = () => {
   document.querySelector("#p5-start").innerHTML = "";
 };
@@ -44,11 +53,12 @@ onUnmounted(()=>{
 const handleChange = (arr) => {
       try{
         if (p5 && typeof p5 === "function") {
-          window.p5DrawLoop = arr[arr.length - 1]
+          let funcName = arr[arr.length - 1]
+          window.p5DrawLoop = funcName
           //清除之前的
           clearFunc();
           //新建计算和canvas
-           new p5(funcs[arr[arr.length - 1]]||p5MainFunc.defaultFunc, "p5-start");
+           new p5(funcs[funcName]||p5MainFunc.defaultFunc, "p5-start");
 
       
         }
