@@ -13,36 +13,15 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import * as echarts from "echarts";
+// import 'echarts-gl';
 import { nextTick } from "vue";
 import * as echartsAllOptions from "./ts/echartOptions";
 
 const selectOptions = {};
 const selectOption = ref("");
-const cascaderOptions = [
-  {
-    value: "defaultOption",
-    label: "默认",
-  },
-  {
-    label: "折线图",
-    children: [
-      {
-        value: "simpleLineOption",
-        label: "简单折线图",
-      },
-      {
-        value:"areaChart",
-        label:"面积图"
-      },
-      {
-        value:"areaHighLightOption",
-        label:"区域高亮图"
-      }
-    ],
-  }
-];
+import { methods } from './ts/echartsAdvanceMethod'
+const cascaderOptions = methods;
 let myChart = null;
-
 
 for (let echartsOption in echartsAllOptions) {
   selectOptions[`${echartsOption}`] = echartsAllOptions[`${echartsOption}`];
@@ -71,7 +50,7 @@ nextTick(() => {
 </script>
 
 <style scoped>
-.box{
+.box {
   display: flex;
   align-content: center;
   justify-content: center;

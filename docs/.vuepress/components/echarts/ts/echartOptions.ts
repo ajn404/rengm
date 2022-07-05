@@ -199,79 +199,79 @@ export const simpleLineOption = {
 //区域高亮图
 export const areaHighLightOption = {
     xAxis: {
-      type: 'category',
-      boundaryGap: false
+        type: 'category',
+        boundaryGap: false
     },
     yAxis: {
-      type: 'value',
-      boundaryGap: [0, '30%']
+        type: 'value',
+        boundaryGap: [0, '30%']
     },
     visualMap: {
-      type: 'piecewise',
-      show: false,
-      dimension: 0,
-      seriesIndex: 0,
-      pieces: [
-        {
-          gt: 1,
-          lt: 3,
-          color: 'rgba(0, 0, 180, 0.4)'
-        },
-        {
-          gt: 5,
-          lt: 7,
-          color: 'rgba(0, 0, 180, 0.4)'
-        }
-      ]
+        type: 'piecewise',
+        show: false,
+        dimension: 0,
+        seriesIndex: 0,
+        pieces: [
+            {
+                gt: 1,
+                lt: 3,
+                color: 'rgba(0, 0, 180, 0.4)'
+            },
+            {
+                gt: 5,
+                lt: 7,
+                color: 'rgba(0, 0, 180, 0.4)'
+            }
+        ]
     },
     series: [
-      {
-        type: 'line',
-        smooth: 0.6,
-        symbol: 'none',
-        lineStyle: {
-          color: '#5470C6',
-          width: 5
-        },
-        markLine: {
-          symbol: ['none', 'none'],
-          label: { show: false },
-          data: [{ xAxis: 1 }, { xAxis: 3 }, { xAxis: 5 }, { xAxis: 7 }]
-        },
-        areaStyle: {},
-        data: [
-          ['2019-10-10', 200],
-          ['2019-10-11', 560],
-          ['2019-10-12', 750],
-          ['2019-10-13', 580],
-          ['2019-10-14', 250],
-          ['2019-10-15', 300],
-          ['2019-10-16', 450],
-          ['2019-10-17', 300],
-          ['2019-10-18', 100]
-        ]
-      }
+        {
+            type: 'line',
+            smooth: 0.6,
+            symbol: 'none',
+            lineStyle: {
+                color: '#5470C6',
+                width: 5
+            },
+            markLine: {
+                symbol: ['none', 'none'],
+                label: { show: false },
+                data: [{ xAxis: 1 }, { xAxis: 3 }, { xAxis: 5 }, { xAxis: 7 }]
+            },
+            areaStyle: {},
+            data: [
+                ['2019-10-10', 200],
+                ['2019-10-11', 560],
+                ['2019-10-12', 750],
+                ['2019-10-13', 580],
+                ['2019-10-14', 250],
+                ['2019-10-15', 300],
+                ['2019-10-16', 450],
+                ['2019-10-17', 300],
+                ['2019-10-18', 100]
+            ]
+        }
     ]
-  };
+};
 
 // 默认,用于开发
 export const defaultOption = {
     xAxis: {
-      data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27']
+        data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27']
     },
     yAxis: {},
     series: [
-      {
-        type: 'candlestick',
-        data: [
-          [20, 34, 10, 38],
-          [40, 35, 30, 50],
-          [31, 38, 33, 44],
-          [38, 15, 5, 42]
-        ]
-      }
+        {
+            type: 'candlestick',
+            data: [
+                [20, 34, 10, 38],
+                [40, 35, 30, 50],
+                [31, 38, 33, 44],
+                [38, 15, 5, 42]
+            ]
+        }
     ]
-  };
+};
 
 //柱状图
 //动态排序柱状图
@@ -309,3 +309,110 @@ export const dynamicBarChart = {
     animationEasing: 'linear',
     animationEasingUpdate: 'linear'
 };
+
+function lineFunctionFunc(x) {
+    x /= 10;
+    return Math.sin(x) * Math.cos(x * 2 + 1) * Math.sin(x * 3 + 2) * 50;
+}
+function lineFunctionGenerateData() {
+    let data: any = [];
+    for (let i = -200; i <= 200; i += 0.1) {
+        data.push([i, lineFunctionFunc(i)]);
+    }
+    return data;
+}
+export const lineFunction = {
+    animation: false,
+    grid: {
+        top: 40,
+        left: 50,
+        right: 40,
+        bottom: 50
+    },
+    xAxis: {
+        name: 'x',
+        minorTick: {
+            show: true
+        },
+        minorSplitLine: {
+            show: true
+        }
+    },
+    yAxis: {
+        name: 'y',
+        min: -100,
+        max: 100,
+        minorTick: {
+            show: true
+        },
+        minorSplitLine: {
+            show: true
+        }
+    },
+    dataZoom: [
+        {
+            show: true,
+            type: 'inside',
+            filterMode: 'none',
+            xAxisIndex: [0],
+            startValue: -20,
+            endValue: 20
+        },
+        {
+            show: true,
+            type: 'inside',
+            filterMode: 'none',
+            yAxisIndex: [0],
+            startValue: -20,
+            endValue: 20
+        }
+    ],
+    series: [
+        {
+            type: 'line',
+            showSymbol: false,
+            clip: true,
+            data: lineFunctionGenerateData()
+        }
+    ]
+}
+
+// import LifeExpectancyData from '../../../public/data/life-expectancy-table.json'
+// export const LifeExpectancy =  {
+//     grid3D: {},
+//     tooltip: {},
+//     xAxis3D: {
+//       type: 'category'
+//     },
+//     yAxis3D: {
+//       type: 'category'
+//     },
+//     zAxis3D: {},
+//     visualMap: {
+//       max: 1e8,
+//       dimension: 'Population'
+//     },
+//     dataset: {
+//       dimensions: [
+//         'Income',
+//         'Life Expectancy',
+//         'Population',
+//         'Country',
+//         { name: 'Year', type: 'ordinal' }
+//       ],
+//       source: LifeExpectancyData
+//     },
+//     series: [
+//       {
+//         type: 'bar3D',
+//         // symbolSize: symbolSize,
+//         shading: 'lambert',
+//         encode: {
+//           x: 'Year',
+//           y: 'Country',
+//           z: 'Life Expectancy',
+//           tooltip: [0, 1, 2, 3, 4]
+//         }
+//       }
+//     ]
+//   };
