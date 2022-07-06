@@ -1,7 +1,5 @@
-<template lang="pug">
-.threeContainer(
-    ref="container"
-)
+<template>
+<div class="threeContainer" ref = "container"></div>
 
 </template>
 
@@ -27,6 +25,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 const container = ref(null)
+
 nextTick(() => {
     if (isClient) {
         let funcName = route.meta.method || "initThree";

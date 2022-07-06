@@ -134,7 +134,7 @@ export const css3DSprites = (THREE, container, extra) => {
             transition();
 
         });
-        image.src = '/images/sprite.png';
+        image.src = '/rengm/images/sprite.png';
 
         // Plane
 
@@ -203,7 +203,10 @@ export const css3DSprites = (THREE, container, extra) => {
 
         renderer = new CSS3DRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        if(!container.value)
+            container.value = document.querySelector('.threeContainer')
         container.value.appendChild(renderer.domElement);
+
 
         //
 
