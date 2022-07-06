@@ -22,9 +22,8 @@ const route = useRoute()
 const container = ref(null)
 nextTick(() => {
     if (isClient) {
-        let funcName = route.meta.method
+        let funcName = route.meta.method||"initThree"
         threeFunc[funcName](THREE, container, extraModule)
-
     }
 })
 

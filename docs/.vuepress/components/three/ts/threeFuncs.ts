@@ -23,7 +23,7 @@ export const initThree = (THREE, container) => {
     function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight
         camera.updateProjectionMatrix()
-        renderer.setSize(500, 500)
+        renderer.setSize(window.innerWidth, window.innerHeight)
         render()
     }
 
@@ -42,7 +42,7 @@ export const initThree = (THREE, container) => {
 }
 
 
-export const extraModuleUse = (THREE, container,extra) => {
+export const extraModuleUse = (THREE, container, extra) => {
     const scene = new THREE.Scene()
 
     const camera = new THREE.PerspectiveCamera(
@@ -55,7 +55,7 @@ export const extraModuleUse = (THREE, container,extra) => {
 
     const renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
-    container.appendChild(renderer.domElement)
+    container.value.appendChild(renderer.domElement)
 
     new extra.OrbitControls(camera, renderer.domElement)
 

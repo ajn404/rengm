@@ -52,6 +52,11 @@ export default defineUserConfig({
                 }
 
             },
+            resolve:{
+                alias:{
+                    '@':resolve('')
+                }
+            },
             server: {
             },
             build: {

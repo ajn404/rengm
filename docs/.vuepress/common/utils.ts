@@ -1,4 +1,6 @@
 
+import { ElLoading } from "element-plus";
+
 //判断元素是否滑动到可视区
 export const isElementNotInViewport = (el) => {
   let rect = el.getBoundingClientRect();
@@ -7,8 +9,6 @@ export const isElementNotInViewport = (el) => {
     rect.bottom <= 0
   );
 };
-
-
 
 const doc = document;
 const html = doc.documentElement;
@@ -27,8 +27,17 @@ export const exitFullScreen = () => {
     doc.webkitCancelFullScreen ||
     doc.mozCancelFullScreen ||
     doc.msExitFullscreen;
-    exit && exit.call(doc);
+  exit && exit.call(doc);
 };
+
+export const loading = () => {
+  return ElLoading.service({
+    lock: true,
+    text: '加载中',
+    fullscreen:true,
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+}
 
 
 

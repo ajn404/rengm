@@ -43,6 +43,8 @@ import {
 } from "vue";
 import { isClient } from "@vueuse/core";
 let vtkFullScreenRenderWindow, vtkActor, vtkMapper, vtkConeSource;
+import { loading } from '@/common/utils'
+
 
 const vtkContainer = ref(null);
 const context = ref(null);
@@ -65,9 +67,13 @@ watchEffect(() => {
   }
 });
 
+
+
 onMounted(() => {
   if (isClient) {
+    const loadInstance = loading()
     import("https://unpkg.com/vtk.js@25.1.0/vtk.js").then(() => {
+      loadInstance.close()
       vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
       vtkActor = vtk.Rendering.Core.vtkActor;
       vtkMapper = vtk.Rendering.Core.vtkMapper;
