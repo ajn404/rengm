@@ -67,7 +67,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import "element-plus/dist/index.css";
 import { ref, computed } from "vue";
 
 //data

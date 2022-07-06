@@ -52,6 +52,11 @@ export default defineUserConfig({
                 }
 
             },
+            resolve:{
+                alias:{
+                    '@':resolve('')
+                }
+            },
             server: {
             },
             build: {
@@ -64,7 +69,7 @@ export default defineUserConfig({
             },
             // @ts-expect-error: vite 还没有给 ssr 配置项提供类型
             ssr: {
-                noExternal: ['vtk.js'],
+                noExternal: ['vtk.js','three']
             },
         },
         vuePluginOptions: {},

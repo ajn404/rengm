@@ -17,9 +17,15 @@ let vtkFullScreenRenderWindow,
   vtkMoleculeToRepresentation;
 const vtkContainer = ref(null);
 const context = ref(null);
+import { loading } from '@/common/utils'
+
 onMounted(() => {
   if (isClient) {
+    const loadInstance = loading()
+
     import("https://unpkg.com/vtk.js@25.1.0/vtk.js").then(() => {
+
+      loadInstance.close()
       vtkFullScreenRenderWindow = vtk.Rendering.Misc.vtkFullScreenRenderWindow;
       vtkActor = vtk.Rendering.Core.vtkActor;
       vtkPDBReader = vtk.IO.Misc.vtkPDBReader;

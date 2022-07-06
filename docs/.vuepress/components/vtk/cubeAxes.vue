@@ -21,10 +21,15 @@ let vtkActor,
 
 const vtkContainer = ref(null);
 const context = ref(null);
+
+import { loading } from '@/common/utils'
+
 onMounted(() => {
     if (isClient) {
-        import("https://unpkg.com/vtk.js@25.1.0/vtk.js").then(() => {
+        const loadInstance = loading()
 
+        import("https://unpkg.com/vtk.js@25.1.0/vtk.js").then(() => {
+            loadInstance.close()
             vtkActor = vtk.Rendering.Core.vtkActor;
             vtkCubeAxesActor = vtk.Rendering.Core.vtkCubeAxesActor;
             vtkConeSource = vtk.Filters.Sources.vtkConeSource;

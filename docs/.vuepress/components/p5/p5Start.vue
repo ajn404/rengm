@@ -10,7 +10,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import "element-plus/dist/index.css";
 import { ref, getCurrentInstance, onUnmounted, nextTick,readonly } from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";
@@ -81,7 +80,7 @@ const handleChange = (arr) => {
   place-items: center;
   flex-direction: column;
   justify-content:center;
-  align-item:center;
+  align-items:center;
 }
 .p5-start {
   display: flex;
