@@ -10,7 +10,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import "element-plus/dist/index.css";
 import { ref, getCurrentInstance, onUnmounted, nextTick,readonly } from "vue";
 import { ElMessage } from "element-plus";
 import { isClient } from "@vueuse/core";

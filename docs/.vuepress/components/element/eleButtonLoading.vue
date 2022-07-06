@@ -27,7 +27,6 @@
 </template>
 
 <script lang="ts" setup>
-import "element-plus/dist/index.css";
 
 import { Eleme } from "@element-plus/icons-vue";
 </script>

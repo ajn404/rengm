@@ -30,6 +30,8 @@ export const exitFullScreen = () => {
   exit && exit.call(doc);
 };
 
+
+//定义el-loading加载样式
 export const loading = () => {
   return ElLoading.service({
     lock: true,

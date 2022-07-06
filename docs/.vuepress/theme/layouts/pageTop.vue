@@ -4,7 +4,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import "element-plus/dist/index.css";
 import { ref, onActivated, nextTick } from "vue";
 import { ElMessage } from "element-plus";
 //vue中使用P5的方式
