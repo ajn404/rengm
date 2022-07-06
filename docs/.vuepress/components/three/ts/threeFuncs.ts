@@ -9,9 +9,9 @@ export const initThree = (THREE, container) => {
         1000
     )
     camera.position.z = 1.5
-    const renderer = new THREE.WebGLRenderer()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    container.value.appendChild(renderer.domElement)
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    (container.value||document.body).appendChild(renderer.domElement);
     const geometry = new THREE.BoxGeometry()
     const material = new THREE.MeshBasicMaterial({
         color: 0x9AB772,
@@ -54,12 +54,12 @@ export const extraModuleUse = (THREE, container, extra) => {
     camera.position.z = 2
 
     const renderer = new THREE.WebGLRenderer()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    container.value.appendChild(renderer.domElement)
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    (container.value||document.body).appendChild(renderer.domElement);
 
-    new extra.OrbitControls(camera, renderer.domElement)
+    new extra.OrbitControls(camera, renderer.domElement);
 
-    const geometry = new THREE.BoxGeometry()
+    const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({
         color: 0x00ff00,
         wireframe: true,
