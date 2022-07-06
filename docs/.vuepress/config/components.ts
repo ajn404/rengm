@@ -17,7 +17,8 @@ const echarts_components_keys = [
 ]
 
 const basic_3d_components = [
-    { name: 'basic3d', path: 'three/basic3d' }
+    { name: 'basic3d', path: 'three/basic3d' },
+    {name:'initThree',path:'three/initThree'}
 ]
 
 const vtk_components = [

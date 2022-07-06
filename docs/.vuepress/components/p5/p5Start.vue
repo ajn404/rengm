@@ -81,7 +81,7 @@ const handleChange = (arr) => {
   place-items: center;
   flex-direction: column;
   justify-content:center;
-  align-item:center;
+  align-items:center;
 }
 .p5-start {
   display: flex;
