@@ -6,7 +6,7 @@
 ## [hello d3](./dataVisualization/README.md)
 ## [hello vtk](./mindExpand/vtk.md)
 ## [hello three](./mindExpand/three.md)
-hello个der
+<!-- hello个der -->
 
 <ClientOnly>
 <home></home>
