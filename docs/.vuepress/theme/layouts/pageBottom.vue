@@ -36,7 +36,7 @@
             a.image(
                 href="https://codepen.io/z-",
                 target="_blank",
-                style="background-image: url(\"/rengm/images/logo.png\")"
+                style="background-image: url(\"/images/logo.png\")"
             )
             p ©2022 Ajn404
         
