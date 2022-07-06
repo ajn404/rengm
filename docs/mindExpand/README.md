@@ -6,19 +6,19 @@
 
 <CodeGroupItem title="demo.vue" active>
 
-@[code js{1-143}:no-line-numbers](../.vuepress/components/demo.vue))
+@[code js{1-143}:no-line-numbers](../.vuepress/components/p5/demo.vue))
 
   </CodeGroupItem>
 
   <CodeGroupItem title="p5Start.vue">
 
-@[code js{1-143}:no-line-numbers](../.vuepress/components/p5Start.vue))
+@[code js{1-143}:no-line-numbers](../.vuepress/components/p5/p5Start.vue))
 
   </CodeGroupItem>
 
   <CodeGroupItem title="p5Main.ts">
 
-@[code js{1-409}:no-line-numbers](../.vuepress/common/p5Main.ts))
+@[code js{1-409}:no-line-numbers](../.vuepress/common/p5/p5Main.ts))
 
   </CodeGroupItem>
 
