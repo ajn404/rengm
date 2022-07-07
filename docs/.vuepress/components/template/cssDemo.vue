@@ -1,6 +1,13 @@
 <template lang="pug">
 .cssDemo
-    header.header some text...
+    header.header
+        marquee(
+            width="50%",
+            direction="left"
+        )
+            span Now And Then You Miss It Sounds Make You Cry
+            span Now In - MoMa Sharing Exhibition NOW
+            span NYC Opens After Long Lockdown Check
 </template>
 
 <style scoped lang="scss">
@@ -14,6 +21,10 @@
         font-size: 16px;
         line-height: 1.7;
         color: #777;
+        position: absolute;
+        left:0;
+        width: calc(100vw - 17px);
+        top: var(--navbar-height);
     }
 
     header.header{
