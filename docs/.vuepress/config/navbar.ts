@@ -80,6 +80,10 @@ const other : any = {
         {
             text:'关于本栏目',
             link:'/basic/README.md'
+        },
+        {
+            text:'css',
+            link:'/basic/css/cssDemo'
         }
     ]
 }

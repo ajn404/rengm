@@ -95,8 +95,6 @@ export const extraModuleUse = (THREE, container, extra) => {
 
 export const css3DSprites = (THREE, container, extra) => {
     const { TWEEN, TrackballControls, CSS3DRenderer, CSS3DSprite } = extra;
-
-
     let camera, scene, renderer;
     let controls;
 
