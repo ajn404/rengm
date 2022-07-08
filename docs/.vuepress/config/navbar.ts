@@ -84,6 +84,10 @@ const other : any = {
         {
             text:'css',
             link:'/basic/css/cssDemo'
+        },
+        {
+            text:'ecma',
+            link:'/basic/js/ecma2021'
         }
     ]
 }
