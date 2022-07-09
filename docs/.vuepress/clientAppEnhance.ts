@@ -1,5 +1,6 @@
 import ElementPlus from 'element-plus'
 import "element-plus/dist/index.css"
+import "@/public/styles/index.scss"
 import store from './store/index.js'
 import { defineClientConfig } from '@vuepress/client'
 
