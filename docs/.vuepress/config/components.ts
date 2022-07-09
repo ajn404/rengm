@@ -37,6 +37,11 @@ const ele_components = [
 const defaultComponentKeys = [
     { name: 'home', path: 'home' }
 ];
+
+const templateComponents = [
+    {name:'cssDemo',path:'template/cssDemo'}
+]
+
 const componentKeys = [
     ...defaultComponentKeys,
     ...p5_components_keys,
@@ -44,6 +49,7 @@ const componentKeys = [
     ...basic_3d_components,
     ...vtk_components,
     ...ele_components,
+    ...templateComponents,
 ]
 const components = {};
 componentKeys.forEach(component => {
