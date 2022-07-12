@@ -4,3 +4,9 @@
     line-height: 1.4;
     margin-bottom: 2em;
 }
+
+.no-wrap{
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
