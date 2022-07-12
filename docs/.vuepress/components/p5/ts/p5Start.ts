@@ -58,7 +58,15 @@ export const allMethods = [
         {
           label:"3d box 旋转",
           value:"boxRef1"
-        }
+        },
+        {
+          value:'gridOutput',
+          label:'输出为grid'
+        },
+        // {
+        //   value:'genFuncDemo',
+        //   label:'生成器函数使用'
+        // }
       ]
     },
     {

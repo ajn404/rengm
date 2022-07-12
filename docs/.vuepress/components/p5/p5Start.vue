@@ -32,6 +32,7 @@ const clearFunc = () => {
 let p5;
 if (isClient)
   nextTick(() => {
+    clearFunc()
     p5 = window.p5;
     //本地开发，或者就这样？
     nextTick(() => {

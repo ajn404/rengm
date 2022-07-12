@@ -28,9 +28,9 @@ const vtk_components = [
 ]
 
 const ele_components = [
-    { name: 'eleButton', path: 'element/eleButton' },
-    { name: 'eleButtonLoading', path: 'element/eleButtonLoading' },
-    { name: 'eleButtonText', path: 'element/eleButtonText' },
+    { name: 'eleButton', path: 'element/buttons/eleButton' },
+    { name: 'eleButtonLoading', path: 'element/buttons/eleButtonLoading' },
+    { name: 'eleButtonText', path: 'element/buttons/eleButtonText' },
     { name: 'demo', path: 'element/demo' },
 ]
 

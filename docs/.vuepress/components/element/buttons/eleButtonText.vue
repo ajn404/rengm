@@ -1,6 +1,6 @@
 <template>
   <p>Basic text button</p>
-  <div class="flex justify-space-between mb-4 flex-wrap gap-4">
+  <div>
     <el-button
       v-for="button in buttons"
       :key="button.text"
@@ -11,7 +11,7 @@
   </div>
 
   <p>Background color always on</p>
-  <div class="flex justify-space-between mb-4 flex-wrap gap-4">
+  <div>
     <el-button
       v-for="button in buttons"
       :key="button.text"
@@ -23,7 +23,7 @@
   </div>
 
   <p>Disabled text button</p>
-  <div class="flex justify-space-between flex-wrap gap-4">
+  <div>
     <el-button
       v-for="button in buttons"
       :key="button.text"
@@ -45,3 +45,9 @@ const buttons = [
   { type: 'danger', text: 'danger' },
 ] as const
 </script>
+<style scoped>
+:deep(.el-button){
+  margin:0 1em 2em 0;
+  width:calc(20% - 1em);
+}
+</style>
