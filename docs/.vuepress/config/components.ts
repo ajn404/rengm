@@ -39,7 +39,8 @@ const defaultComponentKeys = [
 ];
 
 const templateComponents = [
-    {name:'cssDemo',path:'template/cssDemo'}
+    {name:'cssDemo',path:'basic/template/cssDemo'},
+    {name:'ecmaSymbolDemo',path:'basic/ecma/Symbol'}
 ]
 
 const componentKeys = [

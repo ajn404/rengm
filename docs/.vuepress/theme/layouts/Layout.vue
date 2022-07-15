@@ -27,7 +27,7 @@ watch(route,()=>{
         <template #sidebar-bottom></template>
         <template #navbar-before></template>
         <template #navbar-after>
-            <el-button v-if="showCustomLayout" text @click="click" class="change-style">删除插槽</el-button>
+            <el-button v-if="showCustomLayout" text @click="click" class="change-style">{{style?'😭':'😊'}}</el-button>
         </template>
         <template #page-bottom>
             <page-bottom v-if="showCustomLayout && style"></page-bottom>
