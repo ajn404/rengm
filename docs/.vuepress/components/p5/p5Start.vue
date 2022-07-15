@@ -1,6 +1,6 @@
 <template>
   <div class="p5-start">
-    <el-cascader v-model="selectMethhod" :options="methods" @change="handleChange" class="cascader">
+    <el-cascader v-model="selectMethhod" :options="methods" @change="handleChange" class="cascader" size="large">
       <template #default="{ node, data }">
         <span>{{ data.label }}</span>
         <span v-if="!node.isLeaf">({{ data.children.length }})</span>
@@ -61,12 +61,7 @@ const handleChange = (arr) => {
     }
   } catch (e) {
     console.log(e)
-    ElMessage.warning('可能cdn的p5还没有加载好').then(
-      () => {
-        ElMessage.warning('可能没写这个函数')
-      }
-    )
-
+    ElMessage.warning('可能cdn的p5还没有加载好')
   }
 };
 

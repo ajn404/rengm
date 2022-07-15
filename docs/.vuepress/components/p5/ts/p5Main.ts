@@ -639,11 +639,13 @@ const Cell = function (_, pos, r, c) {
 
   if (pos) {
     this.pos = pos.copy();
-  } else
+  } else{
     this.pos = _.createVector(
-      _.random(this.r, _.width),
-      _.random(this.r, _.height)
-    );
+      _.random(this.r, 500),
+      _.random(this.r,200)
+    )
+  }
+    
   this.c =
     c ||
     _.color(_.random(100, 255), _.random(100, 255), _.random(100, 255), 255);
@@ -664,7 +666,6 @@ const Cell = function (_, pos, r, c) {
 };
 
 import { ElMessage } from "element-plus";
-import { random, values } from "lodash";
 export const mitosis = (_) => {
   const cells: any = [];
   // let timer;
@@ -673,21 +674,20 @@ export const mitosis = (_) => {
     for (let i = 0; i < 20; i++) {
       cells.push(new Cell(_));
     }
+
   };
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "mitosis") {
-      _.noLoop();
-      // clearTimeout(timer)
-      // timer = null
-    }
-    _.background(5);
-    _.textSize(16);
-    _.text("双击细胞", 200, 100);
-    _.fill(0, 102, 153);
+    
+    _.background(0);
     cells.forEach((cell) => {
       cell.show();
       cell.move();
     });
+
+
+    if (window && window.p5DrawLoop !== "mitosis") {
+      _.noLoop();
+    }
   };
   _.doubleClicked = () => {
     if (cells.length < 1000)
@@ -789,7 +789,7 @@ export const bubbleSort = (_) => {
     _.frameRate(rate);
     values = new Array(_.width);
     for (let n = 0; n < values.length; n++) {
-      values[n] = random(_.windowHeight);
+      values[n] = _.random(_.windowHeight);
     }
   };
   _.draw = () => {
@@ -937,15 +937,27 @@ export const stepFeetIIIusion = (_) => {
     }
   }
 
-  let brick1 = new Brick("white", 100);
-  let brick2 = new Brick("black", 250);
+  let brick1 = new Brick("white", 50);
+  let brick2 = new Brick("black", 150);
+  let brick3 = new Brick("#888888",250)
+
+  const setText = ()=>{
+    let p = document.createElement('p')
+    p.innerText = 'mouseIsPressed canvas 可以隐藏栅栏'
+    document.querySelector('#p5-start')?.append(p)
+  }
 
   _.setup = () => {
-    _.createCanvas(720, 400);
+    _.createCanvas(500, 300);
+
+    setText()
   };
+
+
 
   brick1.setSpeed();
   brick2.setSpeed();
+  brick3.setSpeed()
   _.draw = () => {
     if (window && window.p5DrawLoop !== "stepFeetIIIusion") {
       _.noLoop();
@@ -962,6 +974,8 @@ export const stepFeetIIIusion = (_) => {
     }
     brick2.createBrick();
     brick2.moveBrick();
+    brick3.createBrick();
+    brick3.moveBrick();
   };
 
   function createBars() {
@@ -1046,3 +1060,5 @@ export const genFuncDemo = (_) => {
     _.line();
   };
 };
+
+
