@@ -1,10 +1,15 @@
 <template lang="pug">
-div(v-if="props.cssPractice==='demo1-1'") <Demo1_1/>
-div(v-else-if="props.cssPractice==='demo2-1'") <Demo2_1/>
-div(v-else-if="props.cssPractice==='demo2-2'") <Demo2_2/>
-div(v-else-if="props.cssPractice==='demo3-1'") <Demo3_1/>
-div(v-else-if="props.cssPractice==='demo3-2'") <Demo3_2/>
-div(v-else) css布局联系
+div(v-if="props.cssPractice==='demo1-1'") 
+  <Demo1_1/>
+div(v-else-if="props.cssPractice==='demo2-1'") 
+  <Demo2_1/>
+div(v-else-if="props.cssPractice==='demo2-2'") 
+  <Demo2_2/>
+div(v-else-if="props.cssPractice==='demo3-1'")
+  <Demo3_1/>
+div(v-else-if="props.cssPractice==='demo3-2'") 
+  <Demo3_2/>
+div(v-else) css布局练习
 </template>
 
 <script setup lang="ts">
