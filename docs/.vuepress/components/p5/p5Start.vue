@@ -86,6 +86,11 @@ const handleChange = (arr) => {
 .p5-start {
   display: flex;
   gap: 30px;
-  flex-direction: column;
+  flex-direction: column; 
 }
+::v-deep{
+.cascader .el-cascader-menu__wrap{
+    height: 50vh!important;
+  }
+} 
 </style>

@@ -7,8 +7,8 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    width: 80vh;
-    height: 80vh;
+    width: 100%;
+    height: 500px;
     animation: rotate 5s infinite;
     perspective: 600px;
     // &:hover { animation-play-state: paused; }
@@ -21,7 +21,7 @@
     border-radius: 50%;
     margin: 1%;
     background-color: rgba(255,255,255, .5);
-    animation: rotate 5s infinite;
+    animation: rotate 10s infinite;
 }
 
 $n:25;
