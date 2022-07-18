@@ -35,7 +35,7 @@ watch(route,()=>{
             <page-bottom v-if="showCustomLayout && style"></page-bottom>
         </template>
         <template #page-top>
-            <page-top v-if="showCustomLayout && style"></page-top>
+            <page-top></page-top>
         </template>
     </ParentLayout>
 </template>
