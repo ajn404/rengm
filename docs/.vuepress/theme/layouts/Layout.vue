@@ -1,7 +1,7 @@
 <script setup>
 import ParentLayout from "@vuepress/theme-default/lib/client/layouts/Layout.vue";
-import pageTop from './pageTop.vue'
-import pageBottom from "./pageBottom.vue";
+import pageTop from './components/pageTop.vue'
+import pageBottom from "./components/pageBottom.vue";
 import { ref, onActivated, nextTick,onMounted,watchEffect,watch } from 'vue'
 import { ElMessage } from 'element-plus'
 
@@ -22,8 +22,10 @@ watch(route,()=>{
 
 </script>
 <template>
-    <ParentLayout>
-        <template #sidebar-top></template>
+    <ParentLayout class="parent-layout">
+        <template #sidebar-top>
+
+        </template>
         <template #sidebar-bottom></template>
         <template #navbar-before></template>
         <template #navbar-after>
@@ -39,6 +41,7 @@ watch(route,()=>{
 </template>
 
 <style lang="scss" scoped>
+.parent-layout{
 .my-footer {
     text-align: center;
 }
@@ -57,4 +60,7 @@ watch(route,()=>{
         color: var(--c-brand);
     }
 }
+}
+
+
 </style>
