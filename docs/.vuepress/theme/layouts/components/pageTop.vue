@@ -71,9 +71,9 @@ const record = ()=>{
 .pageTop {
   width: 100px;
   text-align: center;
-  position: relative;
-  float: right;
-  margin: 2em;
+  position: fixed;
+  right: 3em;
+  top: 9em;
   .tools {
     font-size: 1.5em;
     cursor: pointer;
