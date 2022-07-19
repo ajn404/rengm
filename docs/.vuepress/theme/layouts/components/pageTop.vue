@@ -4,27 +4,23 @@
       class="tools"
       v-on="{
         click: click,
-        mouseenter: mouseenter,
-        mouseup: mouseup,
-        mouseleave: mouseleave,
       }"
     >
       <Tools />
     </el-icon>
 
-    
-
-
     <div class="icon-box" ref="iconBox">
       <el-icon class="full-screen el-icon" @click="getFullScreen">
         <FullScreen />
+      <span>{{isFullScreen?'退出全屏':'进入全屏'}}</span>
       </el-icon>
+      <el-icon class="el-icon video-camera" @click="record"><VideoCamera /><span>录制</span></el-icon>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { FullScreen, Tools } from "@element-plus/icons-vue";
-import { enterFullScreen, exitFullScreen } from "@/common/utils";
+import { FullScreen, Tools ,VideoCamera} from "@element-plus/icons-vue";
+import { enterFullScreen, exitFullScreen ,screenRecord} from "@/common/utils";
 import { ref } from "vue";
 
 const iconBox = ref(null);
@@ -34,12 +30,17 @@ const mouseup = () => {
 };
 
 const click = () => {
-  console.log("click");
-  iconBox.value.style.display = "block";
+  if (iconBox.value.style.display === "flex") {
+    iconBox.value.style.display = "none";
+  } else 
+  {
+    iconBox.value.style.display = "flex";
+  }
+  
 };
 
 const mouseenter = () => {
-  iconBox.value.style.display = "block";
+  iconBox.value.style.display = "flex";
 };
 
 const mouseleave = () => {
@@ -57,25 +58,50 @@ const getFullScreen = () => {
     isFullScreen.value = true;
   }
 };
+
+
+const record = ()=>{
+  screenRecord()
+}
+
+
 </script>
 
 <style lang="scss" scoped>
 .pageTop {
+  width: 100px;
+  text-align: center;
+  position: relative;
+  float: right;
+  margin: 2em;
   .tools {
-    font-size: 1.2em;
+    font-size: 1.5em;
+    cursor: pointer;
+    &:hover{
+      color: var(--c-brand);
+    }
+    
+    
+
   }
 }
 
 .icon-box {
   display: none;
   position: absolute;
-  .el-icon {
-    &.full-screen {
-      &:hover {
-        font-size: 1.5em;
-        color: var(--c-brand);
-      }
+  top: 2em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap:.5em;
+  .el-icon{
+    width: 100%;
+    cursor: pointer;
+    &:hover{
+      color: var(--c-brand);
     }
   }
+
 }
 </style>
