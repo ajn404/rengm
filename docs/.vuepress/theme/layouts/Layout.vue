@@ -22,6 +22,8 @@ if(!isClient){
     showCustomLayout = false
 }
 
+const isC = ref(isClient)
+
 watch(route,()=>{
     showCustomLayout.value = route.meta.customLayout == false ? false : true
 })
@@ -41,7 +43,7 @@ watch(route,()=>{
             <page-bottom v-if="showCustomLayout && style"></page-bottom>
         </template>
         <template #page-top>
-            <page-top></page-top>
+            <page-top v-if="isC"></page-top>
         </template>
     </ParentLayout>
 </template>
