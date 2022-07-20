@@ -53,11 +53,9 @@ watch(route,()=>{
     font-size: 0.9rem;
     color: var(--c-text);
     line-height: 1.4rem;
-    background: var(--c-bg) !important;
-    // transition-duration: .5s;
-    &:hover {
-        // transform: rotate(360deg);
-        color: var(--c-brand);
+    background: transparent;
+    &:hover{
+        background: var(--c-bg);
     }
 }
 }
