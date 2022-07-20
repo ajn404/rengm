@@ -4,6 +4,8 @@ import pageTop from './components/pageTop.vue'
 import pageBottom from "./components/pageBottom.vue";
 import { ref, onActivated, nextTick,onMounted,watchEffect,watch } from 'vue'
 import { ElMessage } from 'element-plus'
+import { isClient } from "@vueuse/core";
+
 
 const style = ref(true)
 const click = () => {
@@ -15,6 +17,10 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 let showCustomLayout = ref(false); 
+
+if(!isClient){
+    showCustomLayout = false
+}
 
 watch(route,()=>{
     showCustomLayout.value = route.meta.customLayout == false ? false : true
