@@ -1131,7 +1131,7 @@ export const minesweeper = (_) => {
     }
 
 
-    ElMessage.warning('游戏结束'+'最终得分为'+count)
+    ElMessage.warning('你干嘛！😠'+'最终得分为'+count)
     _.noLoop()
 
 
