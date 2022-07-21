@@ -20,7 +20,8 @@
 </template>
 <script setup lang="ts">
 import { FullScreen, Tools ,VideoCamera} from "@element-plus/icons-vue";
-import { enterFullScreen, exitFullScreen ,screenRecord} from "@/common/utils";
+// import { enterFullScreen, exitFullScreen ,screenRecord} from "@/common/utils";
+
 import { ref } from "vue";
 
 const iconBox = ref(null);
