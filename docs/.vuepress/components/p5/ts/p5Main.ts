@@ -1060,9 +1060,24 @@ export const minesweeper = (_) => {
   const rows = 20,cols = 20;
   const w = 20;
 
+ 
+
   _.setup = () => {
     _.createCanvas(400, 400);
     grid = make2DArray(cols, rows);
+    setup()
+
+    let button = addButton("开始");
+    button.mousePressed(()=>{
+      setup()
+      _.noLoop()
+      _.loop()
+    });
+
+
+  };
+
+  const setup = ()=>{
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         grid[i][j] = new Cell(i * w, j * w, w);
@@ -1075,8 +1090,7 @@ export const minesweeper = (_) => {
         grid[i][j].countBees(i,j)
       }
     }
-    console.log(grid)
-  };
+  }
 
   _.draw = () => {
     if (window && window["p5DrawLoop"] !== "minesweeper") {
@@ -1113,12 +1127,12 @@ export const minesweeper = (_) => {
     for(let i = 0;i<cols;i++){
       for(let j=0;j<rows;j++){
         grid[i][j].reveale()
-        console.log(grid[i][j])
       }
     }
 
 
     ElMessage.warning('游戏结束'+'最终得分为'+count)
+    _.noLoop()
 
 
     
@@ -1130,7 +1144,6 @@ export const minesweeper = (_) => {
       for (let j = 0; j < rows; j++) {
         if(grid[i][j].containes(_.mouseX,_.mouseY)){
           grid[i][j].reveale();
-          console.log(grid[i][j])
   
           if(grid[i][j].bee){
               gameOver()
@@ -1262,5 +1275,27 @@ export const minesweeper = (_) => {
       this.neighborCount = total
     }
 
+  }
+
+  function addButton(label) {
+    let button = _.createButton(label);
+    let buttonStyle = button.elt.style;
+
+    buttonStyle.border = "none";
+    buttonStyle.marginTop = "20px";
+    buttonStyle.padding = "10px";
+    buttonStyle.width = "100%";
+    buttonStyle.boxShadow = "1px 1px 0 0 #e0e0e0";
+    buttonStyle.background = "var(--el-color-primary)";
+    buttonStyle.color = "#fff";
+
+    button.elt.addEventListener("mouseenter", function () {
+      buttonStyle.opacity = "0.6";
+    });
+    button.elt.addEventListener("mouseleave", function () {
+      buttonStyle.opacity = "1";
+    });
+
+    return button;
   }
 };
