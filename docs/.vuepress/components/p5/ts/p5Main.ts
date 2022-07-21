@@ -1156,6 +1156,11 @@ export const minesweeper = (_) => {
     }
   }
 
+  let img;
+  _.preload = ()=>{
+      img = _.loadImage('/rengm/images/ikun.jpg');
+  }
+
   class Cell {
     bee: Boolean;
     revealed: Boolean;
@@ -1200,6 +1205,8 @@ export const minesweeper = (_) => {
           _.stroke(0)
           _.fill(127)       
           _.ellipse(this.x+(this.w/2),this.y+(this.w/2),this.w/2);
+          _.image(img,this.x,this.y,this.w,this.w)
+
 
         }else{
 
