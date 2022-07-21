@@ -59,3 +59,5 @@ const geometry = new THREE.ConeGeometry(radius,height,radialSegments);
 ```
 
 [圆锥](./three/doc/coneGeometry)
+
+[带起始角度的圆锥（高度分割为2，开放底部）]
