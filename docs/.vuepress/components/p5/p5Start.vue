@@ -36,7 +36,9 @@ if (isClient)
     p5 = window.p5;
     //本地开发，或者就这样？
     nextTick(() => {
-      new p5(p5MainFunc[defaultMethod], "p5-start");
+      // new p5(p5MainFunc[defaultMethod], "p5-start");
+      new p5(funcs['minesweeper'], "p5-start");
+
       window.p5DrawLoop = defaultMethod
     })
   })
@@ -56,8 +58,6 @@ const handleChange = (arr) => {
         document.querySelector("#p5-start").requestFullscreen()
       }
       new p5(funcs[funcName] || p5MainFunc.defaultFunc, "p5-start");
-
-
     }
   } catch (e) {
     console.log(e)

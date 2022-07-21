@@ -16,7 +16,7 @@ export const main = (_p5) => {
   };
 
   p5.draw = () => {
-    if (window && window.p5DrawLoop !== "main") {
+    if (window && window["p5DrawLoop"] !== "main") {
       p5.noLoop();
     }
     p5.background(0);
@@ -178,7 +178,7 @@ export const angularMotion = (_p5) => {
     p5.angleMode(p5.RADIANS);
   };
   p5.draw = () => {
-    if (window && window.p5DrawLoop !== "angularMotion") {
+    if (window && window["p5DrawLoop"] !== "angularMotion") {
       p5.noLoop();
     }
     let cWidth = p5.width;
@@ -245,7 +245,7 @@ export const slidePuzzle = (_p5) => {
   };
 
   p5.draw = () => {
-    if (window && window.p5DrawLoop !== "slidePuzzle") {
+    if (window && window["p5DrawLoop"] !== "slidePuzzle") {
       p5.noLoop();
     }
 
@@ -416,7 +416,7 @@ export const polarCoordinates = (_p5) => {
   };
 
   p5.draw = () => {
-    if (window && window.p5DrawLoop !== "polarCoordinates") {
+    if (window && window["p5DrawLoop"] !== "polarCoordinates") {
       p5.noLoop();
     }
 
@@ -450,7 +450,7 @@ export const geometries = (_p5) => {
   };
 
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "geometries") {
+    if (window && window["p5DrawLoop"] !== "geometries") {
       _.noLoop();
     }
     _.background(255);
@@ -523,7 +523,7 @@ export const sinCos3D = (_p5) => {
   // }
 
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "sinCos3D") {
+    if (window && window["p5DrawLoop"] !== "sinCos3D") {
       _.noLoop();
     }
 
@@ -561,7 +561,7 @@ export const boxRef = (_p5) => {
   let rotateNumber = 0;
 
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "boxRef") {
+    if (window && window["p5DrawLoop"] !== "boxRef") {
       _.noLoop();
     }
     _.background(200);
@@ -587,7 +587,7 @@ export const boxRef1 = (_p5) => {
     _.createCanvas(500, 200, _.WEBGL);
   };
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "boxRef1") {
+    if (window && window["p5DrawLoop"] !== "boxRef1") {
       _.noLoop();
     }
     _.push();
@@ -618,7 +618,7 @@ export const defaultFunc = (_p5) => {
     slider.style("width", "500px");
   };
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "defaultFunc") {
+    if (window && window["p5DrawLoop"] !== "defaultFunc") {
       _.noLoop();
     }
     _.orbitControl();
@@ -632,41 +632,40 @@ export const defaultFunc = (_p5) => {
   };
 };
 
-//https://www.youtube.com/watch?v=jxGS3fKPKJA
-//有丝分裂
-const Cell = function (_, pos, r, c) {
-  this.r = r || 20;
-
-  if (pos) {
-    this.pos = pos.copy();
-  } else{
-    this.pos = _.createVector(
-      _.random(this.r, 500),
-      _.random(this.r,200)
-    )
-  }
-    
-  this.c =
-    c ||
-    _.color(_.random(100, 255), _.random(100, 255), _.random(100, 255), 255);
-  this.mitosis = () => new Cell(_, this.pos, this.r * 0.8, this.c);
-  this.click = (x, y) => {
-    let d = _.dist(this.pos.x, this.pos.y, x, y);
-    return d < this.r;
-  };
-  this.move = () => {
-    let vel = p5.Vector.random2D();
-    this.pos.add(vel);
-  };
-  this.show = () => {
-    _.ellipse(this.pos.x, this.pos.y, this.r, this.r);
-    _.noStroke();
-    _.fill(this.c);
-  };
-};
-
 import { ElMessage } from "element-plus";
+import { tr } from "element-plus/es/locale";
+import { floor } from "lodash";
 export const mitosis = (_) => {
+  //https://www.youtube.com/watch?v=jxGS3fKPKJA
+  //有丝分裂
+  const Cell = function (_, pos, r, c) {
+    this.r = r || 20;
+
+    if (pos) {
+      this.pos = pos.copy();
+    } else {
+      this.pos = _.createVector(_.random(this.r, 500), _.random(this.r, 200));
+    }
+
+    this.c =
+      c ||
+      _.color(_.random(100, 255), _.random(100, 255), _.random(100, 255), 255);
+    this.mitosis = () => new Cell(_, this.pos, this.r * 0.8, this.c);
+    this.click = (x, y) => {
+      let d = _.dist(this.pos.x, this.pos.y, x, y);
+      return d < this.r;
+    };
+    this.move = () => {
+      let vel = p5.Vector.random2D();
+      this.pos.add(vel);
+    };
+    this.show = () => {
+      _.ellipse(this.pos.x, this.pos.y, this.r, this.r);
+      _.noStroke();
+      _.fill(this.c);
+    };
+  };
+
   const cells: any = [];
   // let timer;
   _.setup = () => {
@@ -674,18 +673,15 @@ export const mitosis = (_) => {
     for (let i = 0; i < 20; i++) {
       cells.push(new Cell(_));
     }
-
   };
   _.draw = () => {
-    
     _.background(0);
     cells.forEach((cell) => {
       cell.show();
       cell.move();
     });
 
-
-    if (window && window.p5DrawLoop !== "mitosis") {
+    if (window && window["p5DrawLoop"] !== "mitosis") {
       _.noLoop();
     }
   };
@@ -724,7 +720,7 @@ export const earthQuake = (_) => {
     _.normalMaterial();
   };
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "earthQuake") {
+    if (window && window["p5DrawLoop"] !== "earthQuake") {
       _.noLoop();
     }
     _.orbitControl();
@@ -793,7 +789,7 @@ export const bubbleSort = (_) => {
     }
   };
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "bubbleSort") {
+    if (window && window["p5DrawLoop"] !== "bubbleSort") {
       _.noLoop();
     }
     _.background(0);
@@ -939,27 +935,25 @@ export const stepFeetIIIusion = (_) => {
 
   let brick1 = new Brick("white", 50);
   let brick2 = new Brick("black", 150);
-  let brick3 = new Brick("#888888",250)
+  let brick3 = new Brick("#888888", 250);
 
-  const setText = ()=>{
-    let p = document.createElement('p')
-    p.innerText = 'mouseIsPressed canvas 可以隐藏栅栏'
-    document.querySelector('#p5-start')?.append(p)
-  }
+  const setText = () => {
+    let p = document.createElement("p");
+    p.innerText = "mouseIsPressed canvas 可以隐藏栅栏";
+    document.querySelector("#p5-start")?.append(p);
+  };
 
   _.setup = () => {
     _.createCanvas(500, 300);
 
-    setText()
+    setText();
   };
-
-
 
   brick1.setSpeed();
   brick2.setSpeed();
-  brick3.setSpeed()
+  brick3.setSpeed();
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "stepFeetIIIusion") {
+    if (window && window["p5DrawLoop"] !== "stepFeetIIIusion") {
       _.noLoop();
     }
 
@@ -994,7 +988,7 @@ export const gridOutput = (_) => {
   let x = 0;
 
   _.draw = () => {
-    if (window && window.p5DrawLoop !== "gridOutput") {
+    if (window && window["p5DrawLoop"] !== "gridOutput") {
       _.noLoop();
     }
     if (x > _.width) {
@@ -1027,7 +1021,7 @@ export const genFuncDemo = (_) => {
 
   _.setup = () => {
     _.createCanvas(500, 300);
-    _.frameRate(1)
+    _.frameRate(1);
   };
 
   function sleep(duration) {
@@ -1046,8 +1040,8 @@ export const genFuncDemo = (_) => {
   let x;
   x = g.next();
   _.draw = async () => {
-    if (window && window.p5DrawLoop !== "genFuncDemo") {
-    _.noLoop();
+    if (window && window["p5DrawLoop"] !== "genFuncDemo") {
+      _.noLoop();
     }
     _.background(0);
 
@@ -1055,10 +1049,218 @@ export const genFuncDemo = (_) => {
       await drawRect(x.value, 500);
       x = g.next();
     }
-    g = gen()
+    g = gen();
     _.fill(255);
     _.line();
   };
 };
 
+export const minesweeper = (_) => {
+  let grid;
+  const rows = 20,cols = 20;
+  const w = 20;
 
+  _.setup = () => {
+    _.createCanvas(400, 400);
+    grid = make2DArray(cols, rows);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j] = new Cell(i * w, j * w, w);
+      }
+    }
+
+
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j].countBees(i,j)
+      }
+    }
+    console.log(grid)
+  };
+
+  _.draw = () => {
+    if (window && window["p5DrawLoop"] !== "minesweeper") {
+      _.noLoop()
+    }
+    _.background(255);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j].show()
+      }
+    }
+
+  };
+
+  const make2DArray = (cols, rows) => {
+    const arr = new Array(cols);
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = new Array(rows);
+    }
+    return arr;
+  };
+
+  const gameOver = ()=>{
+    let count = 0 ;
+    for(let i = 0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        if(grid[i][j].revealed&&grid[i][j].neighborCount!==-1){
+          count+=grid[i][j].neighborCount
+        }
+      }
+    }
+
+
+    for(let i = 0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        grid[i][j].reveale()
+        console.log(grid[i][j])
+      }
+    }
+
+
+    ElMessage.warning('游戏结束'+'最终得分为'+count)
+
+
+    
+  }
+
+  _.mousePressed = ()=>{
+
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        if(grid[i][j].containes(_.mouseX,_.mouseY)){
+          grid[i][j].reveale();
+          console.log(grid[i][j])
+  
+          if(grid[i][j].bee){
+              gameOver()
+          }
+        }
+     
+
+
+      }
+    }
+  }
+
+  class Cell {
+    bee: Boolean;
+    revealed: Boolean;
+    x: number;
+    y: number;
+    w: number;
+    i: number;
+    j: number;
+    neighborCount:number;
+    
+
+    constructor(x, y, w) {
+      
+
+      //设置炸弹数量  
+      if(_.random(1)<0.1){
+        this.bee = true
+      }else{
+        this.bee = false
+      }
+
+
+
+      this.revealed = false
+      // this.revealed = true;
+
+      this.x = x;
+      this.y = y;
+      this.w = w;
+
+      this.i = Math.floor(x/w);
+      this.j = Math.floor(y/w);
+      this.neighborCount = 0 ;
+    }
+
+    show() {
+      _.stroke(0)
+      _.noFill()
+      _.rect(this.x,this.y,this.w,this.w);
+      if(this.revealed){
+        if(this.bee){       
+          _.stroke(0)
+          _.fill(127)       
+          _.ellipse(this.x+(this.w/2),this.y+(this.w/2),this.w/2);
+
+        }else{
+
+
+          _.fill(200)
+          _.rect(this.x,this.y,this.w,this.w)
+
+          if(this.neighborCount>0){
+            _.textAlign(_.CENTER);
+            _.fill(0)
+            _.text(this.neighborCount,this.x+this.w/2,this.y+this.w-4)  
+          }
+          
+        }
+
+
+      }
+    }
+
+    containes(x,y){
+      return (x>this.x&&x<(this.x+this.w)&&y>this.y&&y<(this.y+this.w))
+
+    }
+
+    reveale(){
+      this.revealed = true
+      if(this.neighborCount === 0){
+        this.floodFill()
+      }
+
+      this.show()
+    }
+
+
+    floodFill(){
+      for(let i=-1;i<=1;i++){
+        for(let j=-1;j<=1;j++){
+            let x0 =this.i+i;
+            let y0 = this.j+j;
+            if(x0>-1&&x0<cols&&y0>-1&&y0<rows)  
+            {
+              let nabor = grid[x0][y0];
+              if(!nabor.bee&&!nabor.revealed)
+              nabor.reveale()
+            }
+            
+        }
+      }
+    }
+
+    countBees(){
+      if(this.bee){
+        this.neighborCount = -1;
+        return;
+      }
+
+      let total = 0;
+      for(let i=-1;i<=1;i++){
+        for(let j=-1;j<=1;j++){
+            let x0 =this.i+i;
+            let y0 = this.j+j;
+            let neighbor;
+            if(x0>-1&&x0<cols&&y0>-1&&y0<rows)  
+            {
+              neighbor = grid[x0][y0];
+              if(neighbor.bee){
+                total++
+              }
+            }
+            
+        }
+      }
+      this.neighborCount = total
+    }
+
+  }
+};
