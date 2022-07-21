@@ -43,7 +43,7 @@ watch(route,()=>{
             <page-bottom v-if="showCustomLayout && style"></page-bottom>
         </template>
         <template #page-top>
-            <page-top v-if="isC"></page-top>
+            <page-top v-if="isC && style"></page-top>
         </template>
     </ParentLayout>
 </template>
