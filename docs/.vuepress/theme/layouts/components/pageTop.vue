@@ -48,6 +48,68 @@ const mouseleave = () => {
   console.log("mousemouseleave");
 };
 
+
+const doc = document;
+const html = doc.documentElement;
+const enterFullScreen = () => {
+  const enter =
+    html.requestFullscreen ||
+    html.webkitRequestFullScreen ||
+    html.mozRequestFullScreen ||
+    html.msRequestFullscreen;
+  enter && enter.call(html);
+};
+
+const exitFullScreen = () => {
+  const exit =
+    doc.exitFullscreen ||
+    doc.webkitCancelFullScreen ||
+    doc.mozCancelFullScreen ||
+    doc.msExitFullscreen;
+  exit && exit.call(doc);
+};
+
+//定义el-loading加载样式
+const loading = () => {
+  return ElLoading.service({
+    lock: true,
+    text: "加载中",
+    fullscreen: true,
+    background: "rgba(0, 0, 0, 0.7)",
+  });
+};
+
+const screenRecord = async () => {
+  let stream = await navigator.mediaDevices.getDisplayMedia({
+    video: true,
+  });
+  const mine = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
+    ? "video/webm;codecs=vp9"
+    : "video/webm";
+  let mediaRecoder = new MediaRecorder(stream, {
+    mimeType: mine,
+  });
+  let chunks = [];
+  mediaRecoder.addEventListener("dataavailable", function (e) {
+    chunks.push(e.data);
+  });
+  mediaRecoder.addEventListener("stop", function () {
+    let blob = new Blob(chunks, {
+      type: chunks[0].type,
+    });
+    let url = URL.createObjectURL(blob);
+    // let video = document.querySelector(".video");
+    // video.src = url;
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "video.webm";
+    a.click();
+  });
+  mediaRecoder.start();
+};
+
+
 const isFullScreen = ref(false);
 
 const getFullScreen = () => {
