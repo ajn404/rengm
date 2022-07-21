@@ -47,5 +47,15 @@ const geometry = new THREE.BoxGeometry(width, height, depth);
     const thetaEnd = Math.PI
     const geometry = new THREE.CircleGeometry(radius,segments,thetaStart,thetaEnd);
 ```
-[带起始角度的平面圆](./three/doc/circleGeometryTheta.md)
+[带起始角度的平面圆](./three/doc/circleGeometryTheta)
 
+
+
+```js
+const radius =6;
+const height = 8;
+const radialSegments =16;
+const geometry = new THREE.ConeGeometry(radius,height,radialSegments);
+```
+
+[圆锥](./three/doc/coneGeometry)
