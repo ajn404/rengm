@@ -44,7 +44,7 @@ watch(route,()=>{
         </template>
         <template #page-top>
             <Client-only>
-            <page-top v-if="isC && style"></page-top>
+            <page-top class="page-top" v-if="isC && style"></page-top>
             </Client-only>
 
         </template>
@@ -61,6 +61,8 @@ watch(route,()=>{
     min-height: 70vh;
 }
 
+
+
 .change-style {
     padding: 0;
     margin-left: 1.5rem;
@@ -73,6 +75,13 @@ watch(route,()=>{
         background: var(--c-bg);
     }
 }
+}
+
+
+@media (max-width:1000px) {
+    .page-top{
+        display: none;
+    }
 }
 
 

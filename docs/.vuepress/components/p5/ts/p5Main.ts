@@ -1320,3 +1320,17 @@ export const minesweeper = (_) => {
 };
 
 
+export const slideScroller=(_)=>{
+  
+  _.setup = ()=>{
+    _.createCanvas(400,400)
+  }
+  
+  _.draw= ()=>{
+    if(window&&window['p5DrawLoop']!=="slideScroller"){
+      _.noLoop()
+    }
+    _.background(0)
+
+  }
+}
