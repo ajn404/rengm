@@ -26,7 +26,7 @@ const ope = ref("停止")
 
 const changeLoop = ()=>{
     window["p5DrawLoop"] = window["p5DrawLoop"]?"":"particles"
-    ope.value = p5DrawLoop?"停止":"重启"
+    ope.value = p5DrawLoop?"停止":"继续"
 }
 
 

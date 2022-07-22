@@ -57,6 +57,10 @@ watch(route,()=>{
     text-align: center;
 }
 
+:deep(.page .theme-default-content){
+    min-height: 70vh;
+}
+
 .change-style {
     padding: 0;
     margin-left: 1.5rem;
