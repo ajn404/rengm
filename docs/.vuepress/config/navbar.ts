@@ -25,9 +25,12 @@ const mindExpand :any ={
             link:'/mindExpand/README.md'
         },
         {
-            text:'p5 start',
-            link:'/mindExpand/p5-start.md',
+            text:'p5',
             children:[
+                {
+                    text:'使用p5的有趣项目',
+                    link:'/mindExpand/p5-start.md',
+                },
                 {
                     text:'p5 sound',
                     link:'/mindExpand/p5-sound.md'

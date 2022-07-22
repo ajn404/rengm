@@ -1,17 +1,16 @@
 <template>
   <div class="p5-start">
-    <el-cascader
+    <el-cascader-panel
       v-model="selectMethhod"
       :options="methods"
       @change="handleChange"
       class="cascader"
-      size="large"
     >
       <template #default="{ node, data }">
         <span>{{ data.label }}</span>
         <span v-if="!node.isLeaf">({{ data.children.length }})</span>
       </template>
-    </el-cascader>
+    </el-cascader-panel>
     <div id="p5-start"></div>
   </div>
 </template>
@@ -73,9 +72,6 @@ const handleChange = (arr) => {
 </script>
 <style scoped lang="scss">
 #p5-start {
-  max-width: 100%;
-  max-height: 80%;
-
   overflow: hidden;
   display: flex;
   place-items: center;
@@ -85,12 +81,15 @@ const handleChange = (arr) => {
 }
 .p5-start {
   display: flex;
-  gap: 30px;
+  gap: 50px;
   flex-direction: column;
 }
 ::v-deep {
   .cascader .el-cascader-menu__wrap {
-    height: 50vh !important;
+    height: 20vh !important;
+  }
+  .cascader .el-cascader-menu{
+    color: var(--c-text)!important;
   }
 }
 </style>
