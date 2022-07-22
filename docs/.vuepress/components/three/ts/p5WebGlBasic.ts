@@ -8,7 +8,7 @@ const isClickCanvas = (_) => {
 
 export const coordinate = (_p5) => {
     let _ = _p5;
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
         _.normalMaterial()
@@ -21,13 +21,13 @@ export const coordinate = (_p5) => {
         _.rotateY(0.003 * _.PI * _.frameCount);
         _.box(100)
 
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -39,7 +39,7 @@ export const coordinate = (_p5) => {
 export const defaultFunc = (_p5) => {
     let _ = _p5;
     let slider;
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
 
     _.setup = () => {
         _.createCanvas(500, 500, _.WEBGL)
@@ -60,14 +60,14 @@ export const defaultFunc = (_p5) => {
         _.rotateX(_.frameCount * 0.002)
         _.rotateY(_.frameCount * 0.002)
         _.box(val)
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
 
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.loop()
             }
@@ -76,7 +76,7 @@ export const defaultFunc = (_p5) => {
 }
 
 export const renderSteps = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
         _.normalMaterial()
@@ -97,7 +97,7 @@ export const renderSteps = (_) => {
 
         _.rotateX(_.frameCount * _.PI * 0.01)
         _.model(teaBox)
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.redraw()
             _.noLoop()
         }
@@ -105,7 +105,7 @@ export const renderSteps = (_) => {
 
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.loop()
             }
@@ -114,7 +114,7 @@ export const renderSteps = (_) => {
 }
 
 export const pointHandle = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
     }
@@ -126,13 +126,13 @@ export const pointHandle = (_) => {
         _.camera(0, 0, 160 + _.sin(_.frameCount * 0.01) * 100, 0, 0, 0, 0, 1, 0)
         _.rotateX(_.PI / 3)
         _.torus(30, 10)
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -142,7 +142,7 @@ export const pointHandle = (_) => {
 }
 
 export const textureDemo = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(500, 200, _.WEBGL)
     }
@@ -164,13 +164,13 @@ export const textureDemo = (_) => {
 
 
 
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -180,7 +180,7 @@ export const textureDemo = (_) => {
 }
 
 export const ambientLight = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     let angle;
     let lightColor, materialColor;
     _.setup = () => {
@@ -205,13 +205,13 @@ export const ambientLight = (_) => {
         _.box(50)
 
 
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -221,7 +221,7 @@ export const ambientLight = (_) => {
 }
 
 export const directionalLight = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(200, 200, _.WEBGL)
     }
@@ -239,13 +239,13 @@ export const directionalLight = (_) => {
 
 
 
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -255,7 +255,7 @@ export const directionalLight = (_) => {
 }
 
 export const pointLight = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(200, 200, _.WEBGL)
     }
@@ -268,13 +268,13 @@ export const pointLight = (_) => {
         _.pointLight(250, 250, 250, locX, locY, 100);
         _.noStroke();
         _.sphere(80);
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -284,7 +284,7 @@ export const pointLight = (_) => {
 }
 
 export const spotLight = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     let colorPicker;
     _.setup = () => {
         _.createCanvas(200, 200, _.WEBGL)
@@ -303,13 +303,13 @@ export const spotLight = (_) => {
         _.spotLight(colorPicker.color(), locX, locY, 200, 0, 0, -1, Math.PI / 16);
         _.sphere(80)
 
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()
@@ -319,7 +319,7 @@ export const spotLight = (_) => {
 }
 
 export const demo = (_) => {
-    let p5DrawLoop = window.p5DrawLoop;
+    let p5DrawLoop = window["p5DrawLoop"];
     _.setup = () => {
         _.createCanvas(200, 200, _.WEBGL)
     }
@@ -327,13 +327,13 @@ export const demo = (_) => {
     _.draw = () => {
         _.background(255)
 
-        if (window && window.p5DrawLoop !== p5DrawLoop) {
+        if (window && window["p5DrawLoop"] !== p5DrawLoop) {
             _.noLoop()
         }
     }
     _.mousePressed = () => {
         if (isClickCanvas(_)) {
-            window.p5DrawLoop = p5DrawLoop
+            window["p5DrawLoop"] = p5DrawLoop
             if (!(_.isLooping())) {
                 _.redraw()
                 _.loop()

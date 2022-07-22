@@ -38,13 +38,13 @@ if (isClient){
     nextTick(() => {
       let target = box._value
       target.id = propsValue.renderFunc.value
-      window.p5DrawLoop = defaultMethod
+      window["p5DrawLoop"] = defaultMethod
       new p5(p5MainFunc[defaultMethod], target.id);
-      window.p5DrawLoop = ""
+      window["p5DrawLoop"] = ""
     })
  }
 onUnmounted(() => {
-  window.p5DrawLoop = ""
+  window["p5DrawLoop"] = ""
 })
 </script>
 <style scoped lang="scss">

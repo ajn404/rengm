@@ -44,7 +44,7 @@ export const particles = () => {
 
   //canvas
   function loop(t = 0) {
-    if (window.p5DrawLoop === "particles") {
+    if (window["p5DrawLoop"] === "particles") {
       ctx.fillStyle = "rgba(0,0,0,.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       for (const bug of bugs) {
