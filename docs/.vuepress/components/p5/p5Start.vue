@@ -41,7 +41,10 @@ if (isClient)
     p5 = window['p5'];
     //本地开发，或者就这样？
     nextTick(() => {
-      defaultMethod = "slideScroller";
+
+
+      // debugger;
+      defaultMethod = "rose";
 
       new p5(p5MainFunc[defaultMethod], "p5-start");
 

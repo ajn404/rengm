@@ -1,3 +1,5 @@
+import { ElMessage } from "element-plus";
+
 export const main = (_p5) => {
   const p5 = _p5;
   let xpos1;
@@ -34,38 +36,37 @@ export const main = (_p5) => {
     xpos2 += mx / 64;
     xpos3 -= mx / 16;
     xpos4 -= mx / 64;
-    if (xpos1 < - thin) {
+    if (xpos1 < -thin) {
       xpos1 = width;
     }
     if (xpos1 > width) {
-      xpos1 = - thin;
+      xpos1 = -thin;
     }
-    if (xpos2 < - thick) {
+    if (xpos2 < -thick) {
       xpos2 = width;
     }
     if (xpos2 > width) {
-      xpos2 = - thick;
+      xpos2 = -thick;
     }
-    if (xpos3 < - thin) {
+    if (xpos3 < -thin) {
       xpos3 = width;
     }
     if (xpos3 > width) {
-      xpos3 = - thin;
+      xpos3 = -thin;
     }
-    if (xpos4 < - thick) {
+    if (xpos4 < -thick) {
       xpos4 = width;
     }
     if (xpos4 > width) {
-      xpos4 = - thick;
+      xpos4 = -thick;
     }
   };
 };
 
 export const LSystem = (_p5) => {
-
   interface rule {
-    a: any,
-    b: any
+    a: any;
+    b: any;
   }
 
   let p5 = _p5;
@@ -77,7 +78,7 @@ export const LSystem = (_p5) => {
   let num = 0;
   rules[0] = {
     a: "F",
-    b: "FF+[+F-F-F]-[-F+F+F]"
+    b: "FF+[+F-F-F]-[-F+F+F]",
   };
   // "F" p5.line(0, 0, 0, -len); p5.translate(0, -len);
   // "+" p5.rotate(angle);
@@ -121,14 +122,18 @@ export const LSystem = (_p5) => {
     p5.translate(200, 400);
     for (let i = 0; i < sentence.length; i++) {
       let current = sentence.charAt(i);
-      p5.stroke(Math.floor(255 * Math.random()), Math.floor(255 * Math.random()), Math.floor(255 * Math.random()));
+      p5.stroke(
+        Math.floor(255 * Math.random()),
+        Math.floor(255 * Math.random()),
+        Math.floor(255 * Math.random())
+      );
       if (current == "F") {
-        p5.line(0, 0, 0, - len);
-        p5.translate(0, - len);
+        p5.line(0, 0, 0, -len);
+        p5.translate(0, -len);
       } else if (current == "+") {
         p5.rotate(angle);
       } else if (current == "-") {
-        p5.rotate(- angle);
+        p5.rotate(-angle);
       } else if (current == "[") {
         p5.push();
       } else if (current == "]") {
@@ -207,8 +212,7 @@ export const slidePuzzle = (_p5) => {
 
   let source;
 
-  let w,
-    h;
+  let w, h;
   let cols = 4;
   let rows = 4;
 
@@ -297,11 +301,7 @@ export const slidePuzzle = (_p5) => {
         let x = j * w;
         let y = i * h;
         let index = i + j * cols;
-        if (tiles[index])
-          tiles[index].img.copy(source, x, y, w, h, 0, 0, w, h);
-
-
-
+        if (tiles[index]) tiles[index].img.copy(source, x, y, w, h, 0, 0, w, h);
       }
     }
   }
@@ -350,11 +350,7 @@ export const slidePuzzle = (_p5) => {
 
   function findBlank() {
     for (let i = 0; i < board.length; i++) {
-      if (board[i] == -1)
-        return i;
-
-
-
+      if (board[i] == -1) return i;
     }
   }
 
@@ -387,7 +383,12 @@ export const slidePuzzle = (_p5) => {
       this.y = p5.random(this.r, height - this.r);
       this.vx = p5.random(-2, 2);
       this.vy = p5.random(-2, 2);
-      this.color = p5.color(p5.random(255), p5.random(255), p5.random(255), 100);
+      this.color = p5.color(
+        p5.random(255),
+        p5.random(255),
+        p5.random(255),
+        100
+      );
     }
 
     show() {
@@ -445,7 +446,7 @@ export const polarCoordinates = (_p5) => {
     p5.beginShape();
 
     if (increment < 0) {
-      increment = - increment;
+      increment = -increment;
     }
 
     for (let i = 0; i < TWO_PI; i += increment) {
@@ -548,7 +549,11 @@ export const sinCos3D = (_p5) => {
     for (let j = 0; j < 5; j++) {
       _.push();
       for (let i = 0; i < 100; i++) {
-        _.translate(_.sin(_.frameCount * 0.001 + j) * 100, _.sin(_.frameCount * 0.001 + j) * 100, i * 0.1);
+        _.translate(
+          _.sin(_.frameCount * 0.001 + j) * 100,
+          _.sin(_.frameCount * 0.001 + j) * 100,
+          i * 0.1
+        );
         _.rotateZ(_.frameCount * 0.002);
 
         _.push();
@@ -643,9 +648,6 @@ export const defaultFunc = (_p5) => {
   };
 };
 
-import { ElMessage } from "element-plus";
-import { tr } from "element-plus/es/locale";
-import { floor } from "lodash";
 export const mitosis = (_) => {
   // https://www.youtube.com/watch?v=jxGS3fKPKJA
   // 有丝分裂
@@ -658,7 +660,9 @@ export const mitosis = (_) => {
       this.pos = _.createVector(_.random(this.r, 500), _.random(this.r, 200));
     }
 
-    this.c = c || _.color(_.random(100, 255), _.random(100, 255), _.random(100, 255), 255);
+    this.c =
+      c ||
+      _.color(_.random(100, 255), _.random(100, 255), _.random(100, 255), 255);
     this.mitosis = () => new Cell(_, this.pos, this.r * 0.8, this.c);
     this.click = (x, y) => {
       let d = _.dist(this.pos.x, this.pos.y, x, y);
@@ -718,7 +722,10 @@ export const earthQuake = (_) => {
 
   _.preload = () => {
     earth = _.loadImage("/rengm/images/earth.jpg");
-    table = _.loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.csv", "header");
+    table = _.loadTable(
+      "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.csv",
+      "header"
+    );
   };
 
   _.setup = () => {
@@ -755,8 +762,8 @@ export const earthQuake = (_) => {
       let phi = _.radians(lon) + PI;
 
       let x = r * _.cos(theta) * _.cos(phi);
-      let y = - r * _.sin(theta);
-      let z = - r * _.cos(theta) * _.sin(phi);
+      let y = -r * _.sin(theta);
+      let z = -r * _.cos(theta) * _.sin(phi);
 
       let pos = _.createVector(x, y, z);
 
@@ -804,26 +811,21 @@ export const bubbleSort = (_) => {
         let a = values[j];
         let b = values[j + 1];
         if (a > b) {
-          [
-            values[j],
-            values[j + 1]
-          ] = [
-              values[j + 1],
-              values[j]
-            ];
+          [values[j], values[j + 1]] = [values[j + 1], values[j]];
         }
       }
     } else {
       _.noLoop();
       ElMessage.success("冒泡结束");
-    } i++;
+    }
+    i++;
     for (let m = 0; m < values.length; m++) {
       _.stroke(255);
       _.line(m, _.windowHeight, m, _.height - values[m]);
     }
   };
 
-  _.mousePressed = () => { };
+  _.mousePressed = () => {};
 };
 
 export const quickSort = (_) => {
@@ -910,7 +912,6 @@ export const quickSort = (_) => {
 };
 
 // 视错觉
-
 export const stepFeetIIIusion = (_) => {
   class Brick {
     brickColor: any;
@@ -987,11 +988,7 @@ export const stepFeetIIIusion = (_) => {
     let len = 12;
     for (let i = 0; i < _.width / len; i++) {
       _.fill("white");
-      if (i % 2 === 0)
-        _.rect(i * len, _.height, len, -_.height);
-
-
-
+      if (i % 2 === 0) _.rect(i * len, _.height, len, -_.height);
     }
   }
 };
@@ -1045,7 +1042,8 @@ export const genFuncDemo = (_) => {
     });
   }
 
-  async function drawRect(len, duration) { // _.fill(_.random(255),_.random(255),_.random(255))
+  async function drawRect(len, duration) {
+    // _.fill(_.random(255),_.random(255),_.random(255))
     _.rect(0, 0, len * 50, len * 50);
     await sleep(duration);
   }
@@ -1076,25 +1074,20 @@ export const minesweeper = (_) => {
   const w = 20;
   let gameIsOver = false;
 
-
-
   _.setup = () => {
     _.createCanvas(400, 400);
     grid = make2DArray(cols, rows);
-    setup()
+    setup();
 
     let button = addButton("开始");
     button.mousePressed(() => {
-      setup()
-      _.noLoop()
-      _.loop()
+      setup();
+      _.noLoop();
+      _.loop();
     });
-
-
   };
 
   const setup = () => {
-    
     gameIsOver = false;
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
@@ -1102,26 +1095,24 @@ export const minesweeper = (_) => {
       }
     }
 
-
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        grid[i][j].countBees(i, j)
+        grid[i][j].countBees(i, j);
       }
     }
-  }
+  };
 
   _.draw = () => {
     if (window && window["p5DrawLoop"] !== "minesweeper") {
       _.noLoop();
-      _.mousePressed = () => { }
+      _.mousePressed = () => {};
     }
     _.background(255);
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        grid[i][j].show()
+        grid[i][j].show();
       }
     }
-
   };
 
   const make2DArray = (cols, rows) => {
@@ -1133,46 +1124,41 @@ export const minesweeper = (_) => {
   };
 
   const gameOver = () => {
-    gameIsOver = true
+    gameIsOver = true;
     let count = 0;
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         if (grid[i][j].revealed && grid[i][j].neighborCount !== -1) {
-          count += grid[i][j].neighborCount
+          count += grid[i][j].neighborCount;
         }
       }
     }
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        grid[i][j].reveale()
+        grid[i][j].reveale();
       }
     }
-    ElMessage.warning('你干嘛！😠' + '最终得分为' + count)
-    _.noLoop()
-
-
-  }
+    ElMessage.warning("你干嘛！😠" + "最终得分为" + count);
+    _.noLoop();
+  };
 
   _.mousePressed = () => {
-
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         if (grid[i][j].containes(_.mouseX, _.mouseY)) {
           grid[i][j].reveale();
-          if (grid[i][j].bee&&!gameIsOver) {
-            gameOver()
+          if (grid[i][j].bee && !gameIsOver) {
+            gameOver();
           }
         }
-
-
       }
     }
-  }
+  };
 
   let img;
   _.preload = () => {
-    img = _.loadImage('/rengm/images/ikun.jpg');
-  }
+    img = _.loadImage("/rengm/images/ikun.jpg");
+  };
 
   class Cell {
     bee: Boolean;
@@ -1184,16 +1170,15 @@ export const minesweeper = (_) => {
     j: number;
     neighborCount: number;
 
-
-    constructor(x, y, w) { // 设置炸弹数量
+    constructor(x, y, w) {
+      // 设置炸弹数量
       if (_.random(1) < 0.1) {
-        this.bee = true
+        this.bee = true;
       } else {
-        this.bee = false
+        this.bee = false;
       }
 
-
-      this.revealed = false
+      this.revealed = false;
       // this.revealed = true;
 
       this.x = x;
@@ -1206,49 +1191,46 @@ export const minesweeper = (_) => {
     }
 
     show() {
-      _.stroke(0)
-      _.noFill()
+      _.stroke(0);
+      _.noFill();
       _.rect(this.x, this.y, this.w, this.w);
       if (this.revealed) {
         if (this.bee) {
-          _.stroke(0)
-          _.fill(127)
-          _.ellipse(this.x + (this.w / 2), this.y + (this.w / 2), this.w / 2);
-          _.image(img, this.x, this.y, this.w, this.w)
-
-
+          _.stroke(0);
+          _.fill(127);
+          _.ellipse(this.x + this.w / 2, this.y + this.w / 2, this.w / 2);
+          _.image(img, this.x, this.y, this.w, this.w);
         } else {
-
-
-          _.fill(200)
-          _.rect(this.x, this.y, this.w, this.w)
+          _.fill(200);
+          _.rect(this.x, this.y, this.w, this.w);
 
           if (this.neighborCount > 0) {
             _.textAlign(_.CENTER);
-            _.fill(0)
-            _.text(this.neighborCount, this.x + this.w / 2, this.y + this.w - 4)
+            _.fill(0);
+            _.text(
+              this.neighborCount,
+              this.x + this.w / 2,
+              this.y + this.w - 4
+            );
           }
-
         }
-
-
       }
     }
 
     containes(x, y) {
-      return (x > this.x && x < (this.x + this.w) && y > this.y && y < (this.y + this.w))
-
+      return (
+        x > this.x && x < this.x + this.w && y > this.y && y < this.y + this.w
+      );
     }
 
     reveale() {
-      this.revealed = true
+      this.revealed = true;
       if (this.neighborCount === 0) {
-        this.floodFill()
+        this.floodFill();
       }
 
-      this.show()
+      this.show();
     }
-
 
     floodFill() {
       for (let i = -1; i <= 1; i++) {
@@ -1257,15 +1239,8 @@ export const minesweeper = (_) => {
           let y0 = this.j + j;
           if (x0 > -1 && x0 < cols && y0 > -1 && y0 < rows) {
             let nabor = grid[x0][y0];
-            if (!nabor.bee && !nabor.revealed)
-              nabor.reveale()
-
-
-
-
-
+            if (!nabor.bee && !nabor.revealed) nabor.reveale();
           }
-
         }
       }
     }
@@ -1285,15 +1260,13 @@ export const minesweeper = (_) => {
           if (x0 > -1 && x0 < cols && y0 > -1 && y0 < rows) {
             neighbor = grid[x0][y0];
             if (neighbor.bee) {
-              total++
+              total++;
             }
           }
-
         }
       }
-      this.neighborCount = total
+      this.neighborCount = total;
     }
-
   }
 
   function addButton(label) {
@@ -1319,18 +1292,50 @@ export const minesweeper = (_) => {
   }
 };
 
+//名字与功能未匹配
+export const rose = (_) => {
+  let n = 0,
+    d = 0;
+  _.setup = () => {
+    _.createCanvas(400, 400);
+    _.angleMode(_.DEGREES);
+  };
 
-export const slideScroller=(_)=>{
-  
-  _.setup = ()=>{
-    _.createCanvas(400,400)
-  }
-  
-  _.draw= ()=>{
-    if(window&&window['p5DrawLoop']!=="slideScroller"){
-      _.noLoop()
+  _.draw = () => {
+    if (window && window["p5DrawLoop"] !== "rose") {
+      _.noLoop();
     }
-    _.background(0)
+    _.background(0);
+    _.translate(200, 200);
+    _.stroke(255);
 
-  }
-}
+    _.noFill();
+    _.beginShape();
+    _.strokeWeight(1);
+    for (let i = 0; i < 361; i++) {
+      let k = i * d;
+      let r = 150 * _.sin(n * k);
+      let x = r * _.cos(k);
+      let y = r * _.sin(k);
+      _.vertex(x, y);
+    }
+    _.endShape();
+
+    _.noFill();
+    _.stroke(255, 0, 255, 255);
+    _.strokeWeight(4);
+    _.beginShape();
+
+    for (let i = 0; i < 361; i++) {
+      let k = i;
+      let r = 150 * _.sin(n * k);
+      let x = r * _.cos(k);
+      let y = r * _.sin(k);
+      _.vertex(x, y);
+    }
+    _.endShape();
+
+    n += 0.001;
+    d += 0.003;
+  };
+};

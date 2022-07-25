@@ -23,6 +23,10 @@ export const allMethods = [
         value: "stepFeetIIIusion",
         label: "视错觉",
       },
+      {
+        value:"rose",
+        label:"旋转玫瑰"
+      }
     ],
   },
   {
