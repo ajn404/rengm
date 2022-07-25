@@ -1,5 +1,7 @@
 
-export const initThree = (THREE, container) => {
+import * as THREE from 'three'
+
+export const initThree = (container) => {
     const scene = new THREE.Scene()
     //透视摄像机
     const camera = new THREE.PerspectiveCamera(
@@ -42,7 +44,7 @@ export const initThree = (THREE, container) => {
 }
 
 
-export const extraModuleUse = (THREE, container, extra) => {
+export const extraModuleUse = (container, extra) => {
     const scene = new THREE.Scene()
 
     const camera = new THREE.PerspectiveCamera(
@@ -93,7 +95,7 @@ export const extraModuleUse = (THREE, container, extra) => {
 }
 
 
-export const css3DSprites = (THREE, container, extra) => {
+export const css3DSprites = ( container, extra) => {
     const { TWEEN, TrackballControls, CSS3DRenderer, CSS3DSprite } = extra;
     let camera, scene, renderer;
     let controls;
@@ -278,3 +280,74 @@ export const css3DSprites = (THREE, container, extra) => {
 
 }
 
+
+
+
+class Sketch{
+    time:number;
+    geometry:any;
+    material:any;
+    mesh:any;
+    scene:any;
+    renderer:any;
+    camera:any;
+    container:any;
+    width:any;
+    height:any;
+
+    constructor(options){
+        this.time = 0;
+        this.container = options.container;
+
+
+        this.width = this.container.offsetWidth;
+        this.height = this.container.offsetHeight;
+
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(
+            70,
+            this.width /this.height,
+            0.01,
+            10
+        );
+        this.camera.position.z = 1;
+
+        this.renderer = new THREE.WebGLRenderer(
+            {
+                antialias:true
+            }
+        );
+        this.renderer.setSize(this.width,this.height);
+        this.container.appendChild(this.renderer.domElement);
+
+        this.addObject();
+        this.render();
+    }
+
+    render(){
+        requestAnimationFrame(this.render.bind(this))
+        this.time+=0.05;
+        this.mesh.rotation.x = this.time/2000;
+        this.mesh.rotation.y = this.time/1000;
+        this.renderer.render(this.scene,this.camera);
+    }
+
+    resize(){
+
+    }
+
+    addObject(){
+        this.geometry = new THREE.BoxGeometry(0.2,0.2,0.2);
+        this.material = new THREE.MeshBasicMaterial();
+        this.mesh = new THREE.Mesh(this.geometry,this.material);
+
+        this.scene.add(this.mesh)
+    }
+}
+// 
+export const playDemo = ( container, extra) =>{
+    
+    new Sketch({
+        container:container.value||document.body
+    })
+}

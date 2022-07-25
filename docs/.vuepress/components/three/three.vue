@@ -7,8 +7,7 @@
 
 import { ref, nextTick, watchEffect, toRefs } from "vue"
 import { isClient } from "@vueuse/core";
-import * as threeFunc from './ts/threeFuncs.ts'
-import * as THREE from 'three'
+import * as threeFunc from './ts/threeFuncs'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as  TWEEN  from '@tweenjs/tween.js'
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js'
@@ -29,7 +28,7 @@ const container = ref(null)
 nextTick(() => {
     if (isClient) {
         let funcName = route.meta.method || "initThree";
-        threeFunc[funcName](THREE, container, extraModule);
+        threeFunc[funcName.toString()]( container, extraModule);
     }
 })
 
