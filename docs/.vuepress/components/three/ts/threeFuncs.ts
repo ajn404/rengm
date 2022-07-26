@@ -261,7 +261,7 @@ export const css3DSprites = (container, extra) => {
 };
 
 
-//
+//shader
 export const playDemo = (container, extra) => {
 
     const {OrbitControls} =  extra;
@@ -280,7 +280,7 @@ export const playDemo = (container, extra) => {
         control:any;
       
         constructor(options) {
-          this.time = 0;
+          this.time = 10;
           this.container = options.container;
           this.width = window.innerWidth;
           this.height = window.innerHeight;
@@ -311,7 +311,7 @@ export const playDemo = (container, extra) => {
         }
       
         animate() {
-          this.time += 0.05;
+        //   this.time += 0.05;
           this.mesh.rotation.x += this.time / 1000;
           this.mesh.rotation.y += this.time / 1000;
           this.render();
@@ -337,6 +337,23 @@ export const playDemo = (container, extra) => {
         //   });
 
         this.material = new THREE.MeshNormalMaterial()
+
+        this.material = new THREE.ShaderMaterial(
+            {
+                fragmentShader:`
+                    void main(){
+                        gl_FragColor = vec4(1.0,0.,1,1.);
+                    }
+                `,
+                vertexShader:  `
+                void main(){
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4 
+                    (position,1.0);
+                }`
+            }
+        )
+
+
           this.mesh = new THREE.Mesh(this.geometry, this.material);
           this.scene.add(this.mesh);
         }

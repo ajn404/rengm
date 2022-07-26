@@ -91,6 +91,7 @@ export default defineUserConfig({
         // docsearchPlugin()
     ],
     clientConfigFile: resolve('./clientAppEnhance.ts'),
+    
     theme: localTheme({
         navbar: navbarConfig,
         logo: '',
