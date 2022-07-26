@@ -22,7 +22,6 @@ const extraModule = {
 }
 import { useRoute } from 'vue-router'
 const route = useRoute()
-
 const container = ref(null)
 
 nextTick(() => {
