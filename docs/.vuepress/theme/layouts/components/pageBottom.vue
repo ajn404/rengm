@@ -83,12 +83,12 @@ const bottomButtonClick = ()=>{
             left:0;
             right:0;
             height:1rem;
-            background:#782030;
+            background:var(--c-brand);
             filter:url("#blob");
             .bubble{
                 position: absolute;
                 left:var(--position, 50%);
-                background:#782030;
+                background:var(--c-brand);
                 border-radius:100%;
                 animation:bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
                     bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
@@ -96,7 +96,7 @@ const bottomButtonClick = ()=>{
 
             }
             .bubble:nth-child(n+64) {
-                background:#782030;
+                background:var(--c-brand);
             }
         }
         .content {
@@ -105,10 +105,10 @@ const bottomButtonClick = ()=>{
             grid-template-columns: 1fr auto;
             grid-gap: 4rem;
             padding:2rem;
-            background:#782030;
+            background:var(--c-brand);
             .bottomButton{
                 width: 7em;
-                background: #782030;
+                background: var(--c-brand);
                 border: none;
                 color:#F5F7FA;
                 font-size:1rem;

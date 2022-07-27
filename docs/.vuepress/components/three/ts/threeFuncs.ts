@@ -363,10 +363,11 @@ class Sketch {
 }
 
 
-import vertShader from "../shader/demo.glsl";
+import vertexShader from "../shader/vertex.glsl";
+import fragmentShader from "../shader/fragment.glsl"
+import ocean from '@/public/images/ocean.jpg';
 //shader
 export const playDemo = (container, extra) => {
-    console.log(vertShader)
     const options = {
         container: container.value || document.body,
     };
@@ -386,27 +387,35 @@ export const glslDemo = (container, extra) => {
 
     let s = new Sketch(options);
     s.addObject = function () {
-        this.geometry = new THREE.PlaneBufferGeometry(0.5, 0.5, 10, 10);
+        this.geometry = new THREE.PlaneBufferGeometry(1, 1, 150, 150);
 
         this.material = new THREE.ShaderMaterial(
             {
                 side: THREE.DoubleSide,
-                fragmentShader: `
-                    void main(){
-                        gl_FragColor = vec4(1.0,0.,1,1.);
+                fragmentShader: fragmentShader,
+                vertexShader: vertexShader,
+                // wireframe: true,
+                uniforms:{
+                    time:{
+                        value:0
+                    },
+                    oceanTexture:{
+                        value:new THREE.TextureLoader().load(ocean)
                     }
-                `,
-                vertexShader: `
-                    void main(){
-                        vec3 newposition = position;
-                        newposition.z += 0.01*sin(newposition.x*20.);
-                        gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition,1.0);
-                        }`,
-                wireframe: true
+                }
             }
         )
         this.mesh = new THREE.Mesh(this.geometry, this.material);
         this.scene.add(this.mesh);
     };
+
+    s.time=0;
+    s.animate = function (){
+        this.time+=0.05;
+        this.material.uniforms.time.value=this.time
+
+        this.render();
+        requestAnimationFrame(this.animate.bind(this));
+    }
     s.init(options);
 }

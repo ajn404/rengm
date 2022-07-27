@@ -3,7 +3,7 @@ import "element-plus/dist/index.css"
 import "@/public/styles/index.scss"
 import store from './store/index.js'
 import { defineClientConfig } from '@vuepress/client'
-console.log('%crengm\n%crewrite ngm','color:yellow;font-size:3em;','color:red;font-size:1.5em')
+console.log('%crengm\n%cdo it do better','color:yellow;font-size:3em;','color:red;font-size:1.5em')
 
 export default defineClientConfig({
     enhance({ app, router, siteData }){

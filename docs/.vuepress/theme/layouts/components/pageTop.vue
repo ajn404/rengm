@@ -135,6 +135,7 @@ const record = ()=>{
   width: 100px;
   text-align: center;
   position: fixed;
+  z-inde:9999;
   right: 3em;
   top: 9em;
   .tools {
