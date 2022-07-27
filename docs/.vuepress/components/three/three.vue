@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 
-import { ref, nextTick, watchEffect, toRefs } from "vue"
+import { ref, nextTick, watchEffect, toRefs,watch } from "vue"
 import { isClient } from "@vueuse/core";
 import * as threeFunc from './ts/threeFuncs'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
@@ -24,12 +24,14 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const container = ref(null)
 
-nextTick(() => {
-    if (isClient) {
-        let funcName = route.meta.method || "initThree";
-        threeFunc[funcName.toString()]( container, extraModule);
-    }
-})
+watch(
+    ()=>route.meta,
+    ()=>{
+            if (isClient&&!container.value.innerHTML) {
+              let funcName = route.meta.method || "initThree";
+              threeFunc[funcName]( container, extraModule);
+              }
+  })
 
 </script>
 

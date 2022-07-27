@@ -1,11 +1,32 @@
-
 {
     "compilerOptions": {
         "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
+        "target": "es5",
         "sourceMap": true,
-        "allowSyntheticDefaultImports":false
+
+        "lib": ["es2015", "dom"],
+        "baseUrl": "./docs",
+
+        // Shortcuts to avoid up-one-level hell:
+        // Turns "../../../utils" into "Utils"
+        "paths": {
+            "Utils": ["src/utils"]
+        },
+
+        // Gives error if there are implied "<any>" types.
+        "noImplicitAny": true,
+
+        // Allows you to access non-constant properties, such as object[keyVar]
+        "suppressImplicitAnyIndexErrors": true
     },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "src/**/*.glsl",
+            ]
 }

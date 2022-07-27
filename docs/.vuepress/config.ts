@@ -6,7 +6,7 @@ import { localTheme } from './theme'
 //插件
 const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
-const { containerPlugin } = require('@vuepress/plugin-container')
+// const { containerPlugin } = require('@vuepress/plugin-container')
 const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 // const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
 
@@ -24,6 +24,9 @@ for (let item in cdn) {
         ['script', { src: cdn[item] }]
     )
 }
+
+
+import glsl from 'rollup-plugin-glsl';
 
 export default defineUserConfig({
     title: "⚫🐟",
@@ -71,6 +74,16 @@ export default defineUserConfig({
             ssr: {
                 noExternal: ['vtk.js','three']
             },
+            plugins:[
+                glsl({
+                    // By default, everything gets included
+                    include: './**/*.glsl',
+                    exclude: ['**/index.html'],
+
+                    // Source maps are on by default
+                    sourceMap: false
+                })
+            ]
         },
         vuePluginOptions: {},
 
@@ -84,9 +97,6 @@ export default defineUserConfig({
             components: components
         }),
         backToTopPlugin(),
-        containerPlugin({
-            // options
-        }),
         nprogressPlugin(),
         // docsearchPlugin()
     ],

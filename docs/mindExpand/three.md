@@ -62,4 +62,13 @@ const geometry = new THREE.ConeGeometry(radius,height,radialSegments);
 
 [带起始角度的圆锥（高度分割为2，开放底部）]
 
+### 视频（合并WebGL和HTML世界）的demo
+
 [play_demo](./three/doc/play_demo.md)
+
+
+#### 更改着色器
+[glsl_demo](./three/doc/glslDemo.md)
+
+
+
