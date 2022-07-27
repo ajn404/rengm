@@ -362,9 +362,11 @@ class Sketch {
     }
 }
 
-
+//@ts-ignore
 import vertexShader from "../shader/vertex.glsl";
+//@ts-ignore
 import fragmentShader from "../shader/fragment.glsl"
+//@ts-ignore
 import ocean from '@/public/images/ocean.jpg';
 //shader
 export const playDemo = (container, extra) => {
@@ -387,14 +389,14 @@ export const glslDemo = (container, extra) => {
 
     let s = new Sketch(options);
     s.addObject = function () {
-        this.geometry = new THREE.PlaneBufferGeometry(1, 1, 150, 150);
+        this.geometry = new THREE.PlaneBufferGeometry(1, 1, 40, 40);
 
         this.material = new THREE.ShaderMaterial(
             {
                 side: THREE.DoubleSide,
                 fragmentShader: fragmentShader,
                 vertexShader: vertexShader,
-                // wireframe: true,
+                wireframe: true,
                 uniforms:{
                     time:{
                         value:0

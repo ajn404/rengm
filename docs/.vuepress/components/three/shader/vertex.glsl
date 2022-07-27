@@ -43,7 +43,13 @@ void main(){
 //	newposition.z += 0.1*sin( (newposition.x + 0.25 * time/10.)*2.*Pi);
 //	newposition.z += .2* noise;
 
-	Vnoise = noise;
+
+float dist = distance(uv,vec2(0.5));
+newposition.z+= 0.1*sin(dist*20. + time);
+
+Vnoise = dist;
+
+	//Vnoise = noise;
 	vUv = uv;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition,1.0);
 }
