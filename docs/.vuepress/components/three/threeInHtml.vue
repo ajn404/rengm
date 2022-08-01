@@ -4,36 +4,36 @@
 
     <div class="img-box">
         <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
 
      <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
-            <img class="img" src="/rengm/images/background.jpg" />
+            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
             <p>诺埃尔</p>
         </div>
         
