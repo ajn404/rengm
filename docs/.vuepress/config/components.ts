@@ -18,6 +18,7 @@ const echarts_components_keys = [
 const basic_3d_components = [
   { name: "basic3d", path: "three/basic3d" },
   { name: "three", path: "three/three" },
+  {name:"threeInHtml",path:"three/threeInHtml"},
   { name: "basicThree", path: "three/basicThree" },
 ];
 

@@ -362,25 +362,24 @@ class Sketch {
     }
 }
 
-//@ts-ignore
-import vertexShader from "../shader/vertex.glsl";
-//@ts-ignore
-import fragmentShader from "../shader/fragment.glsl"
-//@ts-ignore
-import ocean from '@/public/images/ocean.jpg';
+
 //shader
 export const playDemo = (container, extra) => {
     const options = {
         container: container.value || document.body,
     };
 
-
-
-
-
     let s = new Sketch(options);
     s.init(options);
 };
+
+
+//@ts-ignore
+import vertexShader from "../shader/vertex.glsl";
+//@ts-ignore
+import fragmentShader from "../shader/fragment.glsl"
+//@ts-ignore
+import ocean from '@/public/images/ocean.jpg';
 
 export const glslDemo = (container, extra) => {
     const options = {
@@ -419,5 +418,54 @@ export const glslDemo = (container, extra) => {
         this.render();
         requestAnimationFrame(this.animate.bind(this));
     }
+
+
+    s.init(options);
+}
+
+
+import fragmentShaderEffectFr from "../shader/frament_shaders_effects/fr1.glsl";
+import fragmentShaderEffectVe from "../shader/frament_shaders_effects/ve1.glsl";
+
+
+export const fragmentShaderEffect = (container,extra)=>{
+    const options = {
+        container: container.value || document.body,
+    };
+
+    let s = new Sketch(options);
+    s.addObject = function () {
+        this.geometry = new THREE.SphereBufferGeometry(.4,  40, 40);
+
+        this.material = new THREE.ShaderMaterial(
+            {
+                side: THREE.DoubleSide,
+                fragmentShader: fragmentShaderEffectFr,
+                vertexShader:fragmentShaderEffectVe,
+                wireframe: true,
+                uniforms:{
+                    time:{
+                        value:0
+                    },
+                    oceanTexture:{
+                        value:new THREE.TextureLoader().load(ocean)
+                    }
+                }
+            }
+        )
+        this.mesh = new THREE.Mesh(this.geometry, this.material);
+        this.scene.add(this.mesh);
+    };
+
+    s.time=0;
+    s.animate = function (){
+        this.time+=0.05;
+        this.material.uniforms.time.value=this.time
+
+        this.render();
+        requestAnimationFrame(this.animate.bind(this));
+    }
+
+
     s.init(options);
 }

@@ -67,8 +67,19 @@ const geometry = new THREE.ConeGeometry(radius,height,radialSegments);
 [play_demo](./three/doc/play_demo.md)
 
 
-#### 更改着色器
+#### 第五章部分 
+
+##### 更改着色器 中心🌊显示noise
 [glsl_demo](./three/doc/glslDemo.md)
+
+##### fragment shader effect
+
+[shader](./three//shader/fragmentShaderEffect.md)
+
+
+##### merging basics
+
+[three in html ](./three/shader/threeInHtml.md)
 
 
 

@@ -27,29 +27,30 @@ float cnoise(vec3 p){
 
 
 uniform float time;
-
-
 varying float Vnoise;
 varying vec2 vUv;
-
-
 
 void main(){
 	vec3 newposition = position;
 	float Pi = 3.14159265;
-	float noise = cnoise(vec3(position.x*4.,position.y*4. + time/5.,0.));
+	// float noise = cnoise(vec3(position.x*4.,position.y*4. + time/5.,0.));
+	 float noise = cnoise(2.*vec3(position.x,position.y,position.z*time/1.));
+
 
 
 //	newposition.z += 0.1*sin( (newposition.x + 0.25 * time/10.)*2.*Pi);
 //	newposition.z += .2* noise;
 
 
-float dist = distance(uv,vec2(0.5));
-newposition.z+= 0.1*sin(dist*50. + time);
+// float dist = distance(uv,vec2(0.5));
+// newposition.z+= 0.1*sin(dist*30. - time);
 
-Vnoise = dist;
+//    Vnoise = dist;
 
-	//Vnoise = noise;
+        //不规则的圆
+        newposition += 0.5* noise *normal;
+
+	// Vnoise = noise;
 	vUv = uv;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition,1.0);
 }
