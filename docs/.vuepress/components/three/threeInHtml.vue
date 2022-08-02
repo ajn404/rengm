@@ -9,7 +9,7 @@
         </div>
 
      <div class="box-item">
-            <img class="img" src="https://images6.alphacoders.com/111/1118086.jpg" />
+            <img class="img" src="https://images2.alphacoders.com/120/1205171.jpg" />
             <p>诺埃尔</p>
         </div>
          <div class="box-item">
