@@ -25,7 +25,7 @@ for (let item in cdn) {
     )
 }
 
-
+// @ts-ignore
 import glsl from 'rollup-plugin-glsl';
 
 export default defineUserConfig({
@@ -33,6 +33,7 @@ export default defineUserConfig({
     description: "vuepress的使用边界",
     base: "/rengm/",
     open: true,
+    // @ts-ignore
     bundler: viteBundler({
         viteOptions: {
             css: {
