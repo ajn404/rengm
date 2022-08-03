@@ -103,10 +103,22 @@ const other : any = {
     ]
 }
 
+const shader : any = {
+    text:'Shader',
+    children:[
+        {
+            text:'关于本栏目',
+            link:'/Shader/README.md'
+        }
+    ]
+}
+
+
 
 export const navbarConfig = [
     
     mindExpand,
+    shader,
     dataV,
     other,
     element,

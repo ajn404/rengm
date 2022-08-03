@@ -13,7 +13,7 @@ const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 import components from "./config/components";
 const { path } = require('@vuepress/utils')
 
-const resolve = (dir) => {
+const resolve = (dir:any) => {
     return path.resolve(__dirname, dir)
 }
 

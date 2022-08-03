@@ -20,6 +20,7 @@ const basic_3d_components = [
   { name: "three", path: "three/three" },
   {name:"threeInHtml",path:"three/threeInHtml"},
   { name: "basicThree", path: "three/basicThree" },
+  {name:"shader",path:"shader/index"}
 ];
 
 const vtk_components = [
