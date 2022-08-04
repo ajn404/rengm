@@ -72,19 +72,14 @@ export const allMethods = [
         value: "gridOutput",
         label: "输出为grid",
       },
+      {
+        value:'easing',
+        label:'easing'
+      }
       // {
       //   value:'genFuncDemo',
       //   label:'生成器函数使用'
       // }
-    ],
-  },
-  {
-    label: "场景4(应用)",
-    children: [
-      {
-        label: "有丝分裂",
-        value: "mitosis",
-      },
     ],
   },
   {

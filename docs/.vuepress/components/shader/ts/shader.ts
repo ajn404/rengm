@@ -1,12 +1,9 @@
 // @ts-nocheck
 
 import * as THREE from "three";
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as  TWEEN from '@tweenjs/tween.js';
-
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
-
 import { CSS3DRenderer, CSS3DSprite } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 
@@ -22,12 +19,6 @@ class Sketch {
     width: any;
     height: any;
     control: any;
-
-    constructor(options: any) {
-        // this.init(options)
-
-
-    }
 
     init(options: any) {
         this.time = 10;
@@ -278,11 +269,7 @@ export const mouseColor = (container: any) => {
         this.render();
 
     }
-
-    
-
     s.init(options);
- 
-    s.control.dispose();
+     s.control.dispose();
 
 }
