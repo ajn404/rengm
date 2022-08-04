@@ -1,0 +1,1 @@
+import{_ as a,o,c as s,a as e,d as t}from"./app.8137842b.js";const n={},d=e("h2",{id:"p5-sound",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#p5-sound","aria-hidden":"true"},"#"),t(" p5 sound")],-1),r=[d];function c(_,i){return o(),s("div",null,r)}var h=a(n,[["render",c],["__file","p5-sound.html.vue"]]);export{h as default};
