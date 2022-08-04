@@ -26,6 +26,10 @@ export const allMethods = [
       {
         value:"rose",
         label:"旋转玫瑰"
+      },
+      {
+        value:"rayCast",
+        label:"射线投影"
       }
     ],
   },

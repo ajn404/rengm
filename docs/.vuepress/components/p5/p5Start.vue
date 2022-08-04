@@ -44,17 +44,18 @@ if (isClient)
 
 
       // debugger;
-      defaultMethod = "rose";
+      defaultMethod = "rayCast";
 
       new p5(p5MainFunc[defaultMethod], "p5-start");
-
       window["p5DrawLoop"] = defaultMethod;
+
+
     });
   });
 onUnmounted(() => {
   window["p5DrawLoop"] = "";
 });
-const handleChange = (arr) => {
+const handleChange = (arr:any) => {
   try {
     if (p5 && typeof p5 === "function") {
       let funcName = arr[arr.length - 1];
@@ -62,7 +63,7 @@ const handleChange = (arr) => {
       //清除之前的
       clearFunc();
       //新建计算和canvas
-      if (["quickSort", "bubbleSort"].includes(funcName)) {
+      if (["quickSort", "bubbleSort","rayCast"].includes(funcName)) {
         document.querySelector("#p5-start").requestFullscreen();
       }
       new p5(funcs[funcName] || p5MainFunc.defaultFunc, "p5-start");
@@ -87,12 +88,10 @@ const handleChange = (arr) => {
   gap: 50px;
   flex-direction: column;
 }
-::v-deep {
-  .cascader .el-cascader-menu__wrap {
-    height: 20vh !important;
+  :deep(.cascader .el-cascader-menu__wrap ){
+    height: 40vh !important;
   }
-  .cascader .el-cascader-menu{
+  :deep(.cascader .el-cascader-menu){
     color: var(--c-text)!important;
   }
-}
 </style>
