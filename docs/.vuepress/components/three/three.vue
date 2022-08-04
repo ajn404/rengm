@@ -26,7 +26,6 @@ const container = ref(null)
 
 const draw = ()=>{
    if (isClient&&!container.value.innerHTML) {
-    console.log(route.meta.method)
         let funcName = route.meta.method || "method";
         threeFunc[funcName]( container, extraModule);
       }

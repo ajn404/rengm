@@ -1,11 +1,12 @@
-//@ts-ignore
+// @ts-nocheck
+
 import * as THREE from "three";
-//@ts-ignore
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-import * as  TWEEN  from '@tweenjs/tween.js';
-//@ts-ignore
+
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import * as  TWEEN from '@tweenjs/tween.js';
+
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
-//@ts-ignore
+
 import { CSS3DRenderer, CSS3DSprite } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 
@@ -22,13 +23,13 @@ class Sketch {
     height: any;
     control: any;
 
-    constructor(options:any) {
+    constructor(options: any) {
         // this.init(options)
 
 
     }
 
-    init(options:any) {
+    init(options: any) {
         this.time = 10;
         this.container = options.container;
         this.width = window.innerWidth;
@@ -45,7 +46,7 @@ class Sketch {
 
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
-            alpha:true,
+            alpha: true,
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.container.appendChild(this.renderer.domElement);
@@ -108,36 +109,36 @@ class Sketch {
 }
 
 
-//@ts-ignore
+
 import fragmentShaderEffectFr from "../glsl/method/fr.glsl";
-//@ts-ignore
+
 import fragmentShaderEffectVe from "../glsl/method/ve.glsl";
 
-//@ts-ignore
+
 import ocean from '@/public/images/ocean.jpg';
-//@ts-ignore
-export const method = container=>{
+
+export const method = container => {
     const options = {
         container: container.value || document.body,
     };
 
     let s = new Sketch(options);
     s.addObject = function () {
-        this.geometry = new THREE.SphereBufferGeometry(.6,  40, 40);
+        this.geometry = new THREE.SphereBufferGeometry(.6, 40, 40);
         // this.geometry = new THREE.PlaneBufferGeometry(1,1,  40, 40);
 
         this.material = new THREE.ShaderMaterial(
             {
                 side: THREE.DoubleSide,
                 fragmentShader: fragmentShaderEffectFr,
-                vertexShader:fragmentShaderEffectVe,
+                vertexShader: fragmentShaderEffectVe,
                 wireframe: true,
-                uniforms:{
-                    time:{
-                        value:0
+                uniforms: {
+                    time: {
+                        value: 0
                     },
-                    oceanTexture:{
-                        value:new THREE.TextureLoader().load(ocean)
+                    oceanTexture: {
+                        value: new THREE.TextureLoader().load(ocean)
                     }
                 }
             }
@@ -146,10 +147,10 @@ export const method = container=>{
         this.scene.add(this.mesh);
     };
 
-    s.time=0;
-    s.animate = function (){
-        this.time+=0.05;
-        this.material.uniforms.time.value=this.time
+    s.time = 0;
+    s.animate = function () {
+        this.time += 0.05;
+        this.material.uniforms.time.value = this.time
 
         this.render();
         requestAnimationFrame(this.animate.bind(this));
@@ -160,34 +161,128 @@ export const method = container=>{
 }
 
 import firstVs from '../glsl/first/vs.glsl';
+import firstFs from '../glsl/first/fs.glsl';
 
-export const first = (container:any)=>{
+
+export const first = (container: any) => {
     const options = {
         container: container.value || document.body,
     };
-
     let s = new Sketch(options);
     s.addObject = function () {
         this.geometry = new THREE.BoxGeometry();
+
+        const uniforms = {
+
+
+            u_color: {
+                value: new THREE.Color(0x00ff00)
+            }
+        }
         this.material = new THREE.ShaderMaterial(
             {
                 // wireframe: true,
-                // fragmentShader: fragmentShaderEffectFr,
-                vertexShader:firstVs,
+                uniforms: uniforms,
+                fragmentShader: firstFs,
+                vertexShader: firstVs,
             }
         )
         this.mesh = new THREE.Mesh(this.geometry, this.material);
         this.scene.add(this.mesh);
     };
-
-    s.time=0;
-    s.animate = function (){
+    s.time = 0;
+    s.animate = function () {
         // this.time+=0.05;
 
         this.render();
         requestAnimationFrame(this.animate.bind(this));
     }
+    s.init(options);
+}
 
+
+import mouseColorFs from '../glsl/mouseColor/fs.glsl';
+import mouseColorVs from '../glsl/mouseColor/vs.glsl';
+
+export const mouseColor = (container: any) => {
+    const options = {
+        container: container.value || document.body,
+    };
+    let s = new Sketch(options);
+
+    const uniforms = {
+
+        u_time: { value: 0.0 },
+        u_mouse: {
+            value: {
+                x: 0.0,
+                y: 0.0
+            }
+        },
+        u_resolution: {
+            value: {
+                x: 0.0,
+                y: 0.0
+            }
+        },
+        u_color: {
+            value: new THREE.Color(0x00fff0)
+        }
+    }
+
+    s.addObject = function () {
+        this.geometry = new THREE.PlaneGeometry(2, 2);
+
+
+        this.material = new THREE.ShaderMaterial(
+            {
+
+
+                // wireframe: true,
+                uniforms: uniforms,
+                side: THREE.DoubleSide,
+
+                fragmentShader: mouseColorFs,
+                vertexShader: mouseColorVs,
+            }
+        )
+        this.mesh = new THREE.Mesh(this.geometry, this.material);
+        this.scene.add(this.mesh);
+    };
+    s.time = 0;
+    s.animate = function () {
+        // this.time+=0.05;
+        this.render();
+        requestAnimationFrame(this.animate.bind(this));
+    }
+    s.move = function (evt) {
+        uniforms.u_mouse.value.x = evt.touches ? evt.touches[0].clientX : evt.clientX;
+        uniforms.u_mouse.value.y = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    };
+
+    if ('ontouchstart' in window) {
+        document.addEventListener('touchmove', s.move);
+    } else {
+        document.addEventListener('mousemove', s.move)
+    }
+
+    s.resize = function () {
+        if (uniforms.u_resolution !== undefined) {
+            uniforms.u_resolution.value.x = window.innerWidth;
+            uniforms.u_resolution.value.y = window.innerHeight;
+        }
+
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.render();
+
+    }
+
+    
 
     s.init(options);
+ 
+    s.control.dispose();
+
 }
