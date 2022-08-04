@@ -24,14 +24,25 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const container = ref(null)
 
+const draw = ()=>{
+   if (isClient&&!container.value.innerHTML) {
+    console.log(route.meta.method)
+        let funcName = route.meta.method || "method";
+        threeFunc[funcName]( container, extraModule);
+      }
+}
+
 watch(
     ()=>route.meta,
     ()=>{
-            if (isClient&&!container.value.innerHTML) {
-              let funcName = route.meta.method || "initThree";
-              threeFunc[funcName]( container, extraModule);
-              }
-  })
+      draw()
+    })
+
+nextTick(()=>{
+  if(route.meta.method){
+    draw()
+  }
+})
 
 </script>
 

@@ -158,3 +158,36 @@ export const method = container=>{
 
     s.init(options);
 }
+
+import firstVs from '../glsl/first/vs.glsl';
+
+export const first = (container:any)=>{
+    const options = {
+        container: container.value || document.body,
+    };
+
+    let s = new Sketch(options);
+    s.addObject = function () {
+        this.geometry = new THREE.BoxGeometry();
+        this.material = new THREE.ShaderMaterial(
+            {
+                // wireframe: true,
+                // fragmentShader: fragmentShaderEffectFr,
+                vertexShader:firstVs,
+            }
+        )
+        this.mesh = new THREE.Mesh(this.geometry, this.material);
+        this.scene.add(this.mesh);
+    };
+
+    s.time=0;
+    s.animate = function (){
+        // this.time+=0.05;
+
+        this.render();
+        requestAnimationFrame(this.animate.bind(this));
+    }
+
+
+    s.init(options);
+}
